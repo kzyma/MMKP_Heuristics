@@ -153,7 +153,7 @@ int main(int argc, char* argv[]){
     fileStream.close();
     
     /*any init for algorithm goes here */
-    BBA_parameters parameters = DEFAULT_BBA_PARAMETERS;
+    BBA_parameters parameters;
     parameters.populationSize = popSize;
     parameters.numberOfGenerations = genSize;
     parameters.multipleChoiceFeasibilityMod = mods[1] - '0';

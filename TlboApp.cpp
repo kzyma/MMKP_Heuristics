@@ -168,10 +168,9 @@ int main(int argc, char* argv[]){
     fileStream.close();
     
     /* TLBO PARAMS */
-    TLBO_parameters parameters = DEFAULT_TLBO_PARAMETERS;
+    TLBO_parameters parameters;
     parameters.populationSize = popSize;
     parameters.numberOfGenerations = genSize;
-    parameters.generationsOfNOP = 20;
     parameters.multipleChoiceFeasibilityMod = mods[1] - '0';
     parameters.multipleDimFeasibilityMod = mods[2] - '0';
     parameters.addRandomTeacher = mods[3] - '0';

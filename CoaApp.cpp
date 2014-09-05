@@ -162,7 +162,7 @@ int main(int argc, char* argv[]){
     fileStream.close();
     
     /*any init for algorithm goes here */
-    COA_parameters parameters = DEFAULT_COA_PARAMETERS;
+    COA_parameters parameters;
     parameters.populationSize = popSize;
     parameters.numberOfGenerations = genSize;
     parameters.multipleChoiceFeasibilityMod = mods[1] - '0';

@@ -48,20 +48,19 @@ enum multipleDimMod{
 /**
  * Parameters for customizing the MetaHeuristic algorithm.
  */
-typedef struct{
+class MetaHeuristic_parameters{
+public:
     int populationSize;
     int numberOfGenerations;
     int multipleChoiceFeasibilityMod;
     int multipleDimFeasibilityMod;
-}MetaHeuristic_parameters;
-
-/**
- * Default parameter settings.
- * Example usage:
- *  MetaHeuristic_parameters param = DEFAULT_METAHEURISTIC_PARAMETERS;
- */
-const MetaHeuristic_parameters DEFAULT_METAHEURISTIC_PARAMETERS = {
-    30,60,2,1
+    
+    MetaHeuristic_parameters(){
+        this->populationSize = 30;
+        this->numberOfGenerations = 60;
+        this->multipleChoiceFeasibilityMod = 2;
+        this->multipleDimFeasibilityMod = 1;
+    }
 };
 
 /**
