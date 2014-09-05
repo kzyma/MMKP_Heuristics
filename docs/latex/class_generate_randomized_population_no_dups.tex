@@ -1,0 +1,41 @@
+\hypertarget{class_generate_randomized_population_no_dups}{\section{Generate\+Randomized\+Population\+No\+Dups Class Reference}
+\label{class_generate_randomized_population_no_dups}\index{Generate\+Randomized\+Population\+No\+Dups@{Generate\+Randomized\+Population\+No\+Dups}}
+}
+
+
+Generate a feasible, randomized population based on \hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} for class/item size, feasilbility, profit and cost constraint calculations.  
+
+
+
+
+{\ttfamily \#include $<$M\+M\+K\+P\+Population\+Generators.\+h$>$}
+
+Inheritance diagram for Generate\+Randomized\+Population\+No\+Dups\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_generate_randomized_population_no_dups}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_generate_randomized_population_no_dups_a2daaef37cfadbf99d106720d9516d882}{\hyperlink{class_generate_randomized_population_no_dups_a2daaef37cfadbf99d106720d9516d882}{Generate\+Randomized\+Population\+No\+Dups} ()}\label{class_generate_randomized_population_no_dups_a2daaef37cfadbf99d106720d9516d882}
+
+\begin{DoxyCompactList}\small\item\em Constuct function object \hyperlink{class_generate_randomized_population_no_dups}{Generate\+Randomized\+Population\+No\+Dups}. \end{DoxyCompactList}\item 
+\hypertarget{class_generate_randomized_population_no_dups_a3d144613c04fb863924a5311461a985d}{\hyperlink{class_generate_randomized_population_no_dups_a3d144613c04fb863924a5311461a985d}{Generate\+Randomized\+Population\+No\+Dups} (unsigned int seed)}\label{class_generate_randomized_population_no_dups_a3d144613c04fb863924a5311461a985d}
+
+\begin{DoxyCompactList}\small\item\em Construct function object \hyperlink{class_generate_randomized_population_no_dups}{Generate\+Randomized\+Population\+No\+Dups} with a seed for a predicable population. \end{DoxyCompactList}\item 
+\hypertarget{class_generate_randomized_population_no_dups_a9fa6bb86573aad1a924cea7908c6c5b6}{std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \hyperlink{class_generate_randomized_population_no_dups_a9fa6bb86573aad1a924cea7908c6c5b6}{operator()} (\hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} data\+Set, int population\+Size)}\label{class_generate_randomized_population_no_dups_a9fa6bb86573aad1a924cea7908c6c5b6}
+
+\begin{DoxyCompactList}\small\item\em Run generator and return a vector of solutions (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Generate a feasible, randomized population based on \hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} for class/item size, feasilbility, profit and cost constraint calculations. 
+
+This population does not allow for repeated solutions and does not validate that more solutions exist than the size of population being generated. This would cuase an infinite loop as it is in the best interest of portability that we do not dictate the stopping criterion. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+M\+M\+K\+P\+Population\+Generators.\+h\item 
+M\+M\+K\+P\+Population\+Generators.\+cpp\end{DoxyCompactItemize}

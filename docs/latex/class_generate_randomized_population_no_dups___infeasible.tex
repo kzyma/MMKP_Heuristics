@@ -1,0 +1,41 @@
+\hypertarget{class_generate_randomized_population_no_dups___infeasible}{\section{Generate\+Randomized\+Population\+No\+Dups\+\_\+\+Infeasible Class Reference}
+\label{class_generate_randomized_population_no_dups___infeasible}\index{Generate\+Randomized\+Population\+No\+Dups\+\_\+\+Infeasible@{Generate\+Randomized\+Population\+No\+Dups\+\_\+\+Infeasible}}
+}
+
+
+Generate a feasible, randomized population based on \hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} for class/item size, feasilbility, profit and cost constraint calculations.  
+
+
+
+
+{\ttfamily \#include $<$M\+M\+K\+P\+Population\+Generators.\+h$>$}
+
+Inheritance diagram for Generate\+Randomized\+Population\+No\+Dups\+\_\+\+Infeasible\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_generate_randomized_population_no_dups___infeasible}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_generate_randomized_population_no_dups___infeasible_a059a40654b381b09fc833bcbaee00499}{\hyperlink{class_generate_randomized_population_no_dups___infeasible_a059a40654b381b09fc833bcbaee00499}{Generate\+Randomized\+Population\+No\+Dups\+\_\+\+Infeasible} ()}\label{class_generate_randomized_population_no_dups___infeasible_a059a40654b381b09fc833bcbaee00499}
+
+\begin{DoxyCompactList}\small\item\em Constuct function object \hyperlink{class_generate_randomized_population_no_dups___infeasible}{Generate\+Randomized\+Population\+No\+Dups\+\_\+\+Infeasible}. \end{DoxyCompactList}\item 
+\hypertarget{class_generate_randomized_population_no_dups___infeasible_a7a679a8fec57e8400511c874777502b4}{\hyperlink{class_generate_randomized_population_no_dups___infeasible_a7a679a8fec57e8400511c874777502b4}{Generate\+Randomized\+Population\+No\+Dups\+\_\+\+Infeasible} (unsigned int seed)}\label{class_generate_randomized_population_no_dups___infeasible_a7a679a8fec57e8400511c874777502b4}
+
+\begin{DoxyCompactList}\small\item\em Construct function object \hyperlink{class_generate_randomized_population_no_dups___infeasible}{Generate\+Randomized\+Population\+No\+Dups\+\_\+\+Infeasible} with a seed for a predicable population. \end{DoxyCompactList}\item 
+\hypertarget{class_generate_randomized_population_no_dups___infeasible_a18dc0daab30c2924f0f1596bd6e4ef48}{std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \hyperlink{class_generate_randomized_population_no_dups___infeasible_a18dc0daab30c2924f0f1596bd6e4ef48}{operator()} (\hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} data\+Set, int population\+Size)}\label{class_generate_randomized_population_no_dups___infeasible_a18dc0daab30c2924f0f1596bd6e4ef48}
+
+\begin{DoxyCompactList}\small\item\em Run generator and return a vector of solutions (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Generate a feasible, randomized population based on \hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} for class/item size, feasilbility, profit and cost constraint calculations. 
+
+This population does not allow for repeated solutions and does not validate that more solutions exist than the size of population being generated. This would cuase an infinite loop as it is in the best interest of portability that we do not dictate the stopping criterion. This population may also violate multiple dimension feasibility. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+M\+M\+K\+P\+Population\+Generators.\+h\item 
+M\+M\+K\+P\+Population\+Generators.\+cpp\end{DoxyCompactItemize}

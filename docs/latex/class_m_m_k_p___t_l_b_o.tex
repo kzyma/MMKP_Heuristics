@@ -1,0 +1,275 @@
+\hypertarget{class_m_m_k_p___t_l_b_o}{\section{M\+M\+K\+P\+\_\+\+T\+L\+B\+O Class Reference}
+\label{class_m_m_k_p___t_l_b_o}\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+}
+
+
+Teaching-\/learning-\/based optimization algrithm for the multiple-\/choice, multiple-\/dimensional knapsack problem.  
+
+
+
+
+{\ttfamily \#include $<$M\+M\+K\+P\+\_\+\+T\+L\+B\+O.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_m_m_k_p___t_l_b_o_a889c073268b283872a9601616bfcf6b0}{M\+M\+K\+P\+\_\+\+T\+L\+B\+O} (\hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} data\+Set, \hyperlink{struct_t_l_b_o__parameters}{T\+L\+B\+O\+\_\+parameters} parameters)
+\begin{DoxyCompactList}\small\item\em Construct \hyperlink{class_m_m_k_p___t_l_b_o}{M\+M\+K\+P\+\_\+\+T\+L\+B\+O} object. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___t_l_b_o_a095c049b8f168b34f2287a9cdbe5cd71}{\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \hyperlink{class_m_m_k_p___t_l_b_o_a095c049b8f168b34f2287a9cdbe5cd71}{operator()} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ initial\+Population)}\label{class_m_m_k_p___t_l_b_o_a095c049b8f168b34f2287a9cdbe5cd71}
+
+\begin{DoxyCompactList}\small\item\em Run tlbo algorithm and return the result, which is the 'teaching' solution after a stopping criterion is met. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___t_l_b_o_aaf6f0fddc9df079743b0bd2ca8414713}{float \hyperlink{class_m_m_k_p___t_l_b_o_aaf6f0fddc9df079743b0bd2ca8414713}{get\+Acceptance\+Rate} ()}\label{class_m_m_k_p___t_l_b_o_aaf6f0fddc9df079743b0bd2ca8414713}
+
+\begin{DoxyCompactList}\small\item\em Return percent of total mutations done to all solutions from last run of tlbo algorithm that were accepted as feasible and had an increased profit. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___t_l_b_o_a5fc9b7ea967e88f473063dc91fe45b5c}{float \hyperlink{class_m_m_k_p___t_l_b_o_a5fc9b7ea967e88f473063dc91fe45b5c}{get\+Feasbility\+Rate} ()}\label{class_m_m_k_p___t_l_b_o_a5fc9b7ea967e88f473063dc91fe45b5c}
+
+\begin{DoxyCompactList}\small\item\em Return percent of solutions able to be made feasible after being in an infeasible state from the teaching or learning stage of T\+L\+B\+O. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___t_l_b_o_af376e7f0515c68e0306028bc724ccb19}{int \hyperlink{class_m_m_k_p___t_l_b_o_af376e7f0515c68e0306028bc724ccb19}{get\+Number\+Of\+Unique\+Solutions} ()}\label{class_m_m_k_p___t_l_b_o_af376e7f0515c68e0306028bc724ccb19}
+
+\begin{DoxyCompactList}\small\item\em Return number of unique solutions from last T\+L\+B\+O run . \end{DoxyCompactList}\item 
+void \hyperlink{class_m_m_k_p___t_l_b_o_aec2c0d19229e361d745740bacf10b679}{add\+To\+Unique\+Solution\+Set} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} sol)
+\begin{DoxyCompactList}\small\item\em Add to unqiue solution set. \end{DoxyCompactList}\item 
+void \hyperlink{class_m_m_k_p___t_l_b_o_a40f0e094b6dff74ff91d0e0d7c4a27e9}{quick\+Sort} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&input, int p, int r)
+\begin{DoxyCompactList}\small\item\em Sort a population of \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution}'s using quicksort. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___t_l_b_o_a53c91633b431434f6179202486642214}{int \hyperlink{class_m_m_k_p___t_l_b_o_a53c91633b431434f6179202486642214}{partition} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&input, int p, int r)}\label{class_m_m_k_p___t_l_b_o_a53c91633b431434f6179202486642214}
+
+\begin{DoxyCompactList}\small\item\em Quicksort helper funtion. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___t_l_b_o_accea97f95a12f373c6a0907804de0db8}{\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \hyperlink{class_m_m_k_p___t_l_b_o_accea97f95a12f373c6a0907804de0db8}{run} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ initial\+Population)}\label{class_m_m_k_p___t_l_b_o_accea97f95a12f373c6a0907804de0db8}
+
+\begin{DoxyCompactList}\small\item\em Run tlbo algorithm and return the result, which is the 'teaching' solution after a stopping criterion is met. \end{DoxyCompactList}\item 
+void \hyperlink{class_m_m_k_p___t_l_b_o_ab18aa71ce62a00663cedb6d7d8db6f38}{teaching\+Phase} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&population)
+\begin{DoxyCompactList}\small\item\em T\+L\+B\+O teaching phase. \end{DoxyCompactList}\item 
+void \hyperlink{class_m_m_k_p___t_l_b_o_a0d3fe3e2570a79a3bd2f29aef3977d7e}{teaching\+Phase\+\_\+\+Multi\+Teacher} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&population, int class\+Size)
+\begin{DoxyCompactList}\small\item\em i-\/\+T\+L\+B\+O teaching phase. \end{DoxyCompactList}\item 
+void \hyperlink{class_m_m_k_p___t_l_b_o_a6377147784c758b4f8e782b37f86be73}{teaching\+Phase\+\_\+\+Orthognal} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&population, int iteration)
+\begin{DoxyCompactList}\small\item\em O-\/\+T\+L\+B\+O teaching phase. \end{DoxyCompactList}\item 
+void \hyperlink{class_m_m_k_p___t_l_b_o_ae230bdd3c27355b3b89c23ba3de2cb29}{learning\+Phase} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&population)
+\begin{DoxyCompactList}\small\item\em T\+L\+B\+O learning phase. \end{DoxyCompactList}\item 
+void \hyperlink{class_m_m_k_p___t_l_b_o_ad79c49be3f52a25879df07ad70af65d8}{learning\+Phase\+\_\+\+Orthognal} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&population, int iteration)
+\begin{DoxyCompactList}\small\item\em O-\/\+T\+L\+B\+O learning phase. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___t_l_b_o_a2edb2de3b8f71f7df34812be858e752a}{bool \hyperlink{class_m_m_k_p___t_l_b_o_a2edb2de3b8f71f7df34812be858e752a}{make\+Feasible} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol)}\label{class_m_m_k_p___t_l_b_o_a2edb2de3b8f71f7df34812be858e752a}
+
+\begin{DoxyCompactList}\small\item\em Wrapper function for feasibility routines. \end{DoxyCompactList}\item 
+bool \hyperlink{class_m_m_k_p___t_l_b_o_a663310e7f122715a3c90a0f9839eb69f}{make\+Feasible} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol, int mc\+Feas, int md\+Feas)
+\begin{DoxyCompactList}\small\item\em Wrapper function for feasiblity routines. \end{DoxyCompactList}\item 
+bool \hyperlink{class_m_m_k_p___t_l_b_o_ac49eccf57219c4973cdae02b6e7a6e08}{make\+Multi\+Choice\+Feas\+Fixed\+Surrogate} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol)
+\begin{DoxyCompactList}\small\item\em Make multi-\/choice feasible based a surrogate constraint created using all costs in an item. \end{DoxyCompactList}\item 
+bool \hyperlink{class_m_m_k_p___t_l_b_o_a49ab01792695f1282e28eacf157c0dca}{make\+Multi\+Choice\+Feas\+Fixed\+\_\+\+Rand\+\_\+\+Surrogate} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol)
+\begin{DoxyCompactList}\small\item\em Make multi-\/choice feasible based a surrogate constraint created using all costs in an item. \end{DoxyCompactList}\item 
+bool \hyperlink{class_m_m_k_p___t_l_b_o_a6e466ab9f14bab8e1107c15867628e11}{make\+Multi\+Choice\+Feas\+Max\+Profit} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol)
+\begin{DoxyCompactList}\small\item\em Make multi-\/choice feasible based on profit alone. \end{DoxyCompactList}\item 
+bool \hyperlink{class_m_m_k_p___t_l_b_o_aa3c59da0a24ef64da308b5801e989e44}{make\+Multi\+Dim\+Feas\+Fixed\+Surrogate} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol)
+\begin{DoxyCompactList}\small\item\em Make multi-\/dim feasible based a surrogate constraint created using all costs in an item. \end{DoxyCompactList}\item 
+bool \hyperlink{class_m_m_k_p___t_l_b_o_a91e13c12bc7dd0101d9da358e52eb56c}{make\+Multi\+Dim\+Feas\+Variable\+Surrogate} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol)
+\begin{DoxyCompactList}\small\item\em Make multi-\/dim feasible based a surrogate constraint created using variable number of item's costs's (depending on which violate the problem's resources. \end{DoxyCompactList}\item 
+bool \hyperlink{class_m_m_k_p___t_l_b_o_a7b73048fc15101a576b64f3f03520691}{make\+Multi\+Dim\+Feas\+Var\+Min\+Surrogate} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol)
+\begin{DoxyCompactList}\small\item\em Make multi-\/dim feasible based a surrogate constraint created using variable number of item's costs's (depending on which violate the problem's resources. \end{DoxyCompactList}\item 
+bool \hyperlink{class_m_m_k_p___t_l_b_o_aea788f9954bf5c56edd8643554d70177}{make\+Multi\+Dim\+Feas\+Var\+Maximize\+Profit} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol)
+\begin{DoxyCompactList}\small\item\em Make multi-\/dim feasible based on maximizing profit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Teaching-\/learning-\/based optimization algrithm for the multiple-\/choice, multiple-\/dimensional knapsack problem. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_m_m_k_p___t_l_b_o_a889c073268b283872a9601616bfcf6b0}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}]{\setlength{\rightskip}{0pt plus 5cm}M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::\+M\+M\+K\+P\+\_\+\+T\+L\+B\+O (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Data\+Set}}]{data\+Set, }
+\item[{{\bf T\+L\+B\+O\+\_\+parameters}}]{parameters}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_a889c073268b283872a9601616bfcf6b0}
+
+
+Construct \hyperlink{class_m_m_k_p___t_l_b_o}{M\+M\+K\+P\+\_\+\+T\+L\+B\+O} object. 
+
+Param\+: parameters can customize the tlbo algorithm according to struct \hyperlink{struct_t_l_b_o__parameters}{T\+L\+B\+O\+\_\+parameters}. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_m_m_k_p___t_l_b_o_aec2c0d19229e361d745740bacf10b679}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!add\+To\+Unique\+Solution\+Set@{add\+To\+Unique\+Solution\+Set}}
+\index{add\+To\+Unique\+Solution\+Set@{add\+To\+Unique\+Solution\+Set}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{add\+To\+Unique\+Solution\+Set}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::add\+To\+Unique\+Solution\+Set (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution}}]{sol}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_aec2c0d19229e361d745740bacf10b679}
+
+
+Add to unqiue solution set. 
+
+If Solution exists this function does nothing, and if not it will be added to unique solutions list. \hypertarget{class_m_m_k_p___t_l_b_o_ae230bdd3c27355b3b89c23ba3de2cb29}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!learning\+Phase@{learning\+Phase}}
+\index{learning\+Phase@{learning\+Phase}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{learning\+Phase}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::learning\+Phase (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf M\+M\+K\+P\+Solution} $>$ \&}]{population}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_ae230bdd3c27355b3b89c23ba3de2cb29}
+
+
+T\+L\+B\+O learning phase. 
+
+See Vasko et al. paper for more. \hypertarget{class_m_m_k_p___t_l_b_o_ad79c49be3f52a25879df07ad70af65d8}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!learning\+Phase\+\_\+\+Orthognal@{learning\+Phase\+\_\+\+Orthognal}}
+\index{learning\+Phase\+\_\+\+Orthognal@{learning\+Phase\+\_\+\+Orthognal}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{learning\+Phase\+\_\+\+Orthognal}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::learning\+Phase\+\_\+\+Orthognal (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf M\+M\+K\+P\+Solution} $>$ \&}]{population, }
+\item[{int}]{iteration}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_ad79c49be3f52a25879df07ad70af65d8}
+
+
+O-\/\+T\+L\+B\+O learning phase. 
+
+The learning phase has been modified... \hypertarget{class_m_m_k_p___t_l_b_o_a663310e7f122715a3c90a0f9839eb69f}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!make\+Feasible@{make\+Feasible}}
+\index{make\+Feasible@{make\+Feasible}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{make\+Feasible}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::make\+Feasible (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{sol, }
+\item[{int}]{mc\+Feas, }
+\item[{int}]{md\+Feas}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_a663310e7f122715a3c90a0f9839eb69f}
+
+
+Wrapper function for feasiblity routines. 
+
+Uses function parameters instead of Parameters struct to dictate which feasibilty algorithm to apply. \hypertarget{class_m_m_k_p___t_l_b_o_a49ab01792695f1282e28eacf157c0dca}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!make\+Multi\+Choice\+Feas\+Fixed\+\_\+\+Rand\+\_\+\+Surrogate@{make\+Multi\+Choice\+Feas\+Fixed\+\_\+\+Rand\+\_\+\+Surrogate}}
+\index{make\+Multi\+Choice\+Feas\+Fixed\+\_\+\+Rand\+\_\+\+Surrogate@{make\+Multi\+Choice\+Feas\+Fixed\+\_\+\+Rand\+\_\+\+Surrogate}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{make\+Multi\+Choice\+Feas\+Fixed\+\_\+\+Rand\+\_\+\+Surrogate}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::make\+Multi\+Choice\+Feas\+Fixed\+\_\+\+Rand\+\_\+\+Surrogate (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{sol}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_a49ab01792695f1282e28eacf157c0dca}
+
+
+Make multi-\/choice feasible based a surrogate constraint created using all costs in an item. 
+
+If one item of a class is selected, continue, else if more than one is selected the item with the highest profit-\/resource ratio is used. If none are selected then randomly choose an item from that class. Return's true if successful, false otherwise. \hypertarget{class_m_m_k_p___t_l_b_o_ac49eccf57219c4973cdae02b6e7a6e08}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!make\+Multi\+Choice\+Feas\+Fixed\+Surrogate@{make\+Multi\+Choice\+Feas\+Fixed\+Surrogate}}
+\index{make\+Multi\+Choice\+Feas\+Fixed\+Surrogate@{make\+Multi\+Choice\+Feas\+Fixed\+Surrogate}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{make\+Multi\+Choice\+Feas\+Fixed\+Surrogate}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::make\+Multi\+Choice\+Feas\+Fixed\+Surrogate (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{sol}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_ac49eccf57219c4973cdae02b6e7a6e08}
+
+
+Make multi-\/choice feasible based a surrogate constraint created using all costs in an item. 
+
+If one item of a class is selected, continue, else if more than one is selected the item with the highest profit-\/resource ratio is used. If none are selected choose the item in that class with the hightest profit-\/resource ratio. Return's true if successful, false otherwise. \hypertarget{class_m_m_k_p___t_l_b_o_a6e466ab9f14bab8e1107c15867628e11}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!make\+Multi\+Choice\+Feas\+Max\+Profit@{make\+Multi\+Choice\+Feas\+Max\+Profit}}
+\index{make\+Multi\+Choice\+Feas\+Max\+Profit@{make\+Multi\+Choice\+Feas\+Max\+Profit}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{make\+Multi\+Choice\+Feas\+Max\+Profit}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::make\+Multi\+Choice\+Feas\+Max\+Profit (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{sol}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_a6e466ab9f14bab8e1107c15867628e11}
+
+
+Make multi-\/choice feasible based on profit alone. 
+
+If one item of a class is selected, continue, else if more than one is selected the item with the highest profit is used. If none are selected choose highest profit. Return's true if successful, false otherwise. \hypertarget{class_m_m_k_p___t_l_b_o_aa3c59da0a24ef64da308b5801e989e44}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!make\+Multi\+Dim\+Feas\+Fixed\+Surrogate@{make\+Multi\+Dim\+Feas\+Fixed\+Surrogate}}
+\index{make\+Multi\+Dim\+Feas\+Fixed\+Surrogate@{make\+Multi\+Dim\+Feas\+Fixed\+Surrogate}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{make\+Multi\+Dim\+Feas\+Fixed\+Surrogate}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::make\+Multi\+Dim\+Feas\+Fixed\+Surrogate (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{sol}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_aa3c59da0a24ef64da308b5801e989e44}
+
+
+Make multi-\/dim feasible based a surrogate constraint created using all costs in an item. 
+
+Feasibility is constructed using highest difference of Er\%/n. Return's true if successful, false otherwise.
+
+Precondition\+: there must only be one item of each class selected, correctness is not garenteed otherwise. \hypertarget{class_m_m_k_p___t_l_b_o_a91e13c12bc7dd0101d9da358e52eb56c}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!make\+Multi\+Dim\+Feas\+Variable\+Surrogate@{make\+Multi\+Dim\+Feas\+Variable\+Surrogate}}
+\index{make\+Multi\+Dim\+Feas\+Variable\+Surrogate@{make\+Multi\+Dim\+Feas\+Variable\+Surrogate}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{make\+Multi\+Dim\+Feas\+Variable\+Surrogate}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::make\+Multi\+Dim\+Feas\+Variable\+Surrogate (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{sol}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_a91e13c12bc7dd0101d9da358e52eb56c}
+
+
+Make multi-\/dim feasible based a surrogate constraint created using variable number of item's costs's (depending on which violate the problem's resources. 
+
+Feasibility is constructed using highest difference of Er\%/n. Return's true if successful, false otherwise.
+
+Precondition\+: there must only be one item of each class selected, correctness is not garenteed otherwise. \hypertarget{class_m_m_k_p___t_l_b_o_aea788f9954bf5c56edd8643554d70177}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!make\+Multi\+Dim\+Feas\+Var\+Maximize\+Profit@{make\+Multi\+Dim\+Feas\+Var\+Maximize\+Profit}}
+\index{make\+Multi\+Dim\+Feas\+Var\+Maximize\+Profit@{make\+Multi\+Dim\+Feas\+Var\+Maximize\+Profit}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{make\+Multi\+Dim\+Feas\+Var\+Maximize\+Profit}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::make\+Multi\+Dim\+Feas\+Var\+Maximize\+Profit (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{sol}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_aea788f9954bf5c56edd8643554d70177}
+
+
+Make multi-\/dim feasible based on maximizing profit. 
+
+This procedure is more expensive then others becuase it attempts to gain feasibility while staying at the highest profit via local search heuristic.
+
+Precondition\+: there must only be one item of each class selected, correctness is not garenteed otherwise. \hypertarget{class_m_m_k_p___t_l_b_o_a7b73048fc15101a576b64f3f03520691}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!make\+Multi\+Dim\+Feas\+Var\+Min\+Surrogate@{make\+Multi\+Dim\+Feas\+Var\+Min\+Surrogate}}
+\index{make\+Multi\+Dim\+Feas\+Var\+Min\+Surrogate@{make\+Multi\+Dim\+Feas\+Var\+Min\+Surrogate}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{make\+Multi\+Dim\+Feas\+Var\+Min\+Surrogate}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::make\+Multi\+Dim\+Feas\+Var\+Min\+Surrogate (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{sol}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_a7b73048fc15101a576b64f3f03520691}
+
+
+Make multi-\/dim feasible based a surrogate constraint created using variable number of item's costs's (depending on which violate the problem's resources. 
+
+Feasibility is constructed using lowest difference of Er\%/n. Return's true if successful, false otherwise.
+
+Precondition\+: there must only be one item of each class selected, correctness is not garenteed otherwise. \hypertarget{class_m_m_k_p___t_l_b_o_a40f0e094b6dff74ff91d0e0d7c4a27e9}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!quick\+Sort@{quick\+Sort}}
+\index{quick\+Sort@{quick\+Sort}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{quick\+Sort}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::quick\+Sort (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf M\+M\+K\+P\+Solution} $>$ \&}]{input, }
+\item[{int}]{p, }
+\item[{int}]{r}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_a40f0e094b6dff74ff91d0e0d7c4a27e9}
+
+
+Sort a population of \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution}'s using quicksort. 
+
+Param p is the starting array element and r is the last. Note that r is not equal to the size of input, but the index of the last element to be sorted (in most cases size-\/1). \hypertarget{class_m_m_k_p___t_l_b_o_ab18aa71ce62a00663cedb6d7d8db6f38}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!teaching\+Phase@{teaching\+Phase}}
+\index{teaching\+Phase@{teaching\+Phase}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{teaching\+Phase}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::teaching\+Phase (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf M\+M\+K\+P\+Solution} $>$ \&}]{population}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_ab18aa71ce62a00663cedb6d7d8db6f38}
+
+
+T\+L\+B\+O teaching phase. 
+
+See Vasko et al. paper for more. \hypertarget{class_m_m_k_p___t_l_b_o_a0d3fe3e2570a79a3bd2f29aef3977d7e}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!teaching\+Phase\+\_\+\+Multi\+Teacher@{teaching\+Phase\+\_\+\+Multi\+Teacher}}
+\index{teaching\+Phase\+\_\+\+Multi\+Teacher@{teaching\+Phase\+\_\+\+Multi\+Teacher}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{teaching\+Phase\+\_\+\+Multi\+Teacher}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::teaching\+Phase\+\_\+\+Multi\+Teacher (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf M\+M\+K\+P\+Solution} $>$ \&}]{population, }
+\item[{int}]{class\+Size}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_a0d3fe3e2570a79a3bd2f29aef3977d7e}
+
+
+i-\/\+T\+L\+B\+O teaching phase. 
+
+The teaching phase has been modified to include multiple teachers. \hypertarget{class_m_m_k_p___t_l_b_o_a6377147784c758b4f8e782b37f86be73}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!teaching\+Phase\+\_\+\+Orthognal@{teaching\+Phase\+\_\+\+Orthognal}}
+\index{teaching\+Phase\+\_\+\+Orthognal@{teaching\+Phase\+\_\+\+Orthognal}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{teaching\+Phase\+\_\+\+Orthognal}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::teaching\+Phase\+\_\+\+Orthognal (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf M\+M\+K\+P\+Solution} $>$ \&}]{population, }
+\item[{int}]{iteration}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_a6377147784c758b4f8e782b37f86be73}
+
+
+O-\/\+T\+L\+B\+O teaching phase. 
+
+The teaching phase has been modified to include... 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+M\+M\+K\+P\+\_\+\+T\+L\+B\+O.\+h\item 
+M\+M\+K\+P\+\_\+\+T\+L\+B\+O.\+cpp\end{DoxyCompactItemize}

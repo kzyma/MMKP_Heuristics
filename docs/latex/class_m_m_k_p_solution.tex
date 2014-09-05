@@ -1,0 +1,145 @@
+\hypertarget{class_m_m_k_p_solution}{\section{M\+M\+K\+P\+Solution Class Reference}
+\label{class_m_m_k_p_solution}\index{M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}}
+}
+
+
+Solution to M\+M\+K\+P problem consisting of class/item selection, the summation of all classes' profit and summation of all classes' cost's.  
+
+
+
+
+{\ttfamily \#include $<$M\+M\+K\+P\+Solution.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_m_m_k_p_solution_a5fd2fe696c0910f8a9193e7366a2c730}{M\+M\+K\+P\+Solution} ()
+\begin{DoxyCompactList}\small\item\em Construct empty \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution}. \end{DoxyCompactList}\item 
+\hyperlink{class_m_m_k_p_solution_a7dac8058bd2616c791ead1d4cea079d7}{M\+M\+K\+P\+Solution} (std\+::vector$<$ int $>$ number\+Of\+Items\+Per\+Class)
+\begin{DoxyCompactList}\small\item\em Construct \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} with class/item data initialized to 0. \end{DoxyCompactList}\item 
+\hyperlink{class_m_m_k_p_solution_a5cf2c38982a333811a35834c7dfb85fb}{M\+M\+K\+P\+Solution} (std\+::vector$<$ int $>$ number\+Of\+Items\+Per\+Class, int number\+Of\+Constraints)
+\begin{DoxyCompactList}\small\item\em Construct \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} with class/item data initialized to 0. \end{DoxyCompactList}\item 
+std\+::vector$<$ bool $>$ \& \hyperlink{class_m_m_k_p_solution_a26255ff2f59ddf026005ef1d1be05c91}{operator\mbox{[}$\,$\mbox{]}} (int index)
+\begin{DoxyCompactList}\small\item\em Return a reference to a class of items. \end{DoxyCompactList}\item 
+bool \hyperlink{class_m_m_k_p_solution_aa69da4d40a0adf4c3facb59e935b0fa8}{operator==} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&other) const 
+\begin{DoxyCompactList}\small\item\em Compare two M\+M\+K\+P\+Solutions, equality based on the values of a solutions. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p_solution_a2f2dcb054e955883c81d96d1835fae5b}{int \hyperlink{class_m_m_k_p_solution_a2f2dcb054e955883c81d96d1835fae5b}{size} ()}\label{class_m_m_k_p_solution_a2f2dcb054e955883c81d96d1835fae5b}
+
+\begin{DoxyCompactList}\small\item\em Return number of class's in a \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution}. \end{DoxyCompactList}\item 
+float \hyperlink{class_m_m_k_p_solution_a30861a1be3da4c14ae262778b5c26946}{get\+Profit} ()
+\begin{DoxyCompactList}\small\item\em Return profit of a \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution}. \end{DoxyCompactList}\item 
+std\+::vector$<$ float $>$ \hyperlink{class_m_m_k_p_solution_a74f36885ab0d8911685463a11e4b23e6}{get\+Costs\+Summation} ()
+\begin{DoxyCompactList}\small\item\em Return costs of constraints for \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution}. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p_solution_a99e893752b315e5498f133b42386e2ce}{float \hyperlink{class_m_m_k_p_solution_a99e893752b315e5498f133b42386e2ce}{get\+Cost} (int index)}\label{class_m_m_k_p_solution_a99e893752b315e5498f133b42386e2ce}
+
+\begin{DoxyCompactList}\small\item\em Return cost summation for the cost contratint at corresponding index. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p_solution_a515ae19d6c4f860ca1d1a817df856d38}{void \hyperlink{class_m_m_k_p_solution_a515ae19d6c4f860ca1d1a817df856d38}{set\+Costs} (const std\+::vector$<$ float $>$ costs\+Summation)}\label{class_m_m_k_p_solution_a515ae19d6c4f860ca1d1a817df856d38}
+
+\begin{DoxyCompactList}\small\item\em Set cost constraints for a solution. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p_solution_a873043ef3d838c1c01ce9d72100e7d0b}{void \hyperlink{class_m_m_k_p_solution_a873043ef3d838c1c01ce9d72100e7d0b}{set\+Cost} (const std\+::size\+\_\+t index, float cost\+Summation)}\label{class_m_m_k_p_solution_a873043ef3d838c1c01ce9d72100e7d0b}
+
+\begin{DoxyCompactList}\small\item\em Set a single cost constraint for solution given by param\+: index. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p_solution_ab4d3932d7510615e6f0143abe0934d58}{void \hyperlink{class_m_m_k_p_solution_ab4d3932d7510615e6f0143abe0934d58}{set\+Profit} (const float profit\+Summation)}\label{class_m_m_k_p_solution_ab4d3932d7510615e6f0143abe0934d58}
+
+\begin{DoxyCompactList}\small\item\em Set profit for a solution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_m_m_k_p_solution_ab90a7575d0001c4296a1dc0c15753bb9}{std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&obj)}\label{class_m_m_k_p_solution_ab90a7575d0001c4296a1dc0c15753bb9}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Solution to M\+M\+K\+P problem consisting of class/item selection, the summation of all classes' profit and summation of all classes' cost's. 
+
+An item of a given class's inclusion in the solution is represented by boolean true (1), and exlusion false (0). This class does not maintain a responisbility to ensure feasibility or automatically update profit and cost summation when item selection/deselection occurs. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_m_m_k_p_solution_a5fd2fe696c0910f8a9193e7366a2c730}{\index{M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}!M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}}
+\index{M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}!M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}}
+\subsubsection[{M\+M\+K\+P\+Solution}]{\setlength{\rightskip}{0pt plus 5cm}M\+M\+K\+P\+Solution\+::\+M\+M\+K\+P\+Solution (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p_solution_a5fd2fe696c0910f8a9193e7366a2c730}
+
+
+Construct empty \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution}. 
+
+Uninitialized structure, only use for separate declaration and initialization. \hypertarget{class_m_m_k_p_solution_a7dac8058bd2616c791ead1d4cea079d7}{\index{M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}!M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}}
+\index{M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}!M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}}
+\subsubsection[{M\+M\+K\+P\+Solution}]{\setlength{\rightskip}{0pt plus 5cm}M\+M\+K\+P\+Solution\+::\+M\+M\+K\+P\+Solution (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ int $>$}]{number\+Of\+Items\+Per\+Class}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p_solution_a7dac8058bd2616c791ead1d4cea079d7}
+
+
+Construct \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} with class/item data initialized to 0. 
+
+Constraints are undefined. \hypertarget{class_m_m_k_p_solution_a5cf2c38982a333811a35834c7dfb85fb}{\index{M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}!M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}}
+\index{M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}!M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}}
+\subsubsection[{M\+M\+K\+P\+Solution}]{\setlength{\rightskip}{0pt plus 5cm}M\+M\+K\+P\+Solution\+::\+M\+M\+K\+P\+Solution (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ int $>$}]{number\+Of\+Items\+Per\+Class, }
+\item[{int}]{number\+Of\+Constraints}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p_solution_a5cf2c38982a333811a35834c7dfb85fb}
+
+
+Construct \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} with class/item data initialized to 0. 
+
+Constraints (costs) are initialized to 0 as well. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_m_m_k_p_solution_a74f36885ab0d8911685463a11e4b23e6}{\index{M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}!get\+Costs\+Summation@{get\+Costs\+Summation}}
+\index{get\+Costs\+Summation@{get\+Costs\+Summation}!M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}}
+\subsubsection[{get\+Costs\+Summation}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ float $>$ M\+M\+K\+P\+Solution\+::get\+Costs\+Summation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p_solution_a74f36885ab0d8911685463a11e4b23e6}
+
+
+Return costs of constraints for \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution}. 
+
+{\itshape note} this is not updated automatically when a solution changes and must be updated using set\+Costs. This desision was for efficiency. \hypertarget{class_m_m_k_p_solution_a30861a1be3da4c14ae262778b5c26946}{\index{M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}!get\+Profit@{get\+Profit}}
+\index{get\+Profit@{get\+Profit}!M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}}
+\subsubsection[{get\+Profit}]{\setlength{\rightskip}{0pt plus 5cm}float M\+M\+K\+P\+Solution\+::get\+Profit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p_solution_a30861a1be3da4c14ae262778b5c26946}
+
+
+Return profit of a \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution}. 
+
+{\itshape note} this is not updated automatically when a solution changes and must be updated using set\+Profit. This desision was for efficiency. \hypertarget{class_m_m_k_p_solution_aa69da4d40a0adf4c3facb59e935b0fa8}{\index{M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}!operator==@{operator==}}
+\index{operator==@{operator==}!M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+M\+K\+P\+Solution\+::operator== (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{other}
+\end{DoxyParamCaption}
+) const}}\label{class_m_m_k_p_solution_aa69da4d40a0adf4c3facb59e935b0fa8}
+
+
+Compare two M\+M\+K\+P\+Solutions, equality based on the values of a solutions. 
+
+If two solutions have the same bit's 'set', they are equal, else otherwise. \hypertarget{class_m_m_k_p_solution_a26255ff2f59ddf026005ef1d1be05c91}{\index{M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+\index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!M\+M\+K\+P\+Solution@{M\+M\+K\+P\+Solution}}
+\subsubsection[{operator[]}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ bool $>$ \& M\+M\+K\+P\+Solution\+::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p_solution_a26255ff2f59ddf026005ef1d1be05c91}
+
+
+Return a reference to a class of items. 
+
+Usage is similar to \hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} in class/item representation is similar to a multi-\/dimensional array. ex\+: Solution\+Name\mbox{[}class\+Number\mbox{]}\mbox{[}item\+Number\mbox{]}. Again, indexing begins at 0. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+M\+M\+K\+P\+Solution.\+h\item 
+M\+M\+K\+P\+Solution.\+cpp\end{DoxyCompactItemize}

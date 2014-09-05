@@ -1,0 +1,98 @@
+\hypertarget{class_m_m_k_p_data_set}{\section{M\+M\+K\+P\+Data\+Set Class Reference}
+\label{class_m_m_k_p_data_set}\index{M\+M\+K\+P\+Data\+Set@{M\+M\+K\+P\+Data\+Set}}
+}
+
+
+M\+M\+K\+P data consisting of classes with items (class\+: \hyperlink{class_item_data}{Item\+Data}) and available resources.  
+
+
+
+
+{\ttfamily \#include $<$M\+M\+K\+P\+Data\+Set.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_m_m_k_p_data_set_ae16db6c0fd863fbfded5c0b89c1efda7}{\hyperlink{class_m_m_k_p_data_set_ae16db6c0fd863fbfded5c0b89c1efda7}{M\+M\+K\+P\+Data\+Set} ()}\label{class_m_m_k_p_data_set_ae16db6c0fd863fbfded5c0b89c1efda7}
+
+\begin{DoxyCompactList}\small\item\em Construct empty \hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set}. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p_data_set_af933fabdd9bbf50a567398699380566d}{\hyperlink{class_m_m_k_p_data_set_af933fabdd9bbf50a567398699380566d}{M\+M\+K\+P\+Data\+Set} (std\+::vector$<$ int $>$ number\+Of\+Items\+In\+Classes, std\+::vector$<$ float $>$ constraints)}\label{class_m_m_k_p_data_set_af933fabdd9bbf50a567398699380566d}
+
+\begin{DoxyCompactList}\small\item\em Construct \hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} and set size of class, items in each class, and resource constraints. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{class_item_data}{Item\+Data} $>$ \& \hyperlink{class_m_m_k_p_data_set_addb4470837093cd0207410348576f74a}{operator\mbox{[}$\,$\mbox{]}} (int index)
+\begin{DoxyCompactList}\small\item\em Return reference to a class of items (vector$<$\+Item\+Data$>$). \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p_data_set_a547ee45e82cb8ed99f019debd6c08480}{std\+::size\+\_\+t \hyperlink{class_m_m_k_p_data_set_a547ee45e82cb8ed99f019debd6c08480}{size} ()}\label{class_m_m_k_p_data_set_a547ee45e82cb8ed99f019debd6c08480}
+
+\begin{DoxyCompactList}\small\item\em Return number of classes. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p_data_set_a337ea53a32b4aea7a2c19e985a57f484}{std\+::vector$<$ int $>$ \hyperlink{class_m_m_k_p_data_set_a337ea53a32b4aea7a2c19e985a57f484}{get\+Size\+Of\+Each\+Class} ()}\label{class_m_m_k_p_data_set_a337ea53a32b4aea7a2c19e985a57f484}
+
+\begin{DoxyCompactList}\small\item\em Return vector containing the number of items in each class. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p_data_set_abffa05d580864e36cb56a30ac6c7e4cd}{int \hyperlink{class_m_m_k_p_data_set_abffa05d580864e36cb56a30ac6c7e4cd}{get\+Number\+Of\+Resources} ()}\label{class_m_m_k_p_data_set_abffa05d580864e36cb56a30ac6c7e4cd}
+
+\begin{DoxyCompactList}\small\item\em Return the number of problem constraints. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p_data_set_a6ca23f557da292d5dbf3b7d72ede13e3}{std\+::vector$<$ float $>$ \hyperlink{class_m_m_k_p_data_set_a6ca23f557da292d5dbf3b7d72ede13e3}{get\+Resources} ()}\label{class_m_m_k_p_data_set_a6ca23f557da292d5dbf3b7d72ede13e3}
+
+\begin{DoxyCompactList}\small\item\em Return vector containing resource constraints. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p_data_set_a7a24bc2fc61dd807d68f6f8a1a177e40}{float \hyperlink{class_m_m_k_p_data_set_a7a24bc2fc61dd807d68f6f8a1a177e40}{get\+Resource} (int index)}\label{class_m_m_k_p_data_set_a7a24bc2fc61dd807d68f6f8a1a177e40}
+
+\begin{DoxyCompactList}\small\item\em Return one resource. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p_data_set_aa5c2c6149784656487351e162614876c}{void \hyperlink{class_m_m_k_p_data_set_aa5c2c6149784656487351e162614876c}{set\+Resources} (const std\+::vector$<$ float $>$ resources)}\label{class_m_m_k_p_data_set_aa5c2c6149784656487351e162614876c}
+
+\begin{DoxyCompactList}\small\item\em Set problem resource constraints. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p_data_set_ad36d7701adaa9fc55991e6f500637960}{bool \hyperlink{class_m_m_k_p_data_set_ad36d7701adaa9fc55991e6f500637960}{is\+Feasible} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} solution) const }\label{class_m_m_k_p_data_set_ad36d7701adaa9fc55991e6f500637960}
+
+\begin{DoxyCompactList}\small\item\em Return true if param\+: solution is feasible, false otherwise. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p_data_set_af6ac07291b0670eb54c3a41392c2eac0}{std\+::vector$<$ int $>$ \hyperlink{class_m_m_k_p_data_set_af6ac07291b0670eb54c3a41392c2eac0}{get\+Offending\+Indices} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} solution) const }\label{class_m_m_k_p_data_set_af6ac07291b0670eb54c3a41392c2eac0}
+
+\begin{DoxyCompactList}\small\item\em Return indices (if any) corresponding to resources that have been over-\/used. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p_data_set_a5d5d901598b6a30e4eec83eb43e2195e}{bool \hyperlink{class_m_m_k_p_data_set_a5d5d901598b6a30e4eec83eb43e2195e}{is\+Multi\+Choice\+Feasible} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} solution) const }\label{class_m_m_k_p_data_set_a5d5d901598b6a30e4eec83eb43e2195e}
+
+\begin{DoxyCompactList}\small\item\em Return true if param\+: solution is feasible by multiple-\/choice constraints. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p_data_set_a229df06b830b95fa8f028ec565911f96}{bool \hyperlink{class_m_m_k_p_data_set_a229df06b830b95fa8f028ec565911f96}{is\+Multi\+Dim\+Feasible} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} solution) const }\label{class_m_m_k_p_data_set_a229df06b830b95fa8f028ec565911f96}
+
+\begin{DoxyCompactList}\small\item\em Return true if param\+: solution is feasible by multiple-\/dimension constaints. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p_data_set_a389bd00ef2f3c1feb014a0e8ca128222}{void \hyperlink{class_m_m_k_p_data_set_a389bd00ef2f3c1feb014a0e8ca128222}{update\+Solution} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&solution)}\label{class_m_m_k_p_data_set_a389bd00ef2f3c1feb014a0e8ca128222}
+
+\begin{DoxyCompactList}\small\item\em Update solution analytics. \end{DoxyCompactList}\item 
+float \hyperlink{class_m_m_k_p_data_set_a72768ee8d2f6d9777762dfd4fe725629}{get\+Variable\+Constraint\+Use\+Diff} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&solution)
+\begin{DoxyCompactList}\small\item\em Return the percent difference of contraint use, comparing a solution and resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_m_m_k_p_data_set_af6e72013a650519856fa5c2f211e20ac}{std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, \hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} \&obj)}\label{class_m_m_k_p_data_set_af6e72013a650519856fa5c2f211e20ac}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+M\+M\+K\+P data consisting of classes with items (class\+: \hyperlink{class_item_data}{Item\+Data}) and available resources. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_m_m_k_p_data_set_a72768ee8d2f6d9777762dfd4fe725629}{\index{M\+M\+K\+P\+Data\+Set@{M\+M\+K\+P\+Data\+Set}!get\+Variable\+Constraint\+Use\+Diff@{get\+Variable\+Constraint\+Use\+Diff}}
+\index{get\+Variable\+Constraint\+Use\+Diff@{get\+Variable\+Constraint\+Use\+Diff}!M\+M\+K\+P\+Data\+Set@{M\+M\+K\+P\+Data\+Set}}
+\subsubsection[{get\+Variable\+Constraint\+Use\+Diff}]{\setlength{\rightskip}{0pt plus 5cm}float M\+M\+K\+P\+Data\+Set\+::get\+Variable\+Constraint\+Use\+Diff (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{solution}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p_data_set_a72768ee8d2f6d9777762dfd4fe725629}
+
+
+Return the percent difference of contraint use, comparing a solution and resources. 
+
+Calculated using only the constraints which are violated in a solution. Additionally, the input solution must be multiple-\/choice feasible. \hypertarget{class_m_m_k_p_data_set_addb4470837093cd0207410348576f74a}{\index{M\+M\+K\+P\+Data\+Set@{M\+M\+K\+P\+Data\+Set}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+\index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!M\+M\+K\+P\+Data\+Set@{M\+M\+K\+P\+Data\+Set}}
+\subsubsection[{operator[]}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ {\bf Item\+Data} $>$ \& M\+M\+K\+P\+Data\+Set\+::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p_data_set_addb4470837093cd0207410348576f74a}
+
+
+Return reference to a class of items (vector$<$\+Item\+Data$>$). 
+
+Usage is similar to that of a multi-\/dimensional array\+: Data\+Set\+Name\mbox{[}class\+Index\mbox{]}\mbox{[}Item\+Index\mbox{]} 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+M\+M\+K\+P\+Data\+Set.\+h\item 
+M\+M\+K\+P\+Data\+Set.\+cpp\end{DoxyCompactItemize}

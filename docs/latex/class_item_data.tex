@@ -1,0 +1,117 @@
+\hypertarget{class_item_data}{\section{Item\+Data Class Reference}
+\label{class_item_data}\index{Item\+Data@{Item\+Data}}
+}
+
+
+Item in M\+M\+K\+P, which consists of a profit and cost for each constraint.  
+
+
+
+
+{\ttfamily \#include $<$M\+M\+K\+P\+Data\+Set.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_item_data_a3a1b6240b016a82fa65b450f98a35f6c}{\hyperlink{class_item_data_a3a1b6240b016a82fa65b450f98a35f6c}{Item\+Data} ()}\label{class_item_data_a3a1b6240b016a82fa65b450f98a35f6c}
+
+\begin{DoxyCompactList}\small\item\em Construct empty \hyperlink{class_item_data}{Item\+Data}. \end{DoxyCompactList}\item 
+\hyperlink{class_item_data_a724e9978670f3dc3160e0e5128b7001e}{Item\+Data} (float profit, std\+::vector$<$ float $>$ costs, std\+::vector$<$ float $>$ problem\+Resources)
+\begin{DoxyCompactList}\small\item\em Construct \hyperlink{class_item_data}{Item\+Data}. \end{DoxyCompactList}\item 
+\hypertarget{class_item_data_af44bf5f67511a8249f7edc7f9e501fb5}{float \hyperlink{class_item_data_af44bf5f67511a8249f7edc7f9e501fb5}{get\+Profit} () const }\label{class_item_data_af44bf5f67511a8249f7edc7f9e501fb5}
+
+\begin{DoxyCompactList}\small\item\em Return profit of \hyperlink{class_item_data}{Item\+Data}. \end{DoxyCompactList}\item 
+\hypertarget{class_item_data_a9341a1a66ac5933ef7dcf217074a05c2}{std\+::vector$<$ float $>$ \hyperlink{class_item_data_a9341a1a66ac5933ef7dcf217074a05c2}{get\+Costs} () const }\label{class_item_data_a9341a1a66ac5933ef7dcf217074a05c2}
+
+\begin{DoxyCompactList}\small\item\em Return costs of constraints for \hyperlink{class_item_data}{Item\+Data}. \end{DoxyCompactList}\item 
+float \hyperlink{class_item_data_a8746e271ee49c40c1f5def099478e840}{get\+Cost} (int index) const 
+\begin{DoxyCompactList}\small\item\em Return cost of a constraint for \hyperlink{class_item_data}{Item\+Data}. \end{DoxyCompactList}\item 
+\hypertarget{class_item_data_aa75225399919410086ee0c7f766c315d}{int \hyperlink{class_item_data_aa75225399919410086ee0c7f766c315d}{get\+Number\+Of\+Costs} () const }\label{class_item_data_aa75225399919410086ee0c7f766c315d}
+
+\begin{DoxyCompactList}\small\item\em Return the number of constraints for \hyperlink{class_item_data}{Item\+Data}. \end{DoxyCompactList}\item 
+\hypertarget{class_item_data_ae5e1ad22dd903359d35798e6cdcb9b2b}{float \hyperlink{class_item_data_ae5e1ad22dd903359d35798e6cdcb9b2b}{get\+Profit\+Constraint\+Use\+Percent} () const }\label{class_item_data_ae5e1ad22dd903359d35798e6cdcb9b2b}
+
+\begin{DoxyCompactList}\small\item\em Return v/\mbox{[}Er\%/n\mbox{]} for a \hyperlink{class_item_data}{Item\+Data}. \end{DoxyCompactList}\item 
+\hypertarget{class_item_data_aa2511a10c0c9e51ad6bcea213f1e3e86}{float \hyperlink{class_item_data_aa2511a10c0c9e51ad6bcea213f1e3e86}{get\+Profit\+Constraint\+Use\+Percent} (std\+::vector$<$ int $>$ indices) const }\label{class_item_data_aa2511a10c0c9e51ad6bcea213f1e3e86}
+
+\begin{DoxyCompactList}\small\item\em Return v/\mbox{[}Er\%/n\mbox{]} for a \hyperlink{class_item_data}{Item\+Data}, using only certain indices. \end{DoxyCompactList}\item 
+\hypertarget{class_item_data_afca53a09768f49cc97726da9551d8631}{float \hyperlink{class_item_data_afca53a09768f49cc97726da9551d8631}{get\+Constraint\+Use\+Percent} () const }\label{class_item_data_afca53a09768f49cc97726da9551d8631}
+
+\begin{DoxyCompactList}\small\item\em Return Er\%/n for \hyperlink{class_item_data}{Item\+Data}. \end{DoxyCompactList}\item 
+\hypertarget{class_item_data_a2735e611eb49cd7b55ee56e3b834f0d4}{float {\bfseries get\+Constraint\+Use\+Percent} (int index)}\label{class_item_data_a2735e611eb49cd7b55ee56e3b834f0d4}
+
+\item 
+\hypertarget{class_item_data_a3b0a42c28b6b4db4a2bf31d2c370cd0c}{float {\bfseries get\+Profit\+Constraint\+Use\+Percent} (int index)}\label{class_item_data_a3b0a42c28b6b4db4a2bf31d2c370cd0c}
+
+\item 
+\hypertarget{class_item_data_af526fb020485fce4bd68bbf003e18f37}{float {\bfseries get\+Constraint\+Use\+Percent} (std\+::vector$<$ int $>$ indices)}\label{class_item_data_af526fb020485fce4bd68bbf003e18f37}
+
+\item 
+\hypertarget{class_item_data_a79caed963f73c2ca4aefaae49c8ea1b1}{void \hyperlink{class_item_data_a79caed963f73c2ca4aefaae49c8ea1b1}{set\+Profit} (const float profit)}\label{class_item_data_a79caed963f73c2ca4aefaae49c8ea1b1}
+
+\begin{DoxyCompactList}\small\item\em Set profit for an \hyperlink{class_item_data}{Item\+Data}. \end{DoxyCompactList}\item 
+void \hyperlink{class_item_data_a6bc1758713f145a8821d57c40547c2cb}{set\+Costs} (const std\+::vector$<$ float $>$ costs)
+\begin{DoxyCompactList}\small\item\em Set Costs of all constraints for an \hyperlink{class_item_data}{Item\+Data}. \end{DoxyCompactList}\item 
+void \hyperlink{class_item_data_a138d46bf17af403471f4bf46a8e44d50}{set\+Analytics} (const std\+::vector$<$ float $>$ problem\+Resources)
+\begin{DoxyCompactList}\small\item\em Set all \hyperlink{class_item_data}{Item\+Data} analytic measures. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Item in M\+M\+K\+P, which consists of a profit and cost for each constraint. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_item_data_a724e9978670f3dc3160e0e5128b7001e}{\index{Item\+Data@{Item\+Data}!Item\+Data@{Item\+Data}}
+\index{Item\+Data@{Item\+Data}!Item\+Data@{Item\+Data}}
+\subsubsection[{Item\+Data}]{\setlength{\rightskip}{0pt plus 5cm}Item\+Data\+::\+Item\+Data (
+\begin{DoxyParamCaption}
+\item[{float}]{profit, }
+\item[{std\+::vector$<$ float $>$}]{costs, }
+\item[{std\+::vector$<$ float $>$}]{problem\+Resources}
+\end{DoxyParamCaption}
+)}}\label{class_item_data_a724e9978670f3dc3160e0e5128b7001e}
+
+
+Construct \hyperlink{class_item_data}{Item\+Data}. 
+
+Param\+: Problem\+Resources used in analytic functions, can also use set\+Analytics instead of this constructor. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_item_data_a8746e271ee49c40c1f5def099478e840}{\index{Item\+Data@{Item\+Data}!get\+Cost@{get\+Cost}}
+\index{get\+Cost@{get\+Cost}!Item\+Data@{Item\+Data}}
+\subsubsection[{get\+Cost}]{\setlength{\rightskip}{0pt plus 5cm}float Item\+Data\+::get\+Cost (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+) const}}\label{class_item_data_a8746e271ee49c40c1f5def099478e840}
+
+
+Return cost of a constraint for \hyperlink{class_item_data}{Item\+Data}. 
+
+Parameter index corresponds to the cost of one constraint, starting a index 0. \hypertarget{class_item_data_a138d46bf17af403471f4bf46a8e44d50}{\index{Item\+Data@{Item\+Data}!set\+Analytics@{set\+Analytics}}
+\index{set\+Analytics@{set\+Analytics}!Item\+Data@{Item\+Data}}
+\subsubsection[{set\+Analytics}]{\setlength{\rightskip}{0pt plus 5cm}void Item\+Data\+::set\+Analytics (
+\begin{DoxyParamCaption}
+\item[{const std\+::vector$<$ float $>$}]{problem\+Resources}
+\end{DoxyParamCaption}
+)}}\label{class_item_data_a138d46bf17af403471f4bf46a8e44d50}
+
+
+Set all \hyperlink{class_item_data}{Item\+Data} analytic measures. 
+
+This includes Er\%/n and v/\mbox{[}Er\%/n\mbox{]} values. \hypertarget{class_item_data_a6bc1758713f145a8821d57c40547c2cb}{\index{Item\+Data@{Item\+Data}!set\+Costs@{set\+Costs}}
+\index{set\+Costs@{set\+Costs}!Item\+Data@{Item\+Data}}
+\subsubsection[{set\+Costs}]{\setlength{\rightskip}{0pt plus 5cm}void Item\+Data\+::set\+Costs (
+\begin{DoxyParamCaption}
+\item[{const std\+::vector$<$ float $>$}]{costs}
+\end{DoxyParamCaption}
+)}}\label{class_item_data_a6bc1758713f145a8821d57c40547c2cb}
+
+
+Set Costs of all constraints for an \hyperlink{class_item_data}{Item\+Data}. 
+
+This will override all costs previously set. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+M\+M\+K\+P\+Data\+Set.\+h\item 
+M\+M\+K\+P\+Data\+Set.\+cpp\end{DoxyCompactItemize}
