@@ -1,53 +1,60 @@
 /******************************************************************
  *
- * File: BbaApp.cpp
+ * File: TlboApp.cpp
  * Author: Ken Zyma
  *
  * @All rights reserved
  * Kutztown University, PA, U.S.A
  *
- * ACO MMKP Application.
- *
+ * General Heuristics MMKP Application.
  *
  *******************************************************************/
 
 #include <iostream>
 #include <stdlib.h> //atoi
 #include <time.h>
-#include <iomanip>
 
 #include "MMKPDataSet.h"
 #include "MMKPSolution.h"
-#include "MMKP_BBA.h"
 #include "MMKPPopulationGenerators.h"
+#include "MMKP_MetaHeuristic.h"
 
 int main(int argc, char* argv[]){
     
     std::string folder = "orlib_data";
     std::string file = "I01";
     int problem = 1;
-    std::string mods = "1";
+    std::string mods = "00000";
     int popSize = 30;
-    int genSize = 40;
+    int genSize = 60;
     unsigned int seed = 1234;
     
-    if(argc==7){
+    /*
+     *  if # of args is 6:
+     *      run, problem number omitted. First problem is
+     *      default.
+     *  else # of args is 7:
+     *      run, with problem number included
+     */
+    if(argc==8){
         folder = argv[1];
         file = argv[2];
         problem = atoi(argv[3]);
         mods = argv[4];
         popSize = atoi(argv[5]);
         genSize = atoi(argv[6]);
-    }else if(argc==8){
+        classSize = atoi(argv[7]);
+    }else if(argc==9){
         folder = argv[1];
         file = argv[2];
         problem = atoi(argv[3]);
         mods = argv[4];
         popSize = atoi(argv[5]);
         genSize = atoi(argv[6]);
-        seed = atoi(argv[7]);
+        classSize = atoi(argv[7]);
+        seed = atoi(argv[8]);
     }else{
-        std::cout<<"usage: filename <folder><name><number><mods><popSize><genSize>";
+        std::cout<<"usage: filename <folder><name><number><mods><popSize><genSize><classSize>";
         return 0;
     }
     
@@ -75,17 +82,21 @@ int main(int argc, char* argv[]){
     }
     fileStream.close();
     
-    /*any init for algorithm goes here */
-    BBA_parameters parameters;
+    /* TLBO PARAMS */
+    TLBO_parameters parameters;
     parameters.populationSize = popSize;
     parameters.numberOfGenerations = genSize;
     parameters.multipleChoiceFeasibilityMod = mods[1] - '0';
     parameters.multipleDimFeasibilityMod = mods[2] - '0';
-    MMKP_BBA BBA(dataSet,parameters);
+    parameters.addRandomTeacher = mods[3] - '0';
+    parameters.addSimAnnealing = mods[4] - '0';
+    parameters.classroomSize = classSize;
+    
+    MMKP_TLBO TLBO(dataSet,parameters);
     
     /* POPULATION GENERATION */
     PopulationGenerator* populationGenerator[4];
-    if(argc != 8){
+    if(argc != 9){
         populationGenerator[0] = new GenerateRandomizedPopulation();
         populationGenerator[1] = new GenerateRandomizedPopulationNoDups();
         populationGenerator[2] = new GenerateRandomizedPopulationNoDups_Infeasible();
@@ -101,13 +112,13 @@ int main(int argc, char* argv[]){
     std::vector<MMKPSolution> initPopulation
         = (*(populationGenerator[populationGenIndx]))(dataSet,popSize);
     
+    TLBO.quickSort(initPopulation,0,(initPopulation.size()-1));
     MMKPSolution initialTeacher;
     initialTeacher.setProfit(-1);
-    
     for(int i=0;i<initPopulation.size();i++){
-        if(dataSet.isFeasible(initPopulation[i])&&(initialTeacher.getProfit() <
-                                                initPopulation[i].getProfit())){
+        if(dataSet.isFeasible(initPopulation[i])){
             initialTeacher = initPopulation[i];
+            break;
         }
     }
     
@@ -118,7 +129,7 @@ int main(int argc, char* argv[]){
     delete populationGenerator[3];
     
     t1=clock();
-    MMKPSolution optimalSolution = BBA(initPopulation);
+    MMKPSolution optimalSolution = TLBO(initPopulation);
     t2 = clock();
     runtime = ((float)t2-(float)t1)/(double) CLOCKS_PER_SEC;
     
@@ -126,7 +137,7 @@ int main(int argc, char* argv[]){
     std::cout<<folder<<std::string("/")<<file<<std::endl;
     std::cout<<"Problem Number:"<<std::endl;
     std::cout<<problem<<std::endl;
-    std::cout<<"Initial Profit:"<<std::endl;
+    std::cout<<"Starting Teacher:"<<std::endl;
     std::cout<<initialTeacher.getProfit()<<std::endl;
     std::cout<<"Profit:"<<std::endl;
     if(dataSet.isFeasible(optimalSolution)){

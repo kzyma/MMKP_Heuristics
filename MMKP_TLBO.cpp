@@ -31,7 +31,7 @@ MMKPSolution MMKP_TLBO::run(std::vector<MMKPSolution> initialPopulation){
     bool terminationCriterion = false;
     int currentGeneration = 0;
     
-    quickSort(population,0,(population.size()-1));
+    MMKP_MetaHeuristic::quickSort(population,0,(population.size()-1));
     
     //main loop
     while(!terminationCriterion){
@@ -44,7 +44,7 @@ MMKPSolution MMKP_TLBO::run(std::vector<MMKPSolution> initialPopulation){
         }
         MMKP_TLBO::learningPhase(population);
         
-        quickSort(population,0,(population.size()-1));
+        MMKP_MetaHeuristic::quickSort(population,0,(population.size()-1));
         
         if(currentGeneration >= this->parameters.numberOfGenerations){
             terminationCriterion = true;

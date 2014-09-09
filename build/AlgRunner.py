@@ -109,14 +109,14 @@ def runGa(folderIndex,problem,problemNumber):
                             ' '+problem+' '+str(problemNumber)+' '+modifier+' '+\
                             str(popSize)+' '+str(genSize)+' '+\
                             str(GaSettings.C_PROB)+' '+str(GaSettings.M_PROB)+\
-                            ' ' +str(1432)+\
+                            ' ' +str(1432)+' '+\
                             ' >> tempContentDump.txt'
                     print 'Running: '+runString
                     #*NOTE* using shell=True incures a serious security risk, this
                     #module MUST NOT be used with an untrust
                     subprocess.call(runString,shell=True)
 
-def runBba(folderIndex,problem,problemNumber):
+def runCoa(folderIndex,problem,problemNumber):
     #make sure file is empty to dump Coa out to
     try:
         os.remove('tempContentDump.txt')
@@ -124,9 +124,9 @@ def runBba(folderIndex,problem,problemNumber):
         pass
     (open('tempContentDump.txt','w+')).close()
     
-    for popSize in BbaSettings.POP_SIZE:
-        for genSize in BbaSettings.GEN_SIZE:
-            for modifier in BbaSettings.MODS:
+    for popSize in CoaSettings.POP_SIZE:
+        for genSize in CoaSettings.GEN_SIZE:
+            for modifier in CoaSettings.MODS:
                 for i in range(settings.REPEAT):
                     #randomness is based on time, so
                     #need to make sure time changes between
@@ -135,15 +135,17 @@ def runBba(folderIndex,problem,problemNumber):
                         sysTime.sleep(1)
                     
                     if(settings.SEED == False):
-                        runString = './BbaApp '+settings.FOLDERS[folderIndex]+\
+                        runString = './CoaApp '+settings.FOLDERS[folderIndex]+\
                             ' '+problem+' '+str(problemNumber)+' '+modifier+' '+\
-                            str(popSize)+' '+str(genSize)+' '+\
+                            str(popSize)+' '+str(genSize)+' '+str(CoaSettings.V_PROB)+' '\
+                            +str(CoaSettings.H_PROB)+\
                             ' >> tempContentDump.txt'
                     else:
-                        runString = './BbaApp '+settings.FOLDERS[folderIndex]+\
+                        runString = './CoaApp '+settings.FOLDERS[folderIndex]+\
                             ' '+problem+' '+str(problemNumber)+' '+modifier+' '+\
-                            str(popSize)+' '+str(genSize)+' '+\
-                            ' ' +str(1432)+\
+                            str(popSize)+' '+str(genSize)+' '+str(CoaSettings.V_PROB)+' '\
+                            +str(CoaSettings.H_PROB)+\
+                            ' '+str(1432)+\
                             ' >> tempContentDump.txt'
                     print 'Running: '+runString
                     #*NOTE* using shell=True incures a serious security risk, this
