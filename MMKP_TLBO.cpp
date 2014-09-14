@@ -19,6 +19,9 @@ MMKP_TLBO::MMKP_TLBO(MMKPDataSet dataSet, TLBO_parameters parameters)
 :MMKP_MetaHeuristic(dataSet,parameters),parameters(parameters){
 }
 
+MMKP_TLBO::MMKP_TLBO(MMKPDataSet dataSet)
+:MMKP_MetaHeuristic(dataSet),parameters(){}
+
 //overloaded operators
 MMKPSolution MMKP_TLBO::operator()(std::vector<MMKPSolution> initialPopulation){
     return MMKP_TLBO::run(initialPopulation);
@@ -58,6 +61,22 @@ MMKPSolution MMKP_TLBO::run(std::vector<MMKPSolution> initialPopulation){
         }
     }
     return population[0];
+}
+
+std::vector<MMKPSolution> MMKP_TLBO::runOneGeneration
+(std::vector<MMKPSolution> population){
+    
+    MMKP_MetaHeuristic::quickSort(population,0,(population.size()-1));
+    
+    if(this->parameters.classroomSize == 0){
+        MMKP_TLBO::teachingPhase(population);
+    }else{
+        int size = this->parameters.classroomSize;
+        MMKP_TLBO::teachingPhase_MultiTeacher(population,size);
+    }
+    MMKP_TLBO::learningPhase(population);
+    
+    return population;
 }
 
 void MMKP_TLBO::teachingPhase(std::vector<MMKPSolution>& population){

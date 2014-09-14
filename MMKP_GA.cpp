@@ -18,6 +18,9 @@
 MMKP_GA::MMKP_GA(MMKPDataSet dataSet, GA_parameters parameters)
 :MMKP_MetaHeuristic(dataSet,parameters),parameters(parameters){}
 
+MMKP_GA::MMKP_GA(MMKPDataSet dataSet)
+:MMKP_MetaHeuristic(dataSet),parameters(){}
+
 //overloaded operators
 MMKPSolution MMKP_GA::operator()(std::vector<MMKPSolution> initialPopulation){
     return MMKP_GA::run(initialPopulation);
@@ -64,6 +67,30 @@ MMKPSolution MMKP_GA::run(std::vector<MMKPSolution> initialPopulation){
         }
     }
     return this->bestSolution;
+}
+
+std::vector<MMKPSolution> MMKP_GA::runOneGeneration
+(std::vector<MMKPSolution> population){
+
+    quickSort(population,0,(population.size()-1));
+    
+    //main loop
+    for(int i=0;i<population.size();i++){
+        MMKPSolution p1;
+        MMKPSolution p2;
+        MMKP_GA::parentSelection(p1,p2,population);
+        MMKPSolution newSol = MMKP_GA::Crossover(p1,p2);
+        MMKP_GA::Mutate(newSol);
+        
+        float feas = MMKP_GA::makeFeasible(newSol);
+        if(feas){
+            population[(population.size()-1)] = newSol;
+        }
+        
+        MMKP_MetaHeuristic::quickSort(population,0,(population.size()-1));
+        
+    }
+    return population;
 }
 
 void MMKP_GA::parentSelection

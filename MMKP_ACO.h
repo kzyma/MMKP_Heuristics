@@ -37,11 +37,48 @@ public:
     float B;    //B is the weighting of pheramone to heuristic
     float p;    //p and e in pheramone update rule
     float e;
+    
     ACO_parameters(){
         this->B = 25.0;
         this->p = 0.98;
         this->e = 0.005;
     }
+};
+
+typedef struct aco_additions{
+    float pheramone;
+    float heuristic;
+}ACO_Additions;
+
+class ACO_DataSetAdditions{
+private:
+    std::vector<std::vector<ACO_Additions> > classList;
+    std::vector<float> denominators;
+    float B;        //pheramone/heuristic ratio
+    float Lstar;    //tight upper bound
+    bool isUpdated;
+    void update();
+    MMKPSolution getLMV(std::vector<float> U);
+    float getS_k(MMKPSolution sol, int r);
+    MMKPDataSet dataSet;
+public:
+    ACO_DataSetAdditions(MMKPDataSet dataSet, float B,float e);
+    
+    void initParameters();
+    
+    std::vector<ACO_Additions>& operator[](int index);
+    
+    float getProbability(int classNum, int itemNum);
+    
+    /**
+     * Return item index of class param:classNum which is 
+     * choosen based on the probability from getProbability.
+     */
+    int returnItemIndex(int classNum);
+    
+    int size();
+    
+    float getLStar();
 };
 
 /**
@@ -51,12 +88,13 @@ public:
 class MMKP_ACO:MMKP_MetaHeuristic{
 private:
     ACO_parameters parameters;
+    ACO_DataSetAdditions solDesirability;
 public:
     /**
      * Construct MMKP_ACO object. Use Param: parameters to customize
      * the aco algorithm according to struct ACO_parameters.
      */
-    MMKP_BBA(MMKPDataSet dataSet, ACO_parameters parameters);
+    MMKP_ACO(MMKPDataSet dataSet, ACO_parameters parameters);
     
     //overloaded operators
     /**
@@ -69,6 +107,13 @@ public:
      */
     MMKPSolution run(std::vector<MMKPSolution> initialPopulation);
     
+    std::vector<MMKPSolution> runOneGeneration
+    (std::vector<MMKPSolution> population);
+    
+    void constructSolutions(std::vector<MMKPSolution>& population);
+    
+    void updatePheramone(MMKPSolution bestSol);
+
 };
 
 

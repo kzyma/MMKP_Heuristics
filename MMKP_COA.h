@@ -56,6 +56,11 @@ public:
      */
     MMKP_COA(MMKPDataSet dataSet, COA_parameters parameters);
     
+    /**
+     * Construct MMKP_COA object with default COA_parameters.
+     */
+    MMKP_COA(MMKPDataSet dataSet);
+    
     //overloaded operators
     /**
      * Run coa algorithm and return the result, which is the best objective
@@ -68,6 +73,9 @@ public:
      * solution after a stopping criterion is met.
      */
     MMKPSolution run(std::vector<MMKPSolution> initialPopulation);
+    
+    std::vector<MMKPSolution> runOneGeneration
+    (std::vector<MMKPSolution> population);
     
     /**
      *

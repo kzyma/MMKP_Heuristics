@@ -15,10 +15,13 @@
 #include <stdlib.h> //atoi
 #include <time.h>
 #include <iomanip>
+#include <random>
 
 #include "MMKPDataSet.h"
 #include "MMKPSolution.h"
-#include "MMKP_ACO.h"
+#include "MMKP_TLBO.h"
+#include "MMKP_COA.h"
+#include "MMKP_GA.h"
 #include "MMKPPopulationGenerators.h"
 
 int main(int argc, char* argv[]){
@@ -26,38 +29,25 @@ int main(int argc, char* argv[]){
     std::string folder = "orlib_data";
     std::string file = "I01";
     int problem = 1;
-    std::string mods = "1";
     int popSize = 30;
     int genSize = 40;
-    float B = 25.0;
-    float p = 0.98;
-    float e = 0.005;
     unsigned int seed = 1234;
     
-    if(argc==10){
+    if(argc==6){
         folder = argv[1];
         file = argv[2];
         problem = atoi(argv[3]);
-        mods = argv[4];
-        popSize = atoi(argv[5]);
-        genSize = atoi(argv[6]);
-        B = atof(argv[7]);
-        p = atof(argv[8]);
-        e = atof(argv[9]);
-    }else if(argc==11){
+        popSize = atoi(argv[4]);
+        genSize = atoi(argv[5]);
+    }else if(argc==7){
         folder = argv[1];
         file = argv[2];
         problem = atoi(argv[3]);
-        mods = argv[4];
-        popSize = atoi(argv[5]);
-        genSize = atoi(argv[6]);
-        B = atof(argv[7]);
-        p = atof(argv[8]);
-        e = atof(argv[9]);
-        seed = atoi(argv[10]);
+        popSize = atoi(argv[4]);
+        genSize = atoi(argv[5]);
+        seed = atoi(argv[6]);
     }else{
-        std::cout<<"usage: filename <folder><name><number><mods><number of ants><genSize>"
-        "<B><p><e><seed(opt.)>";
+        std::cout<<"usage: filename <folder><name><number><popSize><genSize>\n";
         return 0;
     }
     
@@ -85,53 +75,78 @@ int main(int argc, char* argv[]){
     }
     fileStream.close();
     
-    /*any init for algorithm goes here */
-    ACO_parameters parameters;
-    parameters.numberOfGenerations = genSize;
-    parameters.multipleChoiceFeasibilityMod = mods[1] - '0';
-    parameters.multipleDimFeasibilityMod = mods[2] - '0';
-    parameters.B = B;
-    parameters.p = p;
-    parameters.e = e;
-    MMKP_ACO ACO(dataSet,parameters);
+    //generate initial population
+    GenerateRandomizedPopulationNoDups generatePopulation;
+    std::vector<MMKPSolution> population
+    = generatePopulation(dataSet,popSize);
     
-    /* POPULATION GENERATION */
-    PopulationGenerator* populationGenerator[4];
-    if(argc != 8){
-        populationGenerator[0] = new GenerateRandomizedPopulation();
-        populationGenerator[1] = new GenerateRandomizedPopulationNoDups();
-        populationGenerator[2] = new GenerateRandomizedPopulationNoDups_Infeasible();
-        populationGenerator[3] = new GenerateRandomizedPopulationGreedyV1();
-    }else{
-        populationGenerator[0] = new GenerateRandomizedPopulation(seed);
-        populationGenerator[1] = new GenerateRandomizedPopulationNoDups(seed);
-        populationGenerator[2] = new GenerateRandomizedPopulationNoDups_Infeasible(seed);
-        populationGenerator[3] = new GenerateRandomizedPopulationGreedyV1(seed);
+    //algs used
+    MMKP_TLBO tlbo(dataSet);
+    MMKP_COA coa(dataSet);
+    MMKP_GA ga(dataSet);
+
+    tlbo.quickSort(population,0,population.size()-1);
+    MMKPSolution optimalSolution;
+    for(int i=0;i<population.size();i++){
+        if(dataSet.isFeasible(population[i])){
+            optimalSolution = population[i];
+            break;
+        }
     }
+    MMKPSolution initialTeacher = optimalSolution;
     
-    int populationGenIndx = mods[0] - '0';
-    std::vector<MMKPSolution> initPopulation
-        = (*(populationGenerator[populationGenIndx]))(dataSet,popSize);
+    t1=clock();
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, 2);
     
-    MMKPSolution initialTeacher;
-    initialTeacher.setProfit(-1);
-    
-    for(int i=0;i<initPopulation.size();i++){
-        if(dataSet.isFeasible(initPopulation[i])&&(initialTeacher.getProfit() <
-                                                initPopulation[i].getProfit())){
-            initialTeacher = initPopulation[i];
+    for(int i=0;i<genSize;i++){
+        
+        //divide population by distribution
+        std::vector<MMKPSolution> pop1;
+        std::vector<MMKPSolution> pop2;
+        std::vector<MMKPSolution> pop3;
+        
+        for(int j=0;j<population.size();j++){
+            int p = dis(gen);
+            switch(p){
+                case 0:
+                    pop1.push_back(population[j]);
+                    break;
+                case 1:
+                    pop2.push_back(population[j]);
+                    break;
+                case 2:
+                    pop3.push_back(population[j]);
+                    break;
+            }
+        }
+        
+        pop1 = tlbo.runOneGeneration(pop1);
+        pop2 = coa.runOneGeneration(pop2);
+        pop3 = ga.runOneGeneration(pop3);
+        
+        population.clear();
+        population.reserve(pop1.size() + pop2.size() + pop3.size());
+        population.insert(population.end(), pop1.begin(), pop1.end());
+        population.insert(population.end(), pop2.begin(), pop2.end());
+        population.insert(population.end(), pop3.begin(), pop3.end());
+        
+        //get and save best solution
+        tlbo.quickSort(population,0,population.size()-1);
+        for(int j=0;j<population.size();j++){
+            if(dataSet.isFeasible(population[j])){
+                if(population[j].getProfit()
+                   > optimalSolution.getProfit()){
+                    optimalSolution = population[j];
+                    break;
+                }
+            }
         }
     }
     
-    //free pop-gen array allocated mem
-    delete populationGenerator[0];
-    delete populationGenerator[1];
-    delete populationGenerator[2];
-    delete populationGenerator[3];
-    
-    t1=clock();
-    MMKPSolution optimalSolution = ACO(initPopulation);
     t2 = clock();
+    
     runtime = ((float)t2-(float)t1)/(double) CLOCKS_PER_SEC;
     
     std::cout<<"Problem: "<<std::endl;

@@ -16,7 +16,7 @@
 
 import itertools
 
-#Tlbo population size.
+#Number of Ants
 POP_SIZE = [40]
 
 #Number of generations
@@ -30,7 +30,9 @@ MOD3 = ['1']
 MOD_LIST = [MOD1,MOD2,MOD3]
 MODS = []
 
-
+B=25.0
+p=0.98
+e=0.005
 
 #fill mods when imported with all permutations of modifiers.
 MODS = list(itertools.product(*MOD_LIST))

@@ -18,6 +18,9 @@
 MMKP_COA::MMKP_COA(MMKPDataSet dataSet, COA_parameters parameters)
 :MMKP_MetaHeuristic(dataSet,parameters),parameters(parameters){}
 
+MMKP_COA::MMKP_COA(MMKPDataSet dataSet)
+:MMKP_MetaHeuristic(dataSet),parameters(){}
+
 //overloaded operators
 MMKPSolution MMKP_COA::operator()(std::vector<MMKPSolution> initialPopulation){
     return MMKP_COA::run(initialPopulation);
@@ -51,6 +54,15 @@ MMKPSolution MMKP_COA::run(std::vector<MMKPSolution> initialPopulation){
         }
     }
     return population[0];
+}
+
+std::vector<MMKPSolution> MMKP_COA::runOneGeneration
+(std::vector<MMKPSolution> population){
+    
+    MMKP_COA::horizontalCrossover(population);
+    MMKP_COA::verticalCrossover(population);
+    return population;
+    
 }
 
 void MMKP_COA::horizontalCrossover(std::vector<MMKPSolution>& population){

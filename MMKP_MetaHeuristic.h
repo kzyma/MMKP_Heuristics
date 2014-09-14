@@ -56,7 +56,6 @@ public:
     int multipleDimFeasibilityMod;
     
     MetaHeuristic_parameters(){
-        this->populationSize = 30;
         this->numberOfGenerations = 60;
         this->multipleChoiceFeasibilityMod = 2;
         this->multipleDimFeasibilityMod = 1;
@@ -99,6 +98,11 @@ public:
     MMKP_MetaHeuristic(MMKPDataSet dataSet, MetaHeuristic_parameters parameters);
     
     /**
+     * Uses default params
+     */
+    MMKP_MetaHeuristic(MMKPDataSet dataSet);
+    
+    /**
      * Destroy MMKP_MetaHeuristic object.
      */
     virtual ~MMKP_MetaHeuristic();
@@ -124,6 +128,12 @@ public:
      * function.
      */
     virtual MMKPSolution run(std::vector<MMKPSolution> initialPopulation)=0;
+    
+    /**
+     * run single iteration of heuristic
+     */
+    virtual std::vector<MMKPSolution> runOneGeneration
+    (std::vector<MMKPSolution> population) = 0;
     
     /**
      * Wrapper function of both feasibility routines.

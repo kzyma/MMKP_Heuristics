@@ -73,6 +73,8 @@ public:
      */
     MMKP_TLBO(MMKPDataSet dataSet, TLBO_parameters parameters);
     
+    MMKP_TLBO(MMKPDataSet dataSet);
+    
     //overloaded operators
     /**
      * Run tlbo algorithm and return the result, which is the 'teaching'
@@ -85,6 +87,12 @@ public:
      * solution after a stopping criterion is met.
      */
     MMKPSolution run(std::vector<MMKPSolution> initialPopulation);
+    
+    /**
+     *
+     */
+    std::vector<MMKPSolution> runOneGeneration
+    (std::vector<MMKPSolution> population);
     
     /**
      * TLBO teaching phase. See Vasko et al. paper for more.

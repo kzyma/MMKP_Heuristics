@@ -154,7 +154,6 @@ int main(int argc, char* argv[]){
     
     /*any init for algorithm goes here */
     BBA_parameters parameters;
-    parameters.populationSize = popSize;
     parameters.numberOfGenerations = genSize;
     parameters.multipleChoiceFeasibilityMod = mods[1] - '0';
     parameters.multipleDimFeasibilityMod = mods[2] - '0';

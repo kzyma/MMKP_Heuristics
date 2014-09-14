@@ -84,7 +84,6 @@ int main(int argc, char* argv[]){
     
     /* TLBO PARAMS */
     TLBO_parameters parameters;
-    parameters.populationSize = popSize;
     parameters.numberOfGenerations = genSize;
     parameters.multipleChoiceFeasibilityMod = mods[1] - '0';
     parameters.multipleDimFeasibilityMod = mods[2] - '0';

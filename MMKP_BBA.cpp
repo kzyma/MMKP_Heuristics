@@ -104,6 +104,27 @@ MMKPSolution MMKP_BBA::run(std::vector<MMKPSolution> initialPopulation){
     return bestSolution;
 }
 
+std::vector<MMKPSolution> MMKP_BBA::runOneGeneration
+(std::vector<MMKPSolution> population){
+    
+    //init initial parameters
+    //init MMKPBatSolution vector
+    std::vector<MMKPBatSolution> tempPopulation(population.size());
+    for(int i=0;i<population.size();i++){
+        tempPopulation[i].solution = population[i];
+    }
+    MMKP_BBA::quickSort(tempPopulation,0,(population.size()-1));
+    MMKP_BBA::initBatParemeters(tempPopulation);
+    MMKP_BBA::globalSearch(tempPopulation);
+    
+    std::vector<MMKPSolution> newPopulation(population.size());
+    for(int i=0;i<population.size();i++){
+        newPopulation[i] = tempPopulation[i].solution;
+    }
+    
+    return newPopulation;
+}
+
 void MMKP_BBA::initBatParemeters(std::vector<MMKPBatSolution>& population){
     
     std::random_device rd;

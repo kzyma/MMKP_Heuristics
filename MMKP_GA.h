@@ -62,6 +62,8 @@ public:
      */
     MMKP_GA(MMKPDataSet dataSet, GA_parameters parameters);
     
+    MMKP_GA(MMKPDataSet dataSet);
+    
     //overloaded operators
     /**
      * Run coa algorithm and return the result, which is the best objective
@@ -74,6 +76,9 @@ public:
      * solution after a stopping criterion is met.
      */
     MMKPSolution run(std::vector<MMKPSolution> initialPopulation);
+    
+    std::vector<MMKPSolution> runOneGeneration
+    (std::vector<MMKPSolution> population);
     
     /**
      *

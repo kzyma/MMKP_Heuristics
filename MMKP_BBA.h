@@ -86,6 +86,9 @@ public:
      */
     MMKPSolution run(std::vector<MMKPSolution> initialPopulation);
     
+    std::vector<MMKPSolution> runOneGeneration
+    (std::vector<MMKPSolution> population);
+    
     /**
      *
      */

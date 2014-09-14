@@ -209,11 +209,13 @@ def runAco(folderIndex,problem,problemNumber):
                         runString = './AcoApp '+settings.FOLDERS[folderIndex]+\
                             ' '+problem+' '+str(problemNumber)+' '+modifier+' '+\
                             str(popSize)+' '+str(genSize)+' '+\
+                            AcoSettings.B+' '+AcoSettings.p+' '+AcoSettings.e+' '\
                             ' >> tempContentDump.txt'
                     else:
                         runString = './AcoApp '+settings.FOLDERS[folderIndex]+\
                             ' '+problem+' '+str(problemNumber)+' '+modifier+' '+\
                             str(popSize)+' '+str(genSize)+' '+\
+                            str(AcoSettings.B)+' '+str(AcoSettings.p)+' '+str(AcoSettings.e)+\
                             ' ' +str(1432)+' >> tempContentDump.txt'
                         
                     print 'Running: '+runString
@@ -221,6 +223,39 @@ def runAco(folderIndex,problem,problemNumber):
                     #module MUST NOT be used with an untrust
                     subprocess.call(runString,shell=True)
 
+def runMmhph(folderIndex,problem,problemNumber):
+    #make sure file is empty to dump Coa out to
+    try:
+        os.remove('tempContentDump.txt')
+    except OSError:
+        pass
+    (open('tempContentDump.txt','w+')).close()
+    
+    for popSize in CoaSettings.POP_SIZE:
+        for genSize in CoaSettings.GEN_SIZE:
+            for modifier in CoaSettings.MODS:
+                for i in range(settings.REPEAT):
+                    #randomness is based on time, so
+                    #need to make sure time changes between
+                    #runs.
+                    if(settings.REPEAT > 1):
+                        sysTime.sleep(1)
+                    
+                    if(settings.SEED == False):
+                        runString = './MmhphApp '+settings.FOLDERS[folderIndex]+\
+                            ' '+problem+' '+str(problemNumber)+' '+\
+                            str(popSize)+' '+str(genSize)+\
+                            ' >> tempContentDump.txt'
+                    else:
+                        runString = './MmhphApp '+settings.FOLDERS[folderIndex]+\
+                            ' '+problem+' '+str(problemNumber)+' '+\
+                            str(popSize)+' '+str(genSize)+\
+                            ' ' +str(1432)+' >> tempContentDump.txt'
+                    
+                    print 'Running: '+runString
+                    #*NOTE* using shell=True incures a serious security risk, this
+                    #module MUST NOT be used with an untrust
+                    subprocess.call(runString,shell=True)
 
 #read data from fileName. param numberOfRuns is the number
 #of problems to read from this file.
@@ -352,6 +387,8 @@ def run(alg):
                         runBba(folderIndex,fileTuple[0],problemNumber)
                     elif alg == 'aco':
                         runAco(folderIndex,fileTuple[0],problemNumber)
+                    elif alg == 'mmhph':
+                        runMmhph(folderIndex,fileTuple[0],problemNumber)
                     else:
                         print 'error: algorithm unavaliable'
                         exit(0)
@@ -488,10 +525,9 @@ if(__name__=='__main__'):
         alg = str(sys.argv[1])
         run(alg)
     else:
-        run('bba')
         run('ga')
         run('tlbo')
         run('coa')
-        run('aco')
+        run('mmhph')
 
 

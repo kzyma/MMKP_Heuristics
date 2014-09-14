@@ -67,6 +67,11 @@ MMKP_MetaHeuristic::MMKP_MetaHeuristic(MMKPDataSet dataSet, MetaHeuristic_parame
     srand(time(NULL));
 }
 
+MMKP_MetaHeuristic::MMKP_MetaHeuristic(MMKPDataSet dataSet)
+:dataSet(dataSet),parameters(){
+    srand(time(NULL));
+}
+
 MMKP_MetaHeuristic::~MMKP_MetaHeuristic(){};
 
 void MMKP_MetaHeuristic::quickSort(std::vector<MMKPSolution>& input,int p, int r){

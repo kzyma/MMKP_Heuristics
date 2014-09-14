@@ -17,7 +17,7 @@
 import itertools
 
 #Tlbo population size.
-POP_SIZE = [40]
+POP_SIZE = [60]
 
 #Number of generations
 GEN_SIZE = [60]
