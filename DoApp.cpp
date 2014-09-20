@@ -1,12 +1,12 @@
 /******************************************************************
  *
- * File: BbaApp.cpp
+ * File: DoApp.cpp
  * Author: Ken Zyma
  *
  * @All rights reserved
  * Kutztown University, PA, U.S.A
  *
- * ACO MMKP Application.
+ * Darwin's Observation MMKP Application.
  *
  *
  *******************************************************************/
@@ -22,6 +22,7 @@
 #include "MMKP_TLBO.h"
 #include "MMKP_COA.h"
 #include "MMKP_GA.h"
+#include "MMKP_MetaHeuristic.h"
 #include "MMKPPopulationGenerators.h"
 
 bool doesContain(std::vector<MMKPSolution> population,MMKPSolution sol);
@@ -85,105 +86,74 @@ int main(int argc, char* argv[]){
     std::vector<MMKPSolution> population
     = generatePopulation(dataSet,popSize);
     
-    //algs used
-    MMKP_TLBO tlbo(dataSet);
-    MMKP_COA coa(dataSet);
-    MMKP_GA ga(dataSet);
+    MMKP_MetaHeuristic** algorithms = new MMKP_MetaHeuristic*[3];
+    algorithms[0] = new MMKP_TLBO(dataSet);
+    algorithms[1] = new MMKP_COA(dataSet);
+    algorithms[2] = new MMKP_GA(dataSet);
 
-    tlbo.quickSort(population,0,population.size()-1);
     MMKPSolution optimalSolution;
+    //find first feasible solution to make initial optimal solution
     for(int i=0;i<population.size();i++){
         if(dataSet.isFeasible(population[i])){
             optimalSolution = population[i];
             break;
         }
     }
+    //find best solution
+    for(int i=0;i<population.size();i++){
+        if(dataSet.isFeasible(population[i])){
+            if(optimalSolution.getProfit() < population[i].getProfit()){
+                optimalSolution = population[i];
+            }
+        }
+    }
+    
     MMKPSolution initialTeacher = optimalSolution;
     
     t1=clock();
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(0, 2);
+    int countNOP = 0;
+    int maxNOP = 5;
+    int currentAlgorithm = 0;
+    int numberOfAlgorithms = 3;
+    bool solIncrease = false;
     
-    int eliteSolutionSize = 5;
-    std::vector<MMKPSolution> eliteSolutions;
-    
-    int count = 0;
-    for(int i=0;i<population.size();i++){
-        if(dataSet.isFeasible(population[i])){
-            eliteSolutions.push_back(population[i]);
-            count++;
-        }
-        if(count > eliteSolutionSize){
-            break;
-        }
-    }
-
     for(int i=0;i<genSize;i++){
         
-        //divide population by distribution
-        std::vector<MMKPSolution> pop1;
-        std::vector<MMKPSolution> pop2;
-        std::vector<MMKPSolution> pop3;
-        
-        for(int j=0;j<population.size();j++){
-            int p = dis(gen);
-            switch(p){
-                case 0:
-                    pop1.push_back(population[j]);
-                    break;
-                case 1:
-                    pop2.push_back(population[j]);
-                    break;
-                case 2:
-                    pop3.push_back(population[j]);
-                    break;
+        if(countNOP > maxNOP){
+            //next algorithm is active
+            currentAlgorithm++;
+            countNOP = 0;
+            if(currentAlgorithm >= numberOfAlgorithms){
+                currentAlgorithm = 0;
             }
         }
-        //replace worse 3 solutions of each population with
-        //elite solutions
-        tlbo.quickSort(pop1,0,pop1.size()-1);
-        tlbo.quickSort(pop2,0,pop2.size()-1);
-        tlbo.quickSort(pop3,0,pop3.size()-1);
-        
-        for(int j=0;j<eliteSolutionSize;j++){
-            pop1[((pop1.size()-1)-j)] = eliteSolutions[j];
-            pop2[((pop2.size()-1)-j)] = eliteSolutions[j];
-            pop3[((pop3.size()-1)-j)] = eliteSolutions[j];
-        }
-        
-        pop1 = tlbo.runOneGeneration(pop1);
-        pop2 = coa.runOneGeneration(pop2);
-        pop3 = ga.runOneGeneration(pop3);
 
-        population.clear();
-        population.reserve(pop1.size() + pop2.size() + pop3.size());
-        population.insert(population.end(), pop1.begin(), pop1.end());
-        population.insert(population.end(), pop2.begin(), pop2.end());
-        population.insert(population.end(), pop3.begin(), pop3.end());
+        population
+            = algorithms[currentAlgorithm]->runOneGeneration(population);
         
-        //get and save best solution
-        //and update our elite list
-        count = 0;
-        tlbo.quickSort(population,0,population.size()-1);
-        for(int j=0;j<population.size();j++){
-            if(dataSet.isFeasible(population[j])){
-                if(population[j].getProfit()
-                   > optimalSolution.getProfit()){
-                    optimalSolution = population[j];
-                }
-                if(!(doesContain(eliteSolutions,population[j]))){
-                    eliteSolutions[count] = population[j];
-                    count++;
-                }
-                if(count > eliteSolutionSize){
-                    break;
+        //find new best solution
+        bool solIncrease = false;
+        for(int i=0;i<population.size();i++){
+            if(dataSet.isFeasible(population[i])){
+                if(optimalSolution.getProfit() < population[i].getProfit()){
+                    optimalSolution = population[i];
+                    solIncrease = true;
                 }
             }
+        }
+        if(solIncrease){
+            countNOP = 0;
+        }else{
+            countNOP ++;
         }
     }
     
     t2 = clock();
+    
+    delete algorithms[0];
+    delete algorithms[1];
+    delete algorithms[2];
+    delete[] algorithms;
     
     runtime = ((float)t2-(float)t1)/(double) CLOCKS_PER_SEC;
     

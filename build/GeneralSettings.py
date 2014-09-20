@@ -55,9 +55,23 @@ FILES = [[[('I01',1),('I02',1),('I03',1),('I04',1)
     [('TestSet.400GP10IT10KP.txt',10)]]]
     '''
 
-#number of times to compute same problem
-REPEAT = 1
-
 #random number seed, True: use default settings (for same initial pop) or
 #false for random number seed based on time.
 SEED = True
+
+POP_SIZE = [90]
+
+GEN_SIZE = [60]
+
+#COA Modifications
+MOD1 = ['1']
+MOD2 = ['2']
+MOD3 = ['1']
+MOD_LIST = [MOD1,MOD2,MOD3]
+MODS = []
+
+MODIFIER = MOD1[0]+MOD2[0]+MOD3[0]
+
+
+
+

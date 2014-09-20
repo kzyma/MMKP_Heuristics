@@ -42,223 +42,34 @@ import GeneralSettings as settings
 #format and keys of data stored in problemSetData
 outKeys = ['file','number','initProfit','profit','runtime','numClasses']
 
-#run TlboApp with all mods/popsize/gensize for a given problem.
-def runTlbo(folderIndex,problem,problemNumber):
+def runAlg(folderIndex,problem,problemNumber,algExecStr,paramsStr):
     #make sure file is empty to dump Tlbo out to
     try:
         os.remove('tempContentDump.txt')
     except OSError:
         pass
     (open('tempContentDump.txt','w+')).close()
-    
-    for classSize in TlboSettings.CLASSROOM_SIZE:
-        for popSize in TlboSettings.POP_SIZE:
-            for genSize in TlboSettings.GEN_SIZE:
-                for modifier in TlboSettings.MODS:
-                    for i in range(settings.REPEAT):
-                        #randomness is based on time, so
-                        #need to make sure time changes between
-                        #runs.
-                        
-                        if(settings.REPEAT > 1):
-                            sysTime.sleep(1)
-                        if(settings.SEED == False):
-                            runString = './TlboApp '+settings.FOLDERS[folderIndex]+\
-                                ' '+problem+' '+str(problemNumber)+' '+modifier+' '+\
-                                    str(popSize)+' '+str(genSize)+' '+str(classSize)+\
-                                ' >> tempContentDump.txt'
-                        else:
-                            runString = './TlboApp '+settings.FOLDERS[folderIndex]+\
-                                ' '+problem+' '+str(problemNumber)+' '+modifier+' '+\
-                                    str(popSize)+' '+str(genSize)+' '+str(classSize)+\
-                                ' ' +str(1432)+\
-                                ' >> tempContentDump.txt'
-                        
-                        print 'Running: '+runString
-                        #*NOTE* using shell=True incures a serious security risk, this
-                        #module MUST NOT be used with an untrust
-                        subprocess.call(runString,shell=True)
 
-#run CoaApp with all mods/popsize/gensize for a given problem.
-def runGa(folderIndex,problem,problemNumber):
-    #make sure file is empty to dump Coa out to
-    try:
-        os.remove('tempContentDump.txt')
-    except OSError:
-        pass
-    (open('tempContentDump.txt','w+')).close()
-    
-    for popSize in GaSettings.POP_SIZE:
-        for genSize in GaSettings.GEN_SIZE:
-            for modifier in GaSettings.MODS:
-                for i in range(settings.REPEAT):
-                    #randomness is based on time, so
-                    #need to make sure time changes between
-                    #runs.
-                    if(settings.REPEAT > 1):
-                        sysTime.sleep(1)
+    for popSize in settings.POP_SIZE:
+        for genSize in settings.GEN_SIZE:
+            if(settings.SEED == False):
+                runString = algExecStr+' '+settings.FOLDERS[folderIndex]+\
+                    ' '+problem+' '+str(problemNumber)+' '+settings.MODIFIER+' '+\
+                        str(popSize)+' '+str(genSize)+' '+\
+                    paramsStr+\
+                    ' >> tempContentDump.txt'
+            else:
+                runString = algExecStr+' '+settings.FOLDERS[folderIndex]+\
+                    ' '+problem+' '+str(problemNumber)+' '+settings.MODIFIER+' '+\
+                    str(popSize)+' '+str(genSize)+' '+\
+                    paramsStr+' ' +str(1432)+\
+                    ' >> tempContentDump.txt'
             
-                    if(settings.SEED == False):
-                        runString = './GaApp '+settings.FOLDERS[folderIndex]+\
-                            ' '+problem+' '+str(problemNumber)+' '+modifier+' '+\
-                            str(popSize)+' '+str(genSize)+' '+\
-                            str(GaSettings.C_PROB)+' '+str(GaSettings.M_PROB)+\
-                            ' >> tempContentDump.txt'
-                    else:
-                        runString = './GAApp '+settings.FOLDERS[folderIndex]+\
-                            ' '+problem+' '+str(problemNumber)+' '+modifier+' '+\
-                            str(popSize)+' '+str(genSize)+' '+\
-                            str(GaSettings.C_PROB)+' '+str(GaSettings.M_PROB)+\
-                            ' ' +str(1432)+' '+\
-                            ' >> tempContentDump.txt'
-                    print 'Running: '+runString
-                    #*NOTE* using shell=True incures a serious security risk, this
-                    #module MUST NOT be used with an untrust
-                    subprocess.call(runString,shell=True)
+            print 'Running: '+runString
+            #*NOTE* using shell=True incures a serious security risk, this
+            #module MUST NOT be used with an untrust
+            subprocess.call(runString,shell=True)
 
-def runCoa(folderIndex,problem,problemNumber):
-    #make sure file is empty to dump Coa out to
-    try:
-        os.remove('tempContentDump.txt')
-    except OSError:
-        pass
-    (open('tempContentDump.txt','w+')).close()
-    
-    for popSize in CoaSettings.POP_SIZE:
-        for genSize in CoaSettings.GEN_SIZE:
-            for modifier in CoaSettings.MODS:
-                for i in range(settings.REPEAT):
-                    #randomness is based on time, so
-                    #need to make sure time changes between
-                    #runs.
-                    if(settings.REPEAT > 1):
-                        sysTime.sleep(1)
-                    
-                    if(settings.SEED == False):
-                        runString = './CoaApp '+settings.FOLDERS[folderIndex]+\
-                            ' '+problem+' '+str(problemNumber)+' '+modifier+' '+\
-                            str(popSize)+' '+str(genSize)+' '+str(CoaSettings.V_PROB)+' '\
-                            +str(CoaSettings.H_PROB)+\
-                            ' >> tempContentDump.txt'
-                    else:
-                        runString = './CoaApp '+settings.FOLDERS[folderIndex]+\
-                            ' '+problem+' '+str(problemNumber)+' '+modifier+' '+\
-                            str(popSize)+' '+str(genSize)+' '+str(CoaSettings.V_PROB)+' '\
-                            +str(CoaSettings.H_PROB)+\
-                            ' '+str(1432)+\
-                            ' >> tempContentDump.txt'
-                    print 'Running: '+runString
-                    #*NOTE* using shell=True incures a serious security risk, this
-                    #module MUST NOT be used with an untrust
-                    subprocess.call(runString,shell=True)
-
-def runBba(folderIndex,problem,problemNumber):
-    #make sure file is empty to dump Coa out to
-    try:
-        os.remove('tempContentDump.txt')
-    except OSError:
-        pass
-    (open('tempContentDump.txt','w+')).close()
-    
-    for popSize in BbaSettings.POP_SIZE:
-        for genSize in BbaSettings.GEN_SIZE:
-            for modifier in BbaSettings.MODS:
-                for i in range(settings.REPEAT):
-                    #randomness is based on time, so
-                    #need to make sure time changes between
-                    #runs.
-                    if(settings.REPEAT > 1):
-                        sysTime.sleep(1)
-                    
-                    if(settings.SEED == False):
-                        runString = './BbaApp '+settings.FOLDERS[folderIndex]+\
-                            ' '+problem+' '+str(problemNumber)+' '+modifier+' '+\
-                            str(popSize)+' '+str(genSize)+' '+\
-                            ' >> tempContentDump.txt'
-                    else:
-                        runString = './BbaApp '+settings.FOLDERS[folderIndex]+\
-                            ' '+problem+' '+str(problemNumber)+' '+modifier+' '+\
-                            str(popSize)+' '+str(genSize)+' '+\
-                            ' ' +str(1432)+\
-                            ' >> tempContentDump.txt'
-                    print 'Running: '+runString
-                    #*NOTE* using shell=True incures a serious security risk, this
-                    #module MUST NOT be used with an untrust
-                    subprocess.call(runString,shell=True)
-
-#run CoaApp with all mods/popsize/gensize for a given problem.
-def runAco(folderIndex,problem,problemNumber):
-    #make sure file is empty to dump Coa out to
-    try:
-        os.remove('tempContentDump.txt')
-    except OSError:
-        pass
-    (open('tempContentDump.txt','w+')).close()
-    
-    for popSize in CoaSettings.POP_SIZE:
-        for genSize in CoaSettings.GEN_SIZE:
-            for modifier in CoaSettings.MODS:
-                for i in range(settings.REPEAT):
-                    #randomness is based on time, so
-                    #need to make sure time changes between
-                    #runs.
-                    if(settings.REPEAT > 1):
-                        sysTime.sleep(1)
-                    
-                    if(settings.SEED == False):
-                        runString = './AcoApp '+settings.FOLDERS[folderIndex]+\
-                            ' '+problem+' '+str(problemNumber)+' '+modifier+' '+\
-                            str(popSize)+' '+str(genSize)+' '+\
-                            AcoSettings.B+' '+AcoSettings.p+' '+AcoSettings.e+' '\
-                            ' >> tempContentDump.txt'
-                    else:
-                        runString = './AcoApp '+settings.FOLDERS[folderIndex]+\
-                            ' '+problem+' '+str(problemNumber)+' '+modifier+' '+\
-                            str(popSize)+' '+str(genSize)+' '+\
-                            str(AcoSettings.B)+' '+str(AcoSettings.p)+' '+str(AcoSettings.e)+\
-                            ' ' +str(1432)+' >> tempContentDump.txt'
-                        
-                    print 'Running: '+runString
-                    #*NOTE* using shell=True incures a serious security risk, this
-                    #module MUST NOT be used with an untrust
-                    subprocess.call(runString,shell=True)
-
-def runMmhph(folderIndex,problem,problemNumber):
-    #make sure file is empty to dump Coa out to
-    try:
-        os.remove('tempContentDump.txt')
-    except OSError:
-        pass
-    (open('tempContentDump.txt','w+')).close()
-    
-    for popSize in CoaSettings.POP_SIZE:
-        for genSize in CoaSettings.GEN_SIZE:
-            for modifier in CoaSettings.MODS:
-                for i in range(settings.REPEAT):
-                    #randomness is based on time, so
-                    #need to make sure time changes between
-                    #runs.
-                    if(settings.REPEAT > 1):
-                        sysTime.sleep(1)
-                    
-                    if(settings.SEED == False):
-                        runString = './MmhphApp '+settings.FOLDERS[folderIndex]+\
-                            ' '+problem+' '+str(problemNumber)+' '+\
-                            str(popSize)+' '+str(genSize)+\
-                            ' >> tempContentDump.txt'
-                    else:
-                        runString = './MmhphApp '+settings.FOLDERS[folderIndex]+\
-                            ' '+problem+' '+str(problemNumber)+' '+\
-                            str(popSize)+' '+str(genSize)+\
-                            ' ' +str(1432)+' >> tempContentDump.txt'
-                    
-                    print 'Running: '+runString
-                    #*NOTE* using shell=True incures a serious security risk, this
-                    #module MUST NOT be used with an untrust
-                    subprocess.call(runString,shell=True)
-
-#read data from fileName. param numberOfRuns is the number
-#of problems to read from this file.
 def readData(numberOfRuns, fileName, alg):
     
     fd = open(fileName)
@@ -375,23 +186,39 @@ def run(alg):
                 for problemNumber in range(1,(fileTuple[1]+1)):
                     #run Tlbo and get profit
                     print 'Problem:'+str(fileTuple[0])+'- '+str(problemNumber)+' executing...'
+                
+                    execStr = ''
+                    paramStr = ''
                     
                     if alg == 'tlbo':
-                        pass
-                        runTlbo(folderIndex,fileTuple[0],problemNumber)
+                        execStr = './TlboApp'
+                        paramStr = str(TlboSettings.CLASSROOM_SIZE)
                     elif alg == 'coa':
-                        runCoa(folderIndex,fileTuple[0],problemNumber)
+                        execStr = './CoaApp'
+                        paramStr = str(CoaSettings.V_PROB)+' '+str(CoaSettings.H_PROB)
                     elif alg == 'ga':
-                        runGa(folderIndex,fileTuple[0],problemNumber)
+                        execStr = './GaApp'
+                        paramStr = str(GaSettings.C_PROB)+' '+str(GaSettings.M_PROB)
                     elif alg == 'bba':
-                        runBba(folderIndex,fileTuple[0],problemNumber)
+                        execStr = './BbaApp'
+                        paramStr = ''
                     elif alg == 'aco':
-                        runAco(folderIndex,fileTuple[0],problemNumber)
+                        execStr = './AcoApp'
+                        paramStr = str(AcoSettings.B)+' '+str(AcoSettings.p)+' '+str(AcoSettings.e)
                     elif alg == 'mmhph':
-                        runMmhph(folderIndex,fileTuple[0],problemNumber)
+                        execStr = './MmhphApp'
+                        paramStr = ''
+                    elif alg == 'abc':
+                        execStr = './AbcApp'
+                        paramStr = ''
+                    elif alg == 'do':
+                        execStr = './DoApp'
+                        paramStr = ''
                     else:
                         print 'error: algorithm unavaliable'
                         exit(0)
+
+                    runAlg(folderIndex,fileTuple[0],problemNumber,execStr,paramStr)
 
                     BestObjFunc,runTime = readData(1,'tempContentDump.txt',alg)
                         #BestObjFunc,runTime = (float(exact_results[problemCounter+1]),
@@ -525,9 +352,10 @@ if(__name__=='__main__'):
         alg = str(sys.argv[1])
         run(alg)
     else:
+        #run('mmhph')
+        #run('abc')
         run('ga')
         run('tlbo')
         run('coa')
-        run('mmhph')
 
 

@@ -15,7 +15,7 @@ FLAGS = -std=c++11
 all: build
 	make mostlyclean
 
-build: TlboApp CoaApp GaApp BbaApp AcoApp Mmhph
+build: TlboApp CoaApp GaApp BbaApp AcoApp Mmhph Abc Do
 
 TlboApp: MMKP_TLBO.o MMKPSolution.o MMKPDataSet.o MMKPPopulationGenerators.o \
 	MMKP_MetaHeuristic.o
@@ -48,6 +48,17 @@ Mmhph: 	MMKP_GA.o MMKPSolution.o MMKPDataSet.o MMKPPopulationGenerators.o \
 	MMKPDataSet.o MMKPPopulationGenerators.o MMKP_TLBO.o \
 	MMKP_COA.o MMKP_GA.o MMKP_MetaHeuristic.o
 
+Do: 	MMKP_GA.o MMKPSolution.o MMKPDataSet.o MMKPPopulationGenerators.o \
+	MMKP_TLBO.o MMKP_COA.o  MMKP_MetaHeuristic.o
+	g++ $(FLAGS) -o build/DoApp DoApp.cpp MMKPSolution.o \
+	MMKPDataSet.o MMKPPopulationGenerators.o MMKP_TLBO.o \
+	MMKP_COA.o MMKP_GA.o MMKP_MetaHeuristic.o
+
+Abc:	MMKP_ABC.o MMKPSolution.o MMKPDataSet.o MMKPPopulationGenerators.o \
+	MMKP_MetaHeuristic.o
+	g++ $(FLAGS) -o build/AbcApp AbcApp.cpp MMKPSolution.o \
+	MMKPDataSet.o MMKPPopulationGenerators.o MMKP_ABC.o MMKP_MetaHeuristic.o
+
 MMKPDataSet.o:
 	g++ $(FLAGS) -c MMKPDataSet.cpp
 
@@ -72,6 +83,9 @@ MMKP_BBA.o:
 MMKP_ACO.o:
 	g++ $(FLAGS) -c MMKP_ACO.cpp
 
+MMKP_ABC.o:
+	g++ $(FLAGS) -c MMKP_ABC.cpp
+
 MMKP_MetaHeuristic.o:
 	g++ $(FLAGS) -c MMKP_MetaHeuristic.cpp
 
@@ -86,4 +100,6 @@ clean:
 	rm -rf build/BbaApp
 	rm -rf build/AcoApp
 	rm -rf build/MmhphApp
+	rm -rf build/AbcApp
+	rm -rf build/DoApp
 	rm -rf build/VerifySolution
