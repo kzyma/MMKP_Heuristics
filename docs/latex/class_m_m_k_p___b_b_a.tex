@@ -1,0 +1,83 @@
+\hypertarget{class_m_m_k_p___b_b_a}{\section{M\+M\+K\+P\+\_\+\+B\+B\+A Class Reference}
+\label{class_m_m_k_p___b_b_a}\index{M\+M\+K\+P\+\_\+\+B\+B\+A@{M\+M\+K\+P\+\_\+\+B\+B\+A}}
+}
+
+
+Crisscross optimization algrithm for the multiple-\/choice, multiple-\/dimensional knapsack problem.  
+
+
+
+
+{\ttfamily \#include $<$M\+M\+K\+P\+\_\+\+B\+B\+A.\+h$>$}
+
+Inheritance diagram for M\+M\+K\+P\+\_\+\+B\+B\+A\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_m_m_k_p___b_b_a}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_m_m_k_p___b_b_a_a7599754269f5a07bcecc2c236ffe036a}{M\+M\+K\+P\+\_\+\+B\+B\+A} (\hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} data\+Set, \hyperlink{class_b_b_a__parameters}{B\+B\+A\+\_\+parameters} parameters)
+\begin{DoxyCompactList}\small\item\em Construct \hyperlink{class_m_m_k_p___b_b_a}{M\+M\+K\+P\+\_\+\+B\+B\+A} object. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___b_b_a_ab38c1d657ea8308b3636be53f46644d8}{\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \hyperlink{class_m_m_k_p___b_b_a_ab38c1d657ea8308b3636be53f46644d8}{operator()} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ initial\+Population)}\label{class_m_m_k_p___b_b_a_ab38c1d657ea8308b3636be53f46644d8}
+
+\begin{DoxyCompactList}\small\item\em Run coa algorithm and return the result, which is the best objective function. \end{DoxyCompactList}\item 
+void \hyperlink{class_m_m_k_p___b_b_a_ad03dd7cae1bef7d453ce6a3d14cbc58a}{quick\+Sort} (std\+::vector$<$ \hyperlink{struct_m_m_k_p_bat_solution}{M\+M\+K\+P\+Bat\+Solution} $>$ \&input, int p, int r)
+\begin{DoxyCompactList}\small\item\em Sort a population of \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution}'s using quicksort. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___b_b_a_abb35fef62407d45a60e91c9b83c73cb3}{int \hyperlink{class_m_m_k_p___b_b_a_abb35fef62407d45a60e91c9b83c73cb3}{partition} (std\+::vector$<$ \hyperlink{struct_m_m_k_p_bat_solution}{M\+M\+K\+P\+Bat\+Solution} $>$ \&input, int p, int r)}\label{class_m_m_k_p___b_b_a_abb35fef62407d45a60e91c9b83c73cb3}
+
+\begin{DoxyCompactList}\small\item\em Quicksort helper funtion. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___b_b_a_af39d657752bd2443a11695d6728871b5}{\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \hyperlink{class_m_m_k_p___b_b_a_af39d657752bd2443a11695d6728871b5}{run} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ initial\+Population)}\label{class_m_m_k_p___b_b_a_af39d657752bd2443a11695d6728871b5}
+
+\begin{DoxyCompactList}\small\item\em Run tlbo algorithm and return the result, which is the 'teaching' solution after a stopping criterion is met. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___b_b_a_ac5ecabe29a6727328eee8b4899ae5b77}{std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \hyperlink{class_m_m_k_p___b_b_a_ac5ecabe29a6727328eee8b4899ae5b77}{run\+One\+Generation} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ population)}\label{class_m_m_k_p___b_b_a_ac5ecabe29a6727328eee8b4899ae5b77}
+
+\begin{DoxyCompactList}\small\item\em run single iteration of heuristic \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___b_b_a_a35ef47fbf5ddc306c56269c86492b513}{void {\bfseries init\+Bat\+Paremeters} (std\+::vector$<$ \hyperlink{struct_m_m_k_p_bat_solution}{M\+M\+K\+P\+Bat\+Solution} $>$ \&population)}\label{class_m_m_k_p___b_b_a_a35ef47fbf5ddc306c56269c86492b513}
+
+\item 
+\hypertarget{class_m_m_k_p___b_b_a_a69ed03ff0cfc287e99fdadf22b895837}{void {\bfseries global\+Search} (std\+::vector$<$ \hyperlink{struct_m_m_k_p_bat_solution}{M\+M\+K\+P\+Bat\+Solution} $>$ \&population)}\label{class_m_m_k_p___b_b_a_a69ed03ff0cfc287e99fdadf22b895837}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Crisscross optimization algrithm for the multiple-\/choice, multiple-\/dimensional knapsack problem. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_m_m_k_p___b_b_a_a7599754269f5a07bcecc2c236ffe036a}{\index{M\+M\+K\+P\+\_\+\+B\+B\+A@{M\+M\+K\+P\+\_\+\+B\+B\+A}!M\+M\+K\+P\+\_\+\+B\+B\+A@{M\+M\+K\+P\+\_\+\+B\+B\+A}}
+\index{M\+M\+K\+P\+\_\+\+B\+B\+A@{M\+M\+K\+P\+\_\+\+B\+B\+A}!M\+M\+K\+P\+\_\+\+B\+B\+A@{M\+M\+K\+P\+\_\+\+B\+B\+A}}
+\subsubsection[{M\+M\+K\+P\+\_\+\+B\+B\+A}]{\setlength{\rightskip}{0pt plus 5cm}M\+M\+K\+P\+\_\+\+B\+B\+A\+::\+M\+M\+K\+P\+\_\+\+B\+B\+A (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Data\+Set}}]{data\+Set, }
+\item[{{\bf B\+B\+A\+\_\+parameters}}]{parameters}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___b_b_a_a7599754269f5a07bcecc2c236ffe036a}
+
+
+Construct \hyperlink{class_m_m_k_p___b_b_a}{M\+M\+K\+P\+\_\+\+B\+B\+A} object. 
+
+Param\+: parameters can customize the tlbo algorithm according to struct \hyperlink{class_b_b_a__parameters}{B\+B\+A\+\_\+parameters}. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_m_m_k_p___b_b_a_ad03dd7cae1bef7d453ce6a3d14cbc58a}{\index{M\+M\+K\+P\+\_\+\+B\+B\+A@{M\+M\+K\+P\+\_\+\+B\+B\+A}!quick\+Sort@{quick\+Sort}}
+\index{quick\+Sort@{quick\+Sort}!M\+M\+K\+P\+\_\+\+B\+B\+A@{M\+M\+K\+P\+\_\+\+B\+B\+A}}
+\subsubsection[{quick\+Sort}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+B\+B\+A\+::quick\+Sort (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf M\+M\+K\+P\+Bat\+Solution} $>$ \&}]{input, }
+\item[{int}]{p, }
+\item[{int}]{r}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___b_b_a_ad03dd7cae1bef7d453ce6a3d14cbc58a}
+
+
+Sort a population of \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution}'s using quicksort. 
+
+Param p is the starting array element and r is the last. Note that r is not equal to the size of input, but the index of the last element to be sorted (in most cases size-\/1). 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+M\+M\+K\+P\+\_\+\+B\+B\+A.\+h\item 
+M\+M\+K\+P\+\_\+\+B\+B\+A.\+cpp\end{DoxyCompactItemize}

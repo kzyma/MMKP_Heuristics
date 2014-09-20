@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hiremathhill_5fread',['HiremathHill_Read',['../class_hiremath_hill___read.html',1,'']]]
+  ['bba_5fparameters',['BBA_parameters',['../class_b_b_a__parameters.html',1,'']]]
 ];

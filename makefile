@@ -103,3 +103,9 @@ clean:
 	rm -rf build/AbcApp
 	rm -rf build/DoApp
 	rm -rf build/VerifySolution
+	rm -rf build/AcoSettings.pyc
+	rm -rf build/CoaSettings.pyc
+	rm -rf build/TlboSettings.pyc
+	rm -rf build/GaSettings.pyc
+	rm -rf build/GeneralSettings.pyc
+	rm -rf build/BbaSettings.pyc

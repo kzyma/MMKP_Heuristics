@@ -1,0 +1,242 @@
+\hypertarget{class_m_m_k_p___meta_heuristic}{\section{M\+M\+K\+P\+\_\+\+Meta\+Heuristic Class Reference}
+\label{class_m_m_k_p___meta_heuristic}\index{M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}}
+}
+
+
+Teaching-\/learning-\/based optimization algrithm for the multiple-\/choice, multiple-\/dimensional knapsack problem.  
+
+
+
+
+{\ttfamily \#include $<$M\+M\+K\+P\+\_\+\+Meta\+Heuristic.\+h$>$}
+
+Inheritance diagram for M\+M\+K\+P\+\_\+\+Meta\+Heuristic\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.118881cm]{class_m_m_k_p___meta_heuristic}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_m_m_k_p___meta_heuristic_ad4e9b2d9eb8a3c4c463af4dc1be94147}{M\+M\+K\+P\+\_\+\+Meta\+Heuristic} (\hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} data\+Set, \hyperlink{class_meta_heuristic__parameters}{Meta\+Heuristic\+\_\+parameters} parameters)
+\begin{DoxyCompactList}\small\item\em Construct \hyperlink{class_m_m_k_p___meta_heuristic}{M\+M\+K\+P\+\_\+\+Meta\+Heuristic} object. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___meta_heuristic_a95161dd44bc787c290bdcf58013c3775}{\hyperlink{class_m_m_k_p___meta_heuristic_a95161dd44bc787c290bdcf58013c3775}{M\+M\+K\+P\+\_\+\+Meta\+Heuristic} (\hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} data\+Set)}\label{class_m_m_k_p___meta_heuristic_a95161dd44bc787c290bdcf58013c3775}
+
+\begin{DoxyCompactList}\small\item\em Uses default params. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___meta_heuristic_a571af8ce6fb011162d4af50526123fce}{virtual \hyperlink{class_m_m_k_p___meta_heuristic_a571af8ce6fb011162d4af50526123fce}{$\sim$\+M\+M\+K\+P\+\_\+\+Meta\+Heuristic} ()}\label{class_m_m_k_p___meta_heuristic_a571af8ce6fb011162d4af50526123fce}
+
+\begin{DoxyCompactList}\small\item\em Destroy \hyperlink{class_m_m_k_p___meta_heuristic}{M\+M\+K\+P\+\_\+\+Meta\+Heuristic} object. \end{DoxyCompactList}\item 
+virtual \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \hyperlink{class_m_m_k_p___meta_heuristic_acc3de42187c16d4a31776e18135035e5}{operator()} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ initial\+Population)=0
+\begin{DoxyCompactList}\small\item\em Run heuristic and return the best objective function. \end{DoxyCompactList}\item 
+void \hyperlink{class_m_m_k_p___meta_heuristic_a50620ef703c591e1ad5bc8f1fc3ae560}{quick\+Sort} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&input, int p, int r)
+\begin{DoxyCompactList}\small\item\em Sort a population of \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution}'s using quicksort. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___meta_heuristic_ae8ed322572fd644d1332304c07b188a0}{virtual \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \hyperlink{class_m_m_k_p___meta_heuristic_ae8ed322572fd644d1332304c07b188a0}{run} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ initial\+Population)=0}\label{class_m_m_k_p___meta_heuristic_ae8ed322572fd644d1332304c07b188a0}
+
+\begin{DoxyCompactList}\small\item\em Run metaheuristic and return the result, the best objective function. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___meta_heuristic_acd216490366b42ae6e44c2a7818a47a4}{virtual std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \hyperlink{class_m_m_k_p___meta_heuristic_acd216490366b42ae6e44c2a7818a47a4}{run\+One\+Generation} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ population)=0}\label{class_m_m_k_p___meta_heuristic_acd216490366b42ae6e44c2a7818a47a4}
+
+\begin{DoxyCompactList}\small\item\em run single iteration of heuristic \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___meta_heuristic_aef411efa1ce1674cb8c16966de476084}{bool \hyperlink{class_m_m_k_p___meta_heuristic_aef411efa1ce1674cb8c16966de476084}{make\+Feasible} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol)}\label{class_m_m_k_p___meta_heuristic_aef411efa1ce1674cb8c16966de476084}
+
+\begin{DoxyCompactList}\small\item\em Wrapper function of both feasibility routines. \end{DoxyCompactList}\item 
+bool \hyperlink{class_m_m_k_p___meta_heuristic_a1e212fa49412eea9d7c92a060c507f1e}{make\+Feasible} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol, int mc\+Feas, int md\+Feas)
+\begin{DoxyCompactList}\small\item\em Wrapper function of both feasiblity routines. \end{DoxyCompactList}\item 
+bool \hyperlink{class_m_m_k_p___meta_heuristic_aecab1f3c3f99ec38b8a7d17eddc3a2fa}{make\+Multi\+Choice\+Feas\+Fixed\+Surrogate} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol)
+\begin{DoxyCompactList}\small\item\em Make multi-\/choice feasible based a surrogate constraint created using all costs in an item. \end{DoxyCompactList}\item 
+bool \hyperlink{class_m_m_k_p___meta_heuristic_ac6f2cfca54b049ca235e236df4c13000}{make\+Multi\+Choice\+Feas\+Fixed\+\_\+\+Rand\+\_\+\+Surrogate} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol)
+\begin{DoxyCompactList}\small\item\em Make multi-\/choice feasible based a surrogate constraint created using all costs in an item. \end{DoxyCompactList}\item 
+bool \hyperlink{class_m_m_k_p___meta_heuristic_a420fe35418f1556624cf7fde56268cd5}{make\+Multi\+Choice\+Feas\+Max\+Profit} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol)
+\begin{DoxyCompactList}\small\item\em Make multi-\/choice feasible based on profit alone. \end{DoxyCompactList}\item 
+bool \hyperlink{class_m_m_k_p___meta_heuristic_aa98a53046010f99385c3592181398668}{make\+Multi\+Dim\+Feas\+Fixed\+Surrogate} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol)
+\begin{DoxyCompactList}\small\item\em Make multi-\/dim feasible based a surrogate constraint created using all costs in an item. \end{DoxyCompactList}\item 
+bool \hyperlink{class_m_m_k_p___meta_heuristic_ab46e7fb53a209807fb2da72c52c08802}{make\+Multi\+Dim\+Feas\+Variable\+Surrogate} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol)
+\begin{DoxyCompactList}\small\item\em Make multi-\/dim feasible based a surrogate constraint created using variable number of item's costs's (depending on which violate the problem's resources. \end{DoxyCompactList}\item 
+bool \hyperlink{class_m_m_k_p___meta_heuristic_a0997f043cae182ab38950724e5950661}{make\+Multi\+Dim\+Feas\+Var\+Min\+Surrogate} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol)
+\begin{DoxyCompactList}\small\item\em Make multi-\/dim feasible based a surrogate constraint created using variable number of item's costs's (depending on which violate the problem's resources. \end{DoxyCompactList}\item 
+bool \hyperlink{class_m_m_k_p___meta_heuristic_a941d76e21887d3c4d98f37bace9d61e5}{make\+Multi\+Dim\+Feas\+Var\+Maximize\+Profit} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol)
+\begin{DoxyCompactList}\small\item\em Make multi-\/dim feasible based on maximizing profit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_m_m_k_p___meta_heuristic_a712e028ff1bb1812ea16309994fd254e}{void {\bfseries competitive\+Update\+Sol} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&sol, \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&new\+Sol)}\label{class_m_m_k_p___meta_heuristic_a712e028ff1bb1812ea16309994fd254e}
+
+\item 
+void \hyperlink{class_m_m_k_p___meta_heuristic_a5f9cad13b11c32134cb4d56275dbdff1}{add\+To\+Unique\+Solution\+Set} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} sol)
+\begin{DoxyCompactList}\small\item\em Add to unqiue solution set. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___meta_heuristic_a39666b38d835cd40e39bd40e6210a3de}{int \hyperlink{class_m_m_k_p___meta_heuristic_a39666b38d835cd40e39bd40e6210a3de}{partition} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&input, int p, int r)}\label{class_m_m_k_p___meta_heuristic_a39666b38d835cd40e39bd40e6210a3de}
+
+\begin{DoxyCompactList}\small\item\em Quicksort helper funtion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_m_m_k_p___meta_heuristic_aae7839d83a097e83579ad478f4580088}{\hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} {\bfseries data\+Set}}\label{class_m_m_k_p___meta_heuristic_aae7839d83a097e83579ad478f4580088}
+
+\item 
+\hypertarget{class_m_m_k_p___meta_heuristic_a2af79355b04e7cea245642419bf5f8fa}{\hyperlink{class_meta_heuristic__parameters}{Meta\+Heuristic\+\_\+parameters} {\bfseries parameters}}\label{class_m_m_k_p___meta_heuristic_a2af79355b04e7cea245642419bf5f8fa}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Teaching-\/learning-\/based optimization algrithm for the multiple-\/choice, multiple-\/dimensional knapsack problem. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_m_m_k_p___meta_heuristic_ad4e9b2d9eb8a3c4c463af4dc1be94147}{\index{M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}!M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}}
+\index{M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}!M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}}
+\subsubsection[{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}]{\setlength{\rightskip}{0pt plus 5cm}M\+M\+K\+P\+\_\+\+Meta\+Heuristic\+::\+M\+M\+K\+P\+\_\+\+Meta\+Heuristic (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Data\+Set}}]{data\+Set, }
+\item[{{\bf Meta\+Heuristic\+\_\+parameters}}]{parameters}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___meta_heuristic_ad4e9b2d9eb8a3c4c463af4dc1be94147}
+
+
+Construct \hyperlink{class_m_m_k_p___meta_heuristic}{M\+M\+K\+P\+\_\+\+Meta\+Heuristic} object. 
+
+Param\+: parameters can customize the algorithm according to struct \hyperlink{class_meta_heuristic__parameters}{Meta\+Heuristic\+\_\+parameters}. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_m_m_k_p___meta_heuristic_a5f9cad13b11c32134cb4d56275dbdff1}{\index{M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}!add\+To\+Unique\+Solution\+Set@{add\+To\+Unique\+Solution\+Set}}
+\index{add\+To\+Unique\+Solution\+Set@{add\+To\+Unique\+Solution\+Set}!M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}}
+\subsubsection[{add\+To\+Unique\+Solution\+Set}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+Meta\+Heuristic\+::add\+To\+Unique\+Solution\+Set (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution}}]{sol}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_m_m_k_p___meta_heuristic_a5f9cad13b11c32134cb4d56275dbdff1}
+
+
+Add to unqiue solution set. 
+
+If Solution exists this function does nothing, and if not it will be added to unique solutions list. \hypertarget{class_m_m_k_p___meta_heuristic_a1e212fa49412eea9d7c92a060c507f1e}{\index{M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}!make\+Feasible@{make\+Feasible}}
+\index{make\+Feasible@{make\+Feasible}!M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}}
+\subsubsection[{make\+Feasible}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+M\+K\+P\+\_\+\+Meta\+Heuristic\+::make\+Feasible (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{sol, }
+\item[{int}]{mc\+Feas, }
+\item[{int}]{md\+Feas}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___meta_heuristic_a1e212fa49412eea9d7c92a060c507f1e}
+
+
+Wrapper function of both feasiblity routines. 
+
+Uses function parameters instead of Parameters struct to dictate which feasibilty algorithm to apply. \hypertarget{class_m_m_k_p___meta_heuristic_ac6f2cfca54b049ca235e236df4c13000}{\index{M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}!make\+Multi\+Choice\+Feas\+Fixed\+\_\+\+Rand\+\_\+\+Surrogate@{make\+Multi\+Choice\+Feas\+Fixed\+\_\+\+Rand\+\_\+\+Surrogate}}
+\index{make\+Multi\+Choice\+Feas\+Fixed\+\_\+\+Rand\+\_\+\+Surrogate@{make\+Multi\+Choice\+Feas\+Fixed\+\_\+\+Rand\+\_\+\+Surrogate}!M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}}
+\subsubsection[{make\+Multi\+Choice\+Feas\+Fixed\+\_\+\+Rand\+\_\+\+Surrogate}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+M\+K\+P\+\_\+\+Meta\+Heuristic\+::make\+Multi\+Choice\+Feas\+Fixed\+\_\+\+Rand\+\_\+\+Surrogate (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{sol}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___meta_heuristic_ac6f2cfca54b049ca235e236df4c13000}
+
+
+Make multi-\/choice feasible based a surrogate constraint created using all costs in an item. 
+
+If one item of a class is selected, continue, else if more than one is selected the item with the highest profit-\/resource ratio is used. If none are selected then randomly choose an item from that class. Return's true if successful, false otherwise. \hypertarget{class_m_m_k_p___meta_heuristic_aecab1f3c3f99ec38b8a7d17eddc3a2fa}{\index{M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}!make\+Multi\+Choice\+Feas\+Fixed\+Surrogate@{make\+Multi\+Choice\+Feas\+Fixed\+Surrogate}}
+\index{make\+Multi\+Choice\+Feas\+Fixed\+Surrogate@{make\+Multi\+Choice\+Feas\+Fixed\+Surrogate}!M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}}
+\subsubsection[{make\+Multi\+Choice\+Feas\+Fixed\+Surrogate}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+M\+K\+P\+\_\+\+Meta\+Heuristic\+::make\+Multi\+Choice\+Feas\+Fixed\+Surrogate (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{sol}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___meta_heuristic_aecab1f3c3f99ec38b8a7d17eddc3a2fa}
+
+
+Make multi-\/choice feasible based a surrogate constraint created using all costs in an item. 
+
+If one item of a class is selected, continue, else if more than one is selected the item with the highest profit-\/resource ratio is used. If none are selected choose the item in that class with the hightest profit-\/resource ratio. Return's true if successful, false otherwise. \hypertarget{class_m_m_k_p___meta_heuristic_a420fe35418f1556624cf7fde56268cd5}{\index{M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}!make\+Multi\+Choice\+Feas\+Max\+Profit@{make\+Multi\+Choice\+Feas\+Max\+Profit}}
+\index{make\+Multi\+Choice\+Feas\+Max\+Profit@{make\+Multi\+Choice\+Feas\+Max\+Profit}!M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}}
+\subsubsection[{make\+Multi\+Choice\+Feas\+Max\+Profit}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+M\+K\+P\+\_\+\+Meta\+Heuristic\+::make\+Multi\+Choice\+Feas\+Max\+Profit (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{sol}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___meta_heuristic_a420fe35418f1556624cf7fde56268cd5}
+
+
+Make multi-\/choice feasible based on profit alone. 
+
+If one item of a class is selected, continue, else if more than one is selected the item with the highest profit is used. If none are selected choose highest profit. Return's true if successful, false otherwise. \hypertarget{class_m_m_k_p___meta_heuristic_aa98a53046010f99385c3592181398668}{\index{M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}!make\+Multi\+Dim\+Feas\+Fixed\+Surrogate@{make\+Multi\+Dim\+Feas\+Fixed\+Surrogate}}
+\index{make\+Multi\+Dim\+Feas\+Fixed\+Surrogate@{make\+Multi\+Dim\+Feas\+Fixed\+Surrogate}!M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}}
+\subsubsection[{make\+Multi\+Dim\+Feas\+Fixed\+Surrogate}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+M\+K\+P\+\_\+\+Meta\+Heuristic\+::make\+Multi\+Dim\+Feas\+Fixed\+Surrogate (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{sol}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___meta_heuristic_aa98a53046010f99385c3592181398668}
+
+
+Make multi-\/dim feasible based a surrogate constraint created using all costs in an item. 
+
+Feasibility is constructed using highest difference of Er\%/n. Return's true if successful, false otherwise.
+
+Precondition\+: there must only be one item of each class selected, correctness is not garenteed otherwise. \hypertarget{class_m_m_k_p___meta_heuristic_ab46e7fb53a209807fb2da72c52c08802}{\index{M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}!make\+Multi\+Dim\+Feas\+Variable\+Surrogate@{make\+Multi\+Dim\+Feas\+Variable\+Surrogate}}
+\index{make\+Multi\+Dim\+Feas\+Variable\+Surrogate@{make\+Multi\+Dim\+Feas\+Variable\+Surrogate}!M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}}
+\subsubsection[{make\+Multi\+Dim\+Feas\+Variable\+Surrogate}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+M\+K\+P\+\_\+\+Meta\+Heuristic\+::make\+Multi\+Dim\+Feas\+Variable\+Surrogate (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{sol}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___meta_heuristic_ab46e7fb53a209807fb2da72c52c08802}
+
+
+Make multi-\/dim feasible based a surrogate constraint created using variable number of item's costs's (depending on which violate the problem's resources. 
+
+Feasibility is constructed using highest difference of Er\%/n. Return's true if successful, false otherwise.
+
+Precondition\+: there must only be one item of each class selected, correctness is not garenteed otherwise. \hypertarget{class_m_m_k_p___meta_heuristic_a941d76e21887d3c4d98f37bace9d61e5}{\index{M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}!make\+Multi\+Dim\+Feas\+Var\+Maximize\+Profit@{make\+Multi\+Dim\+Feas\+Var\+Maximize\+Profit}}
+\index{make\+Multi\+Dim\+Feas\+Var\+Maximize\+Profit@{make\+Multi\+Dim\+Feas\+Var\+Maximize\+Profit}!M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}}
+\subsubsection[{make\+Multi\+Dim\+Feas\+Var\+Maximize\+Profit}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+M\+K\+P\+\_\+\+Meta\+Heuristic\+::make\+Multi\+Dim\+Feas\+Var\+Maximize\+Profit (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{sol}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___meta_heuristic_a941d76e21887d3c4d98f37bace9d61e5}
+
+
+Make multi-\/dim feasible based on maximizing profit. 
+
+This procedure is more expensive then others becuase it attempts to gain feasibility while staying at the highest profit via local search heuristic.
+
+Precondition\+: there must only be one item of each class selected, correctness is not garenteed otherwise. \hypertarget{class_m_m_k_p___meta_heuristic_a0997f043cae182ab38950724e5950661}{\index{M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}!make\+Multi\+Dim\+Feas\+Var\+Min\+Surrogate@{make\+Multi\+Dim\+Feas\+Var\+Min\+Surrogate}}
+\index{make\+Multi\+Dim\+Feas\+Var\+Min\+Surrogate@{make\+Multi\+Dim\+Feas\+Var\+Min\+Surrogate}!M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}}
+\subsubsection[{make\+Multi\+Dim\+Feas\+Var\+Min\+Surrogate}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+M\+K\+P\+\_\+\+Meta\+Heuristic\+::make\+Multi\+Dim\+Feas\+Var\+Min\+Surrogate (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{sol}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___meta_heuristic_a0997f043cae182ab38950724e5950661}
+
+
+Make multi-\/dim feasible based a surrogate constraint created using variable number of item's costs's (depending on which violate the problem's resources. 
+
+Feasibility is constructed using lowest difference of Er\%/n. Return's true if successful, false otherwise.
+
+Precondition\+: there must only be one item of each class selected, correctness is not garenteed otherwise. \hypertarget{class_m_m_k_p___meta_heuristic_acc3de42187c16d4a31776e18135035e5}{\index{M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}!operator()@{operator()}}
+\index{operator()@{operator()}!M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}}
+\subsubsection[{operator()}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf M\+M\+K\+P\+Solution} M\+M\+K\+P\+\_\+\+Meta\+Heuristic\+::operator() (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf M\+M\+K\+P\+Solution} $>$}]{initial\+Population}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_m_m_k_p___meta_heuristic_acc3de42187c16d4a31776e18135035e5}
+
+
+Run heuristic and return the best objective function. 
+
+Must be overriden, I would suggest calling the \char`\"{}run\char`\"{} function and placing all code there. 
+
+Implemented in \hyperlink{class_m_m_k_p___a_c_o_a0d8af29cc503c3f97788af97611d64ae}{M\+M\+K\+P\+\_\+\+A\+C\+O}, \hyperlink{class_m_m_k_p___t_l_b_o_a095c049b8f168b34f2287a9cdbe5cd71}{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}, \hyperlink{class_m_m_k_p___g_a_aeeda12afb45c59bd18f9761a75765331}{M\+M\+K\+P\+\_\+\+G\+A}, \hyperlink{class_m_m_k_p___c_o_a_a026f7d04ec0818ab26c614cb9f6b4674}{M\+M\+K\+P\+\_\+\+C\+O\+A}, \hyperlink{class_m_m_k_p___a_b_c_ad7777f81bbb05359ea884d7cd57df0f7}{M\+M\+K\+P\+\_\+\+A\+B\+C}, \hyperlink{class_m_m_k_p___b_b_a_ab38c1d657ea8308b3636be53f46644d8}{M\+M\+K\+P\+\_\+\+B\+B\+A}, and \hyperlink{class_m_m_k_p___a_c_o_a0d8af29cc503c3f97788af97611d64ae}{M\+M\+K\+P\+\_\+\+A\+C\+O}.
+
+\hypertarget{class_m_m_k_p___meta_heuristic_a50620ef703c591e1ad5bc8f1fc3ae560}{\index{M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}!quick\+Sort@{quick\+Sort}}
+\index{quick\+Sort@{quick\+Sort}!M\+M\+K\+P\+\_\+\+Meta\+Heuristic@{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}}
+\subsubsection[{quick\+Sort}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+Meta\+Heuristic\+::quick\+Sort (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf M\+M\+K\+P\+Solution} $>$ \&}]{input, }
+\item[{int}]{p, }
+\item[{int}]{r}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___meta_heuristic_a50620ef703c591e1ad5bc8f1fc3ae560}
+
+
+Sort a population of \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution}'s using quicksort. 
+
+Param p is the starting array element and r is the last. Note that r is not equal to the size of input, but the index of the last element to be sorted (in most cases size-\/1). 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+M\+M\+K\+P\+\_\+\+Meta\+Heuristic.\+h\item 
+M\+M\+K\+P\+\_\+\+Meta\+Heuristic.\+cpp\end{DoxyCompactItemize}

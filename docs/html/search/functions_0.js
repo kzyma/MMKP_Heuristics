@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['addtouniquesolutionset',['addToUniqueSolutionSet',['../class_m_m_k_p___t_l_b_o.html#aec2c0d19229e361d745740bacf10b679',1,'MMKP_TLBO']]]
+  ['addtouniquesolutionset',['addToUniqueSolutionSet',['../class_m_m_k_p___meta_heuristic.html#a5f9cad13b11c32134cb4d56275dbdff1',1,'MMKP_MetaHeuristic']]]
 ];

@@ -353,9 +353,10 @@ if(__name__=='__main__'):
         run(alg)
     else:
         #run('mmhph')
-        #run('abc')
-        run('ga')
-        run('tlbo')
-        run('coa')
+        run('abc')
+        run('bba')
+        #run('ga')
+        #run('tlbo')
+        #run('coa')
 
 
