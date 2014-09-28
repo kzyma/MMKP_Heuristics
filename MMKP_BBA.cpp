@@ -69,6 +69,9 @@ MMKPSolution MMKP_BBA::run(std::vector<MMKPSolution> initialPopulation){
     
     bool terminationCriterion = false;
     int currentGeneration = 0;
+    this->convergenceData.empty();
+    this->convergenceIteration = 0;
+    currentFuncEvals = 0;
     
     MMKP_BBA::quickSort(population,0,(population.size()-1));
     MMKPSolution bestSolution;
@@ -79,22 +82,31 @@ MMKPSolution MMKP_BBA::run(std::vector<MMKPSolution> initialPopulation){
         }
     }
     
+    std::tuple<int,float> temp(currentFuncEvals,bestSolution.getProfit());
+    this->convergenceData.push_back(temp);
+    
     //main loop
     while(!terminationCriterion){
         
         MMKP_BBA::globalSearch(population);
-        
+        MMKP_BBA::localSearch(population);
+        MMKP_BBA::randomSearch(population);
         MMKP_BBA::quickSort(population,0,(population.size()-1));
         
         for(int i=0;i<population.size();i++){
             if(this->dataSet.isFeasible(population[i].solution)){
                 if(population[i].solution.getProfit() > bestSolution.getProfit()){
                     bestSolution =  population[i].solution;
+                    this->convergenceIteration = currentGeneration;
                     break;
                 }
             }
         }
 
+        this->currentFuncEvals += population.size();
+        std::tuple<int,float> temp(currentFuncEvals,bestSolution.getProfit());
+        this->convergenceData.push_back(temp);
+        
         if(currentGeneration >= this->parameters.numberOfGenerations){
             terminationCriterion = true;
         }
@@ -205,6 +217,80 @@ void MMKP_BBA::globalSearch(std::vector<MMKPBatSolution>& population){
         }
         currentBat.v = (averageV/averageVSize);
         MMKP_MetaHeuristic::makeFeasible(currentBat.solution);
-        population[i] = currentBat;
+        MMKP_MetaHeuristic::competitiveUpdateSol(population[i].solution,currentBat.solution);
     }
 }
+
+void MMKP_BBA::localSearch(std::vector<MMKPBatSolution>& population){
+        
+    //already in sorted order in this implementation.
+    //MMKP_BBA::quickSort(population,0,(population.size()-1));
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dib(0, 1);
+    
+    for(int i=0;i<population.size();i++){
+        
+        MMKPBatSolution currentBat = population[i];
+         MMKPBatSolution bestBat = population[(rand()%population.size())];
+        
+        //equation 1
+        float B = dib(gen);
+        float fTemp = currentBat.fmax + ((currentBat.fmax
+                                          -currentBat.fmin)*B);
+        
+        //equation 2
+        float averageV = 0.0;
+        int averageVSize = 0;
+        for(int j=0;j<currentBat.solution.size();j++){
+            for(int k=0;k<currentBat.solution[j].size();k++){
+                
+                float vTemp = currentBat.v + ((currentBat.solution[j][k]
+                                               -bestBat.solution[j][k])*fTemp);
+                averageV += vTemp;
+                averageVSize++;
+                
+                //equation "3"--binary uses 7 and 8
+                float normalizedV = 1/(1+(exp(-(vTemp))));
+                float r = dib(gen);
+                
+                if(r <= normalizedV){
+                    currentBat.solution[j][k] = 1;
+                }else{
+                    currentBat.solution[j][k] = 0;
+                }
+                
+            }
+        }
+        currentBat.v = (averageV/averageVSize);
+        MMKP_MetaHeuristic::makeFeasible(currentBat.solution);
+        MMKP_MetaHeuristic::competitiveUpdateSol(population[i].solution,currentBat.solution);
+    }
+}
+
+void MMKP_BBA::randomSearch(std::vector<MMKPBatSolution>& population){
+    
+    float mutatePercent = .20;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dib(0, 1);
+    
+    for(int i=0;i<population.size();i++){
+        MMKPBatSolution temp = population[i];
+        for(int j=0;j<population[i].solution.size();j++){
+            for(int k=0;k<population[i].solution[j].size();k++){
+                float r = dib(gen);
+                if(r < mutatePercent){
+                    if(temp.solution[j][k] == 1){
+                        temp.solution[j][k] = 0;
+                    }else{
+                        temp.solution[j][k] = 1;
+                    }
+                }
+            }
+        }
+        MMKP_MetaHeuristic::makeFeasible(temp.solution);
+        MMKP_MetaHeuristic::competitiveUpdateSol(population[i].solution,temp.solution);
+    }
+}
+

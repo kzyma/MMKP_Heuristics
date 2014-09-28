@@ -197,6 +197,8 @@ int main(int argc, char* argv[]){
     MMKPSolution optimalSolution = BBA(initPopulation);
     t2 = clock();
     runtime = ((float)t2-(float)t1)/(double) CLOCKS_PER_SEC;
+
+    std::vector<std::tuple<int,float> > convData = BBA.getConvergenceData();
     
     std::cout<<"Problem: "<<std::endl;
     std::cout<<folder<<std::string("/")<<file<<std::endl;
@@ -212,6 +214,14 @@ int main(int argc, char* argv[]){
     }
     std::cout<<"Runtime:"<<std::endl;
     std::cout<<runtime<<std::endl;
+    std::cout<<"Sol Found in _ Iterations"<<std::endl;
+    std::cout<<BBA.getConvergenceGeneration()<<std::endl;
+    std::cout<<"Convergence Count:"<<std::endl;
+    std::cout<<convData.size()<<std::endl;
+    for(int i=0;i<convData.size();i++){
+        std::cout<<std::get<0>(convData[i])<<std::endl;
+        std::cout<<std::get<1>(convData[i])<<std::endl;
+    }
     std::cout<<"Num of Classes:"<<std::endl;
     std::cout<<optimalSolution.size()<<std::endl;   //num of classes
     for(int i=0;i<optimalSolution.size();i++){

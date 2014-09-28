@@ -32,8 +32,19 @@ MMKPSolution MMKP_COA::run(std::vector<MMKPSolution> initialPopulation){
     
     bool terminationCriterion = false;
     int currentGeneration = 0;
+    this->convergenceData.empty();
+    this->convergenceIteration = 0;
+    this->currentFuncEvals = 0;
     
-    //quickSort(population,0,(population.size()-1));
+    MMKPSolution bestSolution;
+    for(int i=0;i<population.size();i++){
+        if(this->dataSet.isFeasible(population[i])){
+            if(population[i].getProfit() > bestSolution.getProfit()){
+                bestSolution = population[i];
+                this->convergenceIteration = currentGeneration;
+            }
+        }
+    }
     
     //main loop
     while(!terminationCriterion){
@@ -41,19 +52,27 @@ MMKPSolution MMKP_COA::run(std::vector<MMKPSolution> initialPopulation){
         MMKP_COA::horizontalCrossover(population);
         MMKP_COA::verticalCrossover(population);
 
+        for(int i=0;i<population.size();i++){
+            if(this->dataSet.isFeasible(population[i])){
+                if(population[i].getProfit() > bestSolution.getProfit()){
+                    bestSolution = population[i];
+                    this->convergenceIteration = currentGeneration;
+                }
+            }
+        }
+        
+        this->currentFuncEvals += population.size()*2;
+        std::tuple<int,float> temp(currentFuncEvals,bestSolution.getProfit());
+        this->convergenceData.push_back(temp);
+        
         if(currentGeneration >= this->parameters.numberOfGenerations){
             terminationCriterion = true;
         }
+        
         currentGeneration++;
     }
-    //return best, feasible solution
-    quickSort(population,0,(population.size()-1));
-    for(int i=0;i<population.size();i++){
-        if(this->dataSet.isFeasible(population[i])){
-            return population[i];
-        }
-    }
-    return population[0];
+
+    return bestSolution;
 }
 
 std::vector<MMKPSolution> MMKP_COA::runOneGeneration

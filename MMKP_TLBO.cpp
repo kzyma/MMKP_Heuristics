@@ -33,6 +33,22 @@ MMKPSolution MMKP_TLBO::run(std::vector<MMKPSolution> initialPopulation){
     
     bool terminationCriterion = false;
     int currentGeneration = 0;
+    this->convergenceData.empty();
+    this->convergenceIteration = 0;
+    currentFuncEvals = 0;
+    
+    MMKPSolution bestSolution;
+    for(int i=0;i<population.size();i++){
+        if(this->dataSet.isFeasible(population[i])){
+            if(population[i].getProfit() > bestSolution.getProfit()){
+                bestSolution = population[i];
+                this->convergenceIteration = currentGeneration;
+            }
+        }
+    }
+    
+    std::tuple<int,float> temp(currentFuncEvals,bestSolution.getProfit());
+    this->convergenceData.push_back(temp);
     
     MMKP_MetaHeuristic::quickSort(population,0,(population.size()-1));
     
@@ -49,18 +65,27 @@ MMKPSolution MMKP_TLBO::run(std::vector<MMKPSolution> initialPopulation){
         
         MMKP_MetaHeuristic::quickSort(population,0,(population.size()-1));
         
-        if(currentGeneration >= this->parameters.numberOfGenerations){
+        for(int i=0;i<population.size();i++){
+            if(this->dataSet.isFeasible(population[i])){
+                if(population[i].getProfit() > bestSolution.getProfit()){
+                    bestSolution = population[i];
+                    this->convergenceIteration = currentGeneration;
+                    break;
+                }
+            }
+        }
+        
+        this->currentFuncEvals += population.size()*2;
+        std::tuple<int,float> temp(currentFuncEvals,bestSolution.getProfit());
+        this->convergenceData.push_back(temp);
+        
+        if(currentGeneration >= (this->parameters.numberOfGenerations)){
             terminationCriterion = true;
         }
         currentGeneration++;
     }
-    //return best, feasible solution
-    for(int i=0;i<population.size();i++){
-        if(this->dataSet.isFeasible(population[i])){
-            return population[i];
-        }
-    }
-    return population[0];
+
+    return bestSolution;
 }
 
 std::vector<MMKPSolution> MMKP_TLBO::runOneGeneration

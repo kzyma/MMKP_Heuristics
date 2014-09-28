@@ -19,7 +19,7 @@
 #the file and number of problems in the file.
 #*note*, HiremathHill problem's go from small -> large
 
-
+'''
 FOLDERS = ['orlib_data','HiremathHill_data']
 
 FILES = [[[('I01',1),('I02',1),('I03',1),('I04',1)
@@ -38,22 +38,17 @@ FILES = [[[('I01',1),('I02',1),('I03',1),('I04',1)
           [('TestSet.300GP10IT10KP.txt',10)],[('TestSet.350GP10IT10KP.txt',10)],
           [('TestSet.400GP10IT10KP.txt',10)]]]
 
-
 '''
-    FOLDERS = ['HiremathHill_data']
-    
-    FILES = [[[('TestSet1.5GP10IT5KP.txt',30)],[('TestSet2.10GP10IT5KP.txt',30)],
-    [('TestSet3.25GP10IT5KP.txt',30)],[('TestSet4.5GP10IT10KP.txt',30)],
-    [('TestSet5.10GP10IT10KP.txt',30)],[('TestSet6.25GP10IT10KP.txt',30)],
-    [('TestSet7.5GP10IT25KP.txt',30)],[('TestSet8.10GP10IT25KP.txt',30)],
-    [('TestSet9.25GP10IT25KP.txt',30)],
-    [('TestSet.30GP10IT10KP.txt',10)],[('TestSet.50GP10IT10KP.txt',10)],
-    [('TestSet.70GP10IT10KP.txt',10)],[('TestSet.80GP10IT10KP.txt',10)],
-    [('TestSet.100GP10IT10KP.txt',10)],[('TestSet.150GP10IT10KP.txt',10)],
-    [('TestSet.200GP10IT10KP.txt',10)],[('TestSet.250GP10IT10KP.txt',10)],
-    [('TestSet.300GP10IT10KP.txt',10)],[('TestSet.350GP10IT10KP.txt',10)],
-    [('TestSet.400GP10IT10KP.txt',10)]]]
-    '''
+
+FOLDERS = ['orlib_data','HiremathHill_data']
+
+FILES = [[[('I01',1),('I02',1)]],
+         [[('TestSet1.5GP10IT5KP.txt',5)],[('TestSet2.10GP10IT5KP.txt',5)],
+          [('TestSet3.25GP10IT5KP.txt',5)],[('TestSet4.5GP10IT10KP.txt',5)],
+          [('TestSet5.10GP10IT10KP.txt',5)],[('TestSet6.25GP10IT10KP.txt',5)],
+          [('TestSet7.5GP10IT25KP.txt',5)],[('TestSet8.10GP10IT25KP.txt',5)],
+          [('TestSet9.25GP10IT25KP.txt',5)]]]
+
 
 #random number seed, True: use default settings (for same initial pop) or
 #false for random number seed based on time.

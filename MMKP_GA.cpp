@@ -32,6 +32,9 @@ MMKPSolution MMKP_GA::run(std::vector<MMKPSolution> initialPopulation){
     
     bool terminationCriterion = false;
     int currentGeneration = 0;
+    this->convergenceData.empty();
+    this->convergenceIteration = 0;
+    currentFuncEvals = 0;
     
     quickSort(population,0,(population.size()-1));
 
@@ -51,21 +54,30 @@ MMKPSolution MMKP_GA::run(std::vector<MMKPSolution> initialPopulation){
         }
         
         MMKP_MetaHeuristic::quickSort(population,0,(population.size()-1));
-
+        
+        for(int i=0;i<population.size();i++){
+            if(this->dataSet.isFeasible(population[i])){
+                if(population[i].getProfit() > this->bestSolution.getProfit()){
+                    this->bestSolution = population[i];
+                    this->convergenceIteration = (currentGeneration/population.size());
+                }
+            }
+        }
+        
+        this->currentFuncEvals += 1;
+        if(currentGeneration%population.size() == 0){
+            std::tuple<int,float> temp(currentFuncEvals,bestSolution.getProfit());
+            this->convergenceData.push_back(temp);
+        }
+        
         if(currentGeneration >=
            (this->parameters.numberOfGenerations*population.size())){
             terminationCriterion = true;
         }
+        
         currentGeneration++;
     }
     
-    for(int i=0;i<population.size();i++){
-        if(this->dataSet.isFeasible(population[i])){
-            if(population[i].getProfit() > this->bestSolution.getProfit()){
-                this->bestSolution = population[i];
-            }
-        }
-    }
     return this->bestSolution;
 }
 

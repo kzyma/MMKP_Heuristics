@@ -33,6 +33,9 @@ MMKPSolution MMKP_ABC::run(std::vector<MMKPSolution> initialPopulation){
     
     bool terminationCriterion = false;
     int currentGeneration = 0;
+    this->convergenceData.empty();
+    this->convergenceIteration = 0;
+    this->currentFuncEvals = 0;
 
     //split population
     std::size_t const half_size = population.size() / 2;
@@ -55,6 +58,7 @@ MMKPSolution MMKP_ABC::run(std::vector<MMKPSolution> initialPopulation){
         
         employeedBees = MMKP_ABC::employeedBeePhase(employeedBees);
         onLookerBees = MMKP_ABC::onLookerBeePhase(onLookerBees,employeedBees);
+        currentFuncEvals += population.size();
         MMKP_ABC::scoutBeePhase(employeedBees);
         
         //see if we have a new best solution
@@ -63,6 +67,7 @@ MMKPSolution MMKP_ABC::run(std::vector<MMKPSolution> initialPopulation){
                 if(employeedBees[i].solution.getProfit()
                    > bestSolution.getProfit()){
                     bestSolution = employeedBees[i].solution;
+                    convergenceIteration = currentGeneration;
                 }
             }
         }
@@ -71,9 +76,13 @@ MMKPSolution MMKP_ABC::run(std::vector<MMKPSolution> initialPopulation){
                 if(onLookerBees[i].getProfit()
                    > bestSolution.getProfit()){
                     bestSolution = onLookerBees[i];
+                    this->convergenceIteration = currentGeneration;
                 }
             }
         }
+        
+        std::tuple<int,float> temp(currentFuncEvals,bestSolution.getProfit());
+        this->convergenceData.push_back(temp);
         
         if(currentGeneration >= this->parameters.numberOfGenerations){
             terminationCriterion = true;
@@ -84,7 +93,7 @@ MMKPSolution MMKP_ABC::run(std::vector<MMKPSolution> initialPopulation){
     for(int i=0;i<empBees.size();i++){
         empBees[i] = employeedBees[i].solution;
     }
-    
+
     return bestSolution;
 }
 
@@ -216,6 +225,7 @@ void MMKP_ABC::scoutBeePhase(std::vector<MMKPBeeSolution>& employeedBees){
     for(int i=0;i<employeedBees.size();i++){
         if(employeedBees[i].noImproveCount > this->parameters.abandonmentCriterion){
             //this is a scout bee
+            currentFuncEvals++;
             for(int j=0;j<employeedBees[i].solution.size();j++){
                 //reset all to zero
                 for(int k=0;k<employeedBees[i].solution[j].size();k++){

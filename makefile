@@ -15,7 +15,7 @@ FLAGS = -std=c++11
 all: build
 	make mostlyclean
 
-build: TlboApp CoaApp GaApp BbaApp AcoApp Mmhph Abc Do
+build: TlboApp CoaApp GaApp BbaApp AcoApp Mmhph Abc
 
 TlboApp: MMKP_TLBO.o MMKPSolution.o MMKPDataSet.o MMKPPopulationGenerators.o \
 	MMKP_MetaHeuristic.o
@@ -45,12 +45,6 @@ AcoApp: MMKP_ACO.o MMKPSolution.o MMKPDataSet.o MMKPPopulationGenerators.o \
 Mmhph: 	MMKP_GA.o MMKPSolution.o MMKPDataSet.o MMKPPopulationGenerators.o \
 	MMKP_TLBO.o MMKP_COA.o MMKP_MetaHeuristic.o
 	g++ $(FLAGS) -o build/MmhphApp MmhphApp.cpp MMKPSolution.o \
-	MMKPDataSet.o MMKPPopulationGenerators.o MMKP_TLBO.o \
-	MMKP_COA.o MMKP_GA.o MMKP_MetaHeuristic.o
-
-Do: 	MMKP_GA.o MMKPSolution.o MMKPDataSet.o MMKPPopulationGenerators.o \
-	MMKP_TLBO.o MMKP_COA.o  MMKP_MetaHeuristic.o
-	g++ $(FLAGS) -o build/DoApp DoApp.cpp MMKPSolution.o \
 	MMKPDataSet.o MMKPPopulationGenerators.o MMKP_TLBO.o \
 	MMKP_COA.o MMKP_GA.o MMKP_MetaHeuristic.o
 
@@ -101,7 +95,6 @@ clean:
 	rm -rf build/AcoApp
 	rm -rf build/MmhphApp
 	rm -rf build/AbcApp
-	rm -rf build/DoApp
 	rm -rf build/VerifySolution
 	rm -rf build/AcoSettings.pyc
 	rm -rf build/CoaSettings.pyc

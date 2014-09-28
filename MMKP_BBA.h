@@ -50,7 +50,7 @@ typedef struct{
  * Crisscross optimization algrithm for the
  * multiple-choice, multiple-dimensional knapsack problem.
  */
-class MMKP_BBA:MMKP_MetaHeuristic{
+class MMKP_BBA:public MMKP_MetaHeuristic{
 private:
     BBA_parameters parameters;
 public:
@@ -98,6 +98,13 @@ public:
      *
      */
     void globalSearch(std::vector<MMKPBatSolution>& population);
+    
+    /**
+     * TLBO learning phase. See Vasko et al. paper for more.
+     */
+    void localSearch(std::vector<MMKPBatSolution>& population);
+    
+    void randomSearch(std::vector<MMKPBatSolution>& population);
 };
 
 

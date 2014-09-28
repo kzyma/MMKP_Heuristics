@@ -24,6 +24,7 @@
 #include <cfloat>
 #include <algorithm>
 #include <random>
+#include <tuple>
 
 #include "MMKPSolution.h"
 #include "MMKPDataSet.h"
@@ -70,6 +71,10 @@ class MMKP_MetaHeuristic{
 protected:
     MMKPDataSet dataSet;
     MetaHeuristic_parameters parameters;
+    std::vector<std::tuple<int,float> > convergenceData;
+    int currentFuncEvals;
+    int convergenceIteration;
+    
     /*
      * Update solution based on 'competetive strategy'. A feasible
      * solution is always accepted over an infeasible one. If both
@@ -113,6 +118,16 @@ public:
      * I would suggest calling the "run" function and placing all code there.
      */
     virtual MMKPSolution operator()(std::vector<MMKPSolution> initialPopulation)=0;
+    
+    //accessor
+    /**
+     * Return convergence data, a vector containing the count of function evaluation 
+     * and current best objective function. This can be done after running an
+     * instance of metaheuristic, else an empty std::vector will be returned.
+     */
+    std::vector<std::tuple<int,float> > getConvergenceData();
+    
+    int getConvergenceGeneration();
     
     //other
     /**

@@ -8,7 +8,7 @@
 # @All rights reserved
 # Kutztown University, PA, U.S.A
 #
-# Run Tlbo.
+# Heuristic runner.
 #
 # Note: Due to a serious security risk this module is only to be
 # used by trusted client at all times. For more information
@@ -40,7 +40,8 @@ import GeneralSettings as settings
 
 
 #format and keys of data stored in problemSetData
-outKeys = ['file','number','initProfit','profit','runtime','numClasses']
+outKeys = ['file','number','initProfit','profit','runtime','convCount','convData',
+           'numClasses']
 
 def runAlg(folderIndex,problem,problemNumber,algExecStr,paramsStr):
     #make sure file is empty to dump Tlbo out to
@@ -74,6 +75,7 @@ def readData(numberOfRuns, fileName, alg):
     
     fd = open(fileName)
     problemSetData = []
+    convergeData = []
     
     for j in range(numberOfRuns):
         tempData = {}
@@ -81,14 +83,22 @@ def readData(numberOfRuns, fileName, alg):
         for k in outKeys:
             dummy = fd.readline()
             tempData[k] = fd.readline().strip('\n')
-        for k in range(int(tempData['numClasses'])):
-            dummy = fd.readline()
+            if(k == 'numClasses'):
+                for l in range(int(tempData['numClasses'])):
+                    dummy = fd.readline()
+            if(k == 'convData'):
+                for l in range(int(tempData['convData'])):
+                    temp = []
+                    temp.append(int(fd.readline().strip('\n')))
+                    temp.append(float(fd.readline().strip('\n')))
+                    convergeData.append(temp)
 
         dummy = fd.readline()
         problemSetData.append(tempData)
     
     fd.close()
-    return float(problemSetData[0]['profit']),float(problemSetData[0]['runtime'])
+    return float(problemSetData[0]['profit']),float(problemSetData[0]['runtime']),\
+            int(problemSetData[0]['convCount']),convergeData
 
 #read exact results for given problem from first column of compare file.
 #Element one is the name of result, in this case "Exact".
@@ -126,10 +136,13 @@ def printResults(dataSet,sheet,row,startColumn):
 def run(alg):
 
     data_file = Workbook()
+    graph_file = Workbook()
+    graph_sheets = []
     data_sheets = []
     problemNames = []
     problemDeviations = []
     problemRuntimes = []
+    convAll = []
 
     print 'Starting test runner'
 
@@ -160,8 +173,11 @@ def run(alg):
             
             sheetName = str(groupName)
             data_sheets.append(data_file.add_sheet(sheetName,cell_overwrite_ok=True))
+            graph_sheets.append(graph_file.add_sheet(sheetName,cell_overwrite_ok=True))
             currentSheet = data_sheets[-1]
+            currentGraph = graph_sheets[-1]
             currentSheet.write(0,0,groupName)
+            currentGraph.write(0,0,groupName)
             problemNames.append(groupName)
             
             s_header = ['Problem']
@@ -181,6 +197,7 @@ def run(alg):
             TlboDeviations = []
             algRuntimes = []
             totalRuntimes = []
+            convAverage = []
         
             for fileTuple in fileGroup:
                 for problemNumber in range(1,(fileTuple[1]+1)):
@@ -220,22 +237,25 @@ def run(alg):
 
                     runAlg(folderIndex,fileTuple[0],problemNumber,execStr,paramStr)
 
-                    BestObjFunc,runTime = readData(1,'tempContentDump.txt',alg)
-                        #BestObjFunc,runTime = (float(exact_results[problemCounter+1]),
-                        #                  float(1))
+                    BestObjFunc,runTime,\
+                    ConvIter,ConvData = readData(1,'tempContentDump.txt',alg)
+
                     print 'Profit:: '+str(BestObjFunc)
                     #write problem name
                     if(groupName == 'orlib'):
                         currentSheet.write((hRow+1)+problemCounter, hCol,str(fileTuple[0]))
+                        currentGraph.write((1)+(problemCounter*5), 1,str(fileTuple[0]))
                     else:
                         currentSheet.write((hRow+1)+problemCounter, hCol,str(problemNumber))
+                        currentGraph.write((1)+(problemCounter*5), 1,str(fileTuple[0]))
+                    
                     #write results for other algs
                     otherAlgs = [algs_deviations[x][problemCounter+1] \
                                 for x in range(len(algs_deviations))]
                     
                     printResults(otherAlgs,currentSheet,
                                  TlboStartRow+problemCounter,(hCol+1))
-                    #write results for Tlbo
+                    #write results for alg
                     TlboDev = (abs((BestObjFunc-exact_results[problemCounter+1]))/
                                exact_results[problemCounter+1])*100
                     TlboDeviations.append(TlboDev)
@@ -244,10 +264,34 @@ def run(alg):
                                        float((Decimal("{0:.3}".format(TlboDev)))))
                     currentSheet.write(TlboStartRow+problemCounter,TlboStartCol+1,
                                        float((Decimal("{0:.3}".format(runTime)))))
+                                       
+                    #write convergence data to graph file
+                    convDevData = []
+                    currentGraph.write((2)+(problemCounter*5), 1,"Gen best found:")
+                    currentGraph.write((2)+(problemCounter*5), 2,str(ConvIter))
+                    currentGraph.write((3)+(problemCounter*5), 1,"Func Eval:")
+                    currentGraph.write((4)+(problemCounter*5), 1,"Best Sol Dev:")
+                    for i in range(len(ConvData)):
+                        g_dev = (abs((ConvData[i][1]-exact_results[problemCounter+1]))/
+                                   exact_results[problemCounter+1])*100
+                        currentGraph.write((3)+(problemCounter*5), 2+i,ConvData[i][0])
+                        temp = float(Decimal("{0:.3}".format(g_dev)))
+                        convDevData.append(temp)
+                        currentGraph.write((4)+(problemCounter*5), 2+i,temp)
+                    
+                    if not convAverage:
+                        for i in range(len(convDevData)):
+                            convAverage.append(convDevData[i])
+                    else:
+                        for i in range(len(convDevData)):
+                            temp = (convAverage[i] + convDevData[i]) / 2
+                            convAverage[i] = temp
+                
                     problemCounter += 1
                     
                     print 'Problem complete.'
                     data_file.save('results/'+alg+'_OverviewResults.xls')
+                    graph_file.save('results/graphs/'+alg+'_ConvResults.xls')
     
             #calculate deviations
             for i in range(len(algs_deviations)):
@@ -286,11 +330,23 @@ def run(alg):
                    (TlboStartCol+1),float((Decimal("{0:.3}".format(total)))))
             problemRuntimes.append(total)
             data_file.save('results/'+alg+'_OverviewResults.xls')
+            
+            currentGraph.write((2)+(problemCounter*5), 1,"Gen:")
+            currentGraph.write((3)+(problemCounter*5), 1,"Best Sol Dev:")
+
+            for i in range(len(convAverage)):
+                currentGraph.write((2)+(problemCounter*5),2+i,i)
+                currentGraph.write((3)+(problemCounter*5),
+                                   2+i,float(Decimal("{0:.3}".format(convAverage[i]))))
+            convAll.append(convAverage)
+            graph_file.save('results/graphs/'+alg+'_ConvResults.xls')
 
     #summary of results page
     data_sheets.append(data_file.add_sheet("Results",cell_overwrite_ok=True))
+    graph_sheets.append(graph_file.add_sheet("Results",cell_overwrite_ok=True))
     currentSheet = data_sheets[-1]
     currentSheet.write(0,0,"Overview Of Results")
+    currentGraph = graph_sheets[-1]
     
     #write header
     s_header = ['Problem']
@@ -342,8 +398,24 @@ def run(alg):
                            
     currentSheet.write(TlboStartRow+len(problemRuntimes),TlboStartCol+1,
                       Decimal("{0:.3}".format(total)))
-                      
+
+    dAll = []
+    for i in range(len(convAll)):
+        if not dAll:
+            dAll = convAll[i]
+        for j in range(len(convAll[i])):
+            temp = (dAll[j] + convAll[i][j]) / 2
+            dAll[j] = temp
+        currentGraph.write(TlboStartRow+i,hCol,problemNames[i])
+        for j in range(len(convAll[i])):
+            currentGraph.write(TlboStartRow+i,hCol+1+j,
+                               Decimal("{0:.3}".format(convAll[i][j])))
+
+    for i in range(len(dAll)):
+        currentGraph.write(TlboStartRow+1+len(convAll),hCol+1+i,Decimal("{0:.3}".format(dAll[i])))
+    
     data_file.save('results/'+alg+'_OverviewResults.xls')
+    graph_file.save('results/graphs/'+alg+'_ConvResults.xls')
 
 if(__name__=='__main__'):
     num_argv = len(sys.argv)
@@ -352,11 +424,7 @@ if(__name__=='__main__'):
         alg = str(sys.argv[1])
         run(alg)
     else:
-        #run('mmhph')
-        run('abc')
+        run('tlbo')
         run('bba')
-        #run('ga')
-        #run('tlbo')
-        #run('coa')
 
 

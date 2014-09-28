@@ -63,12 +63,12 @@ int MMKP_MetaHeuristic::partition(std::vector<MMKPSolution>& input,int p, int r)
 
 //constructors
 MMKP_MetaHeuristic::MMKP_MetaHeuristic(MMKPDataSet dataSet, MetaHeuristic_parameters parameters)
-:dataSet(dataSet),parameters(parameters){
+:dataSet(dataSet),parameters(parameters),currentFuncEvals(0),convergenceIteration(0){
     srand(time(NULL));
 }
 
 MMKP_MetaHeuristic::MMKP_MetaHeuristic(MMKPDataSet dataSet)
-:dataSet(dataSet),parameters(){
+:dataSet(dataSet),parameters(),currentFuncEvals(0),convergenceIteration(0){
     srand(time(NULL));
 }
 
@@ -81,6 +81,14 @@ void MMKP_MetaHeuristic::quickSort(std::vector<MMKPSolution>& input,int p, int r
         quickSort(input, p, j-1);
         quickSort(input, j+1, r);
     }
+}
+
+std::vector<std::tuple<int,float> > MMKP_MetaHeuristic::getConvergenceData(){
+    return convergenceData;
+}
+
+int MMKP_MetaHeuristic::getConvergenceGeneration(){
+    return convergenceIteration;
 }
 
 bool MMKP_MetaHeuristic::makeFeasible(MMKPSolution& sol){

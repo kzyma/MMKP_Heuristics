@@ -85,7 +85,7 @@ public:
  * Any Colony Optimization adapted to the
  * multiple-choice, multiple-dimensional knapsack problem.
  */
-class MMKP_ACO:MMKP_MetaHeuristic{
+class MMKP_ACO:public MMKP_MetaHeuristic{
 private:
     ACO_parameters parameters;
     ACO_DataSetAdditions solDesirability;

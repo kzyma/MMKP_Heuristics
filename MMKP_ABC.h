@@ -51,7 +51,7 @@ typedef struct{
  * Any Colony Optimization adapted to the
  * multiple-choice, multiple-dimensional knapsack problem.
  */
-class MMKP_ABC:MMKP_MetaHeuristic{
+class MMKP_ABC:public MMKP_MetaHeuristic{
 private:
     ABC_parameters parameters;
 public:

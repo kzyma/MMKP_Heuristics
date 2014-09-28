@@ -118,6 +118,10 @@ int main(int argc, char* argv[]){
             break;
         }
     }
+    
+    int convergenceGen = 0;
+    std::vector<std::tuple<int, float> > convData;
+    int functionEvalCounter = 0;
 
     for(int i=0;i<genSize;i++){
         
@@ -153,8 +157,11 @@ int main(int argc, char* argv[]){
         }
         
         pop1 = tlbo.runOneGeneration(pop1);
+        functionEvalCounter += pop1.size()*2;
         pop2 = coa.runOneGeneration(pop2);
+        functionEvalCounter += pop2.size()*2;
         pop3 = ga.runOneGeneration(pop3);
+        functionEvalCounter += pop3.size();
 
         population.clear();
         population.reserve(pop1.size() + pop2.size() + pop3.size());
@@ -171,6 +178,7 @@ int main(int argc, char* argv[]){
                 if(population[j].getProfit()
                    > optimalSolution.getProfit()){
                     optimalSolution = population[j];
+                    convergenceGen = i;
                 }
                 if(!(doesContain(eliteSolutions,population[j]))){
                     eliteSolutions[count] = population[j];
@@ -181,6 +189,9 @@ int main(int argc, char* argv[]){
                 }
             }
         }
+        //update conv. vector
+        std::tuple<int, float> temp(functionEvalCounter,optimalSolution.getProfit());
+        convData.push_back(temp);
     }
     
     t2 = clock();
@@ -201,6 +212,14 @@ int main(int argc, char* argv[]){
     }
     std::cout<<"Runtime:"<<std::endl;
     std::cout<<runtime<<std::endl;
+    std::cout<<"Sol Found in _ Iterations"<<std::endl;
+    std::cout<<convergenceGen<<std::endl;
+    std::cout<<"Convergence Count:"<<std::endl;
+    std::cout<<convData.size()<<std::endl;
+    for(int i=0;i<convData.size();i++){
+        std::cout<<std::get<0>(convData[i])<<std::endl;
+        std::cout<<std::get<1>(convData[i])<<std::endl;
+    }
     std::cout<<"Num of Classes:"<<std::endl;
     std::cout<<optimalSolution.size()<<std::endl;   //num of classes
     for(int i=0;i<optimalSolution.size();i++){
@@ -212,6 +231,7 @@ int main(int argc, char* argv[]){
     std::cout<<std::endl;
     return 0;
 }
+
 
 bool doesContain(std::vector<MMKPSolution> population,MMKPSolution sol){
     for(int i=0;i<population.size();i++){

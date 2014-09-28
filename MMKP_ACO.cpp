@@ -262,6 +262,9 @@ MMKPSolution MMKP_ACO::run(std::vector<MMKPSolution> initialPopulation){
     
     MMKPSolution bestSolution;
     std::vector<MMKPSolution> bestSolutionOfGeneration;
+    this->convergenceData.empty();
+    this->convergenceIteration = 0;
+    this->currentFuncEvals = 0;
     
     MMKP_MetaHeuristic::quickSort(population,0,(population.size()-1));
     for(int i=0;i<population.size();i++){
@@ -305,10 +308,15 @@ MMKPSolution MMKP_ACO::run(std::vector<MMKPSolution> initialPopulation){
         if(bestSolution.getProfit()
            < bestSolutionOfGeneration[bestSolutionOfGeneration.size()-1].getProfit()){
             bestSolution = bestSolutionOfGeneration[bestSolutionOfGeneration.size()-1];
+            this->convergenceIteration = currentGeneration;
         }
         
         updatePheramone(bestSolutionOfGeneration[(bestSolutionOfGeneration.size()-1)]);
-
+        
+        this->currentFuncEvals += population.size();
+        std::tuple<int,float> temp(currentFuncEvals,bestSolution.getProfit());
+        this->convergenceData.push_back(temp);
+        
         if(currentGeneration >= this->parameters.numberOfGenerations){
             terminationCriterion = true;
         }
