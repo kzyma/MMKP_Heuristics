@@ -55,12 +55,7 @@ MMKPSolution MMKP_TLBO::run(std::vector<MMKPSolution> initialPopulation){
     //main loop
     while(!terminationCriterion){
         
-        if(this->parameters.classroomSize == 0){
-            MMKP_TLBO::teachingPhase(population);
-        }else{
-            int size = this->parameters.classroomSize;
-            MMKP_TLBO::teachingPhase_MultiTeacher(population,size);
-        }
+        MMKP_TLBO::teachingPhase(population);
         MMKP_TLBO::learningPhase(population);
         
         MMKP_MetaHeuristic::quickSort(population,0,(population.size()-1));
@@ -93,12 +88,7 @@ std::vector<MMKPSolution> MMKP_TLBO::runOneGeneration
     
     MMKP_MetaHeuristic::quickSort(population,0,(population.size()-1));
     
-    if(this->parameters.classroomSize == 0){
-        MMKP_TLBO::teachingPhase(population);
-    }else{
-        int size = this->parameters.classroomSize;
-        MMKP_TLBO::teachingPhase_MultiTeacher(population,size);
-    }
+    MMKP_TLBO::teachingPhase(population);
     MMKP_TLBO::learningPhase(population);
     
     return population;
@@ -106,12 +96,14 @@ std::vector<MMKPSolution> MMKP_TLBO::runOneGeneration
 
 void MMKP_TLBO::teachingPhase(std::vector<MMKPSolution>& population){
     int teacherIndex = 0;
-    if(parameters.addRandomTeacher){
-        teacherIndex = rand() % ((int)(population.size()*.10));
-    }
     
     MMKPSolution* teacher = &population[teacherIndex];
     MMKPSolution* mean = &population[(population.size()/2)];
+    
+    //CompLocalSearch LSP(dataSet);
+    //*teacher = LSP(*teacher);
+    ReactiveLocalSearch RLS(dataSet);
+    *teacher = RLS(*teacher);
     
     for(int i=0;i<population.size();i++){
         MMKPSolution* currentSol = &population[i];

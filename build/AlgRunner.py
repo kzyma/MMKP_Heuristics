@@ -43,7 +43,7 @@ import GeneralSettings as settings
 outKeys = ['file','number','initProfit','profit','runtime','convCount','convData',
            'numClasses']
 
-def runAlg(folderIndex,problem,problemNumber,algExecStr,paramsStr):
+def runAlg(folderIndex,problem,problemNumber,algExecStr,alg,paramsStr):
     #make sure file is empty to dump Tlbo out to
     try:
         os.remove('tempContentDump.txt')
@@ -51,25 +51,32 @@ def runAlg(folderIndex,problem,problemNumber,algExecStr,paramsStr):
         pass
     (open('tempContentDump.txt','w+')).close()
 
-    for popSize in settings.POP_SIZE:
-        for genSize in settings.GEN_SIZE:
-            if(settings.SEED == False):
+    if(algExecStr == str('./HeuristicApp')):
+        for popSize in settings.POP_SIZE:
+            for genSize in settings.GEN_SIZE:
+                runString = algExecStr+' '+settings.FOLDERS[folderIndex]+\
+                    ' '+problem+' '+str(problemNumber)+' '+alg+' '+settings.MODIFIER+' '+\
+                        str(popSize)+' '+str(genSize)+' '+\
+                    paramsStr+\
+                    ' >> tempContentDump.txt'
+                print 'Running: '+runString
+                #*NOTE* using shell=True incures a serious security risk, this
+                #module MUST NOT be used with an untrust
+                subprocess.call(runString,shell=True)
+
+    else:
+        for popSize in settings.POP_SIZE:
+            for genSize in settings.GEN_SIZE:
                 runString = algExecStr+' '+settings.FOLDERS[folderIndex]+\
                     ' '+problem+' '+str(problemNumber)+' '+settings.MODIFIER+' '+\
                         str(popSize)+' '+str(genSize)+' '+\
                     paramsStr+\
                     ' >> tempContentDump.txt'
-            else:
-                runString = algExecStr+' '+settings.FOLDERS[folderIndex]+\
-                    ' '+problem+' '+str(problemNumber)+' '+settings.MODIFIER+' '+\
-                    str(popSize)+' '+str(genSize)+' '+\
-                    paramsStr+' ' +str(1432)+\
-                    ' >> tempContentDump.txt'
-            
-            print 'Running: '+runString
-            #*NOTE* using shell=True incures a serious security risk, this
-            #module MUST NOT be used with an untrust
-            subprocess.call(runString,shell=True)
+    
+                print 'Running: '+runString
+                #*NOTE* using shell=True incures a serious security risk, this
+                #module MUST NOT be used with an untrust
+                subprocess.call(runString,shell=True)
 
 def readData(numberOfRuns, fileName, alg):
     
@@ -143,6 +150,7 @@ def run(alg):
     problemDeviations = []
     problemRuntimes = []
     convAll = []
+    genAll = []
 
     print 'Starting test runner'
 
@@ -193,49 +201,41 @@ def run(alg):
             currentSheet.write(hRow,TlboStartCol,str(alg.upper()))
             #write runtime
             currentSheet.write(hRow,TlboStartCol+1,"Runtime(sec)")
+            currentSheet.write(hRow,TlboStartCol+2,"Generations")
             averageDeviations = []
             TlboDeviations = []
             algRuntimes = []
             totalRuntimes = []
             convAverage = []
+            generationAve = []
         
             for fileTuple in fileGroup:
                 for problemNumber in range(1,(fileTuple[1]+1)):
                     #run Tlbo and get profit
                     print 'Problem:'+str(fileTuple[0])+'- '+str(problemNumber)+' executing...'
                 
-                    execStr = ''
+                    execStr = './HeuristicApp'
                     paramStr = ''
                     
                     if alg == 'tlbo':
-                        execStr = './TlboApp'
-                        paramStr = str(TlboSettings.CLASSROOM_SIZE)
+                        pass
                     elif alg == 'coa':
-                        execStr = './CoaApp'
                         paramStr = str(CoaSettings.V_PROB)+' '+str(CoaSettings.H_PROB)
                     elif alg == 'ga':
-                        execStr = './GaApp'
                         paramStr = str(GaSettings.C_PROB)+' '+str(GaSettings.M_PROB)
                     elif alg == 'bba':
-                        execStr = './BbaApp'
-                        paramStr = ''
+                        pass
                     elif alg == 'aco':
-                        execStr = './AcoApp'
                         paramStr = str(AcoSettings.B)+' '+str(AcoSettings.p)+' '+str(AcoSettings.e)
                     elif alg == 'mmhph':
                         execStr = './MmhphApp'
-                        paramStr = ''
                     elif alg == 'abc':
-                        execStr = './AbcApp'
-                        paramStr = ''
-                    elif alg == 'do':
-                        execStr = './DoApp'
-                        paramStr = ''
+                        pass
                     else:
                         print 'error: algorithm unavaliable'
                         exit(0)
 
-                    runAlg(folderIndex,fileTuple[0],problemNumber,execStr,paramStr)
+                    runAlg(folderIndex,fileTuple[0],problemNumber,execStr,alg,paramStr)
 
                     BestObjFunc,runTime,\
                     ConvIter,ConvData = readData(1,'tempContentDump.txt',alg)
@@ -260,10 +260,15 @@ def run(alg):
                                exact_results[problemCounter+1])*100
                     TlboDeviations.append(TlboDev)
                     algRuntimes.append(runTime)
+                    
                     currentSheet.write(TlboStartRow+problemCounter,TlboStartCol,
                                        float((Decimal("{0:.3}".format(TlboDev)))))
                     currentSheet.write(TlboStartRow+problemCounter,TlboStartCol+1,
                                        float((Decimal("{0:.3}".format(runTime)))))
+                    currentSheet.write(TlboStartRow+problemCounter,TlboStartCol+2,
+                                       ConvIter)
+                                       
+                    generationAve.append(ConvIter)
                                        
                     #write convergence data to graph file
                     convDevData = []
@@ -314,6 +319,13 @@ def run(alg):
                     temp += i
             averageDeviations.append((temp/counter))
             problemDeviations.append(averageDeviations)
+            
+            genA = 0.0
+            for i in range(len(generationAve)):
+                genA += generationAve[i]
+            genA = genA / len(generationAve)
+            
+            genAll.append(genA)
 
             #write total deviations and runtime
             for i in range(len(averageDeviations)):
@@ -328,6 +340,8 @@ def run(alg):
                 total += i
             currentSheet.write((TlboStartRow+fileTuple[1]*len(fileGroup)),
                    (TlboStartCol+1),float((Decimal("{0:.3}".format(total)))))
+            currentSheet.write((TlboStartRow+fileTuple[1]*len(fileGroup)),
+                               (TlboStartCol+2),float((Decimal("{0:.3}".format(genA)))))
             problemRuntimes.append(total)
             data_file.save('results/'+alg+'_OverviewResults.xls')
             
@@ -361,6 +375,7 @@ def run(alg):
     #write Tlbo header
     currentSheet.write(hRow,TlboStartCol,alg.upper())
     currentSheet.write(hRow,TlboStartCol+1,'Runtime(sec)')
+    currentSheet.write(hRow,TlboStartCol+2,'Generations')
 
     averageAllDev = []
     #compute avarege Dev
@@ -374,6 +389,11 @@ def run(alg):
         averageAllDev.append(tempSum/counter)
         
     #print filenames and deviations.
+    allTemp = 0.0
+    for i in range(len(genAll)):
+        allTemp += genAll[i]
+    allTemp = allTemp / len(genAll)
+
     for i in range(len(problemDeviations)):
         currentSheet.write(TlboStartRow+i,hCol,problemNames[i])
         for j in range(len(problemDeviations[i])):
@@ -382,6 +402,9 @@ def run(alg):
             else:
                 currentSheet.write(TlboStartRow+i,(hCol+1)+j,
                                Decimal("{0:.3}".format(problemDeviations[i][j])))
+        currentSheet.write(TlboStartRow+i,TlboStartCol+2,
+                           Decimal("{0:.3}".format(genAll[i])))
+
     total = 0
     for i in range(len(problemRuntimes)):
         total += problemRuntimes[i]
@@ -395,9 +418,12 @@ def run(alg):
         else:
             currentSheet.write((TlboStartRow+len(problemDeviations)),(hCol+1)+i,
                                Decimal("{0:.3}".format(averageAllDev[i])))
+
                            
     currentSheet.write(TlboStartRow+len(problemRuntimes),TlboStartCol+1,
                       Decimal("{0:.3}".format(total)))
+    currentSheet.write(TlboStartRow+len(problemRuntimes),TlboStartCol+2,
+                        Decimal("{0:.3}".format(allTemp)))
 
     dAll = []
     for i in range(len(convAll)):
@@ -425,6 +451,7 @@ if(__name__=='__main__'):
         run(alg)
     else:
         run('tlbo')
-        run('bba')
+        run('mmhph')
+        run('abc')
 
 

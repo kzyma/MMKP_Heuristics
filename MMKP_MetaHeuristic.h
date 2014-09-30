@@ -148,7 +148,7 @@ public:
      * run single iteration of heuristic
      */
     virtual std::vector<MMKPSolution> runOneGeneration
-    (std::vector<MMKPSolution> population) = 0;
+    (std::vector<MMKPSolution> population)=0;
     
     /**
      * Wrapper function of both feasibility routines.

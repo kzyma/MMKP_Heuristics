@@ -42,20 +42,14 @@
 #include "MMKP_MetaHeuristic.h"
 #include "MMKPSolution.h"
 #include "MMKPDataSet.h"
+#include "MMKP_LocalSearch.h"
 
 /**
  * Parameters for customizing the TLBO algorithm.
  */
 class TLBO_parameters:public MetaHeuristic_parameters{
 public:
-    int classroomSize;  //i.e. i-tlbo number of teachers
-    bool addRandomTeacher;
-    bool addSimAnnealing;
-    
     TLBO_parameters(){
-        this->classroomSize = 0;
-        this->addRandomTeacher = false;
-        this->addSimAnnealing = false;
     }
 };
 

@@ -88,7 +88,7 @@ std::vector<std::tuple<int,float> > MMKP_MetaHeuristic::getConvergenceData(){
 }
 
 int MMKP_MetaHeuristic::getConvergenceGeneration(){
-    return convergenceIteration;
+    return convergenceIteration+1;
 }
 
 bool MMKP_MetaHeuristic::makeFeasible(MMKPSolution& sol){

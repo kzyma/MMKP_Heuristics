@@ -110,6 +110,7 @@ int main(int argc, char* argv[]){
     
     int count = 0;
     for(int i=0;i<population.size();i++){
+        dataSet.updateSolution(population[i]);
         if(dataSet.isFeasible(population[i])){
             eliteSolutions.push_back(population[i]);
             count++;
@@ -124,7 +125,6 @@ int main(int argc, char* argv[]){
     int functionEvalCounter = 0;
 
     for(int i=0;i<genSize;i++){
-        
         //divide population by distribution
         std::vector<MMKPSolution> pop1;
         std::vector<MMKPSolution> pop2;
@@ -144,13 +144,14 @@ int main(int argc, char* argv[]){
                     break;
             }
         }
+    
         //replace worse 3 solutions of each population with
         //elite solutions
         tlbo.quickSort(pop1,0,pop1.size()-1);
         tlbo.quickSort(pop2,0,pop2.size()-1);
         tlbo.quickSort(pop3,0,pop3.size()-1);
         
-        for(int j=0;j<eliteSolutionSize;j++){
+        for(int j=0;j<eliteSolutions.size();j++){
             pop1[((pop1.size()-1)-j)] = eliteSolutions[j];
             pop2[((pop2.size()-1)-j)] = eliteSolutions[j];
             pop3[((pop3.size()-1)-j)] = eliteSolutions[j];
@@ -174,6 +175,7 @@ int main(int argc, char* argv[]){
         count = 0;
         tlbo.quickSort(population,0,population.size()-1);
         for(int j=0;j<population.size();j++){
+            dataSet.updateSolution(population[j]);
             if(dataSet.isFeasible(population[j])){
                 if(population[j].getProfit()
                    > optimalSolution.getProfit()){
@@ -189,6 +191,10 @@ int main(int argc, char* argv[]){
                 }
             }
         }
+        CompLocalSearch CLS(dataSet);
+        //run local search on elite solutions
+        eliteSolutions = CLS(eliteSolutions);
+        
         //update conv. vector
         std::tuple<int, float> temp(functionEvalCounter,optimalSolution.getProfit());
         convData.push_back(temp);

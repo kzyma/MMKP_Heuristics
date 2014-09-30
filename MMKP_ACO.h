@@ -10,8 +10,8 @@
  *
  *******************************************************************/
 
-#ifndef ____MMKP_BBA__
-#define ____MMKP_BBA__
+#ifndef ____MMKP_ACO__
+#define ____MMKP_ACO__
 
 #include <iostream>
 #include <vector>
@@ -117,4 +117,4 @@ public:
 };
 
 
-#endif /* defined(____MMKP_BBA__) */
+#endif /* defined(____MMKP_ACO__) */
