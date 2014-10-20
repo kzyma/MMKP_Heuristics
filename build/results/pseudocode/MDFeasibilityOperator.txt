@@ -1,0 +1,1 @@
+R^{ * }=\frac { \sum _{ k\in M^{ v } }{ c_{ ijk }/r_{ k } }  }{ |M^{ v }| } 

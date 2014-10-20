@@ -74,6 +74,7 @@ protected:
     std::vector<std::tuple<int,float> > convergenceData;
     int currentFuncEvals;
     int convergenceIteration;
+    int currentGeneration;
     
     /*
      * Update solution based on 'competetive strategy'. A feasible

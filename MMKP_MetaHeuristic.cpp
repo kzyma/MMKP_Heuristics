@@ -63,7 +63,8 @@ int MMKP_MetaHeuristic::partition(std::vector<MMKPSolution>& input,int p, int r)
 
 //constructors
 MMKP_MetaHeuristic::MMKP_MetaHeuristic(MMKPDataSet dataSet, MetaHeuristic_parameters parameters)
-:dataSet(dataSet),parameters(parameters),currentFuncEvals(0),convergenceIteration(0){
+:dataSet(dataSet),parameters(parameters),currentFuncEvals(0),convergenceIteration(0),
+currentGeneration(0){
     srand(time(NULL));
 }
 
@@ -372,8 +373,8 @@ bool MMKP_MetaHeuristic::makeMultiDimFeasFixedSurrogate(MMKPSolution& sol){
 bool MMKP_MetaHeuristic::makeMultiDimFeasVariableSurrogate(MMKPSolution& sol){
     
     int currentIterations = 0;
-    const int maxIterations = (dataSet.getNumberOfResources() *
-                               dataSet.size());
+    const int tryFeasibleIter = 3;
+    const int maxIterations = (dataSet.getNumberOfResources() * tryFeasibleIter);
     
     while(!(this->dataSet.isMultiDimFeasible(sol))){
         std::vector<int> solMaxIndex;

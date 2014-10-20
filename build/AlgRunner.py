@@ -218,7 +218,7 @@ def run(alg):
                     paramStr = ''
                     
                     if alg == 'tlbo':
-                        pass
+                        paramStr = str(TlboSettings.ALG_TYPE)+' '+str(TlboSettings.RLS_ON)
                     elif alg == 'coa':
                         paramStr = str(CoaSettings.V_PROB)+' '+str(CoaSettings.H_PROB)
                     elif alg == 'ga':
@@ -450,7 +450,7 @@ if(__name__=='__main__'):
         alg = str(sys.argv[1])
         run(alg)
     else:
-        run('tlbo')
+        run('bba')
         run('mmhph')
         run('abc')
 

@@ -44,6 +44,7 @@ typedef struct{
     float v;        //velocity
     float r;        //rate of pulse
     float a;        //loudness
+    float r_0;
 }MMKPBatSolution;
 
 /**
@@ -98,13 +99,13 @@ public:
      *
      */
     void globalSearch(std::vector<MMKPBatSolution>& population);
+
+    void localSearch(MMKPBatSolution& bestBat, MMKPBatSolution& population);
     
-    /**
-     * TLBO learning phase. See Vasko et al. paper for more.
-     */
-    void localSearch(std::vector<MMKPBatSolution>& population);
+    void randomSearch(MMKPBatSolution& sol);
     
-    void randomSearch(std::vector<MMKPBatSolution>& population);
+    void competitiveUpdateSol
+    (MMKPBatSolution& sol, MMKPBatSolution& newSol);
 };
 
 

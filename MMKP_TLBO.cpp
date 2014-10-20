@@ -54,9 +54,21 @@ MMKPSolution MMKP_TLBO::run(std::vector<MMKPSolution> initialPopulation){
     
     //main loop
     while(!terminationCriterion){
-        
-        MMKP_TLBO::teachingPhase(population);
-        MMKP_TLBO::learningPhase(population);
+        if(this->parameters.alg_Type == 0){
+            MMKP_TLBO::teachingPhase(population);
+            MMKP_TLBO::learningPhase(population);
+        }else if(this->parameters.alg_Type == 1){
+            MMKP_TLBO::teachingPhase_MultiTeacher(population,4);
+            MMKP_TLBO::improvedLearningPhase(population);
+        }else if(this->parameters.alg_Type == 2){
+            MMKP_TLBO::teachingPhase_MultiTeacherEvenDist(population,4);
+            MMKP_TLBO::improvedLearningPhase(population);
+        }else if(this->parameters.alg_Type == 3){
+            MMKP_TLBO::teachingPhase_Modified(population,4);
+            MMKP_TLBO::modifiedLearningPhase(population);
+        }else{
+            throw OpNotSupported(("Teaching Phase ID not recognized.\n"));
+        }
         
         MMKP_MetaHeuristic::quickSort(population,0,(population.size()-1));
         
@@ -88,8 +100,21 @@ std::vector<MMKPSolution> MMKP_TLBO::runOneGeneration
     
     MMKP_MetaHeuristic::quickSort(population,0,(population.size()-1));
     
-    MMKP_TLBO::teachingPhase(population);
-    MMKP_TLBO::learningPhase(population);
+    if(this->parameters.alg_Type == 0){
+        MMKP_TLBO::teachingPhase(population);
+        MMKP_TLBO::learningPhase(population);
+    }else if(this->parameters.alg_Type == 1){
+        MMKP_TLBO::teachingPhase_MultiTeacher(population,4);
+        MMKP_TLBO::improvedLearningPhase(population);
+    }else if(this->parameters.alg_Type == 2){
+        MMKP_TLBO::teachingPhase_MultiTeacherEvenDist(population,4);
+        MMKP_TLBO::improvedLearningPhase(population);
+    }else if(this->parameters.alg_Type == 3){
+        MMKP_TLBO::teachingPhase_Modified(population,4);
+        MMKP_TLBO::modifiedLearningPhase(population);
+    }else{
+        throw OpNotSupported(("Teaching Phase ID not recognized.\n"));
+    }
     
     return population;
 }
@@ -100,10 +125,10 @@ void MMKP_TLBO::teachingPhase(std::vector<MMKPSolution>& population){
     MMKPSolution* teacher = &population[teacherIndex];
     MMKPSolution* mean = &population[(population.size()/2)];
     
-    //CompLocalSearch LSP(dataSet);
-    //*teacher = LSP(*teacher);
-    ReactiveLocalSearch RLS(dataSet);
-    *teacher = RLS(*teacher);
+    if(this->parameters.rls_on == 1){
+        ReactiveLocalSearch RLS(dataSet);
+        *teacher = RLS(*teacher);
+    }
     
     for(int i=0;i<population.size();i++){
         MMKPSolution* currentSol = &population[i];
@@ -130,8 +155,10 @@ void MMKP_TLBO::teachingPhase(std::vector<MMKPSolution>& population){
     }
 }
 
-void MMKP_TLBO::teachingPhase_MultiTeacher(std::vector<MMKPSolution>& population,
-                                int classSize){
+void MMKP_TLBO::teachingPhase_MultiTeacherEvenDist(std::vector<MMKPSolution>& population,
+                                int numberOfTeachers){
+    
+    int classSize = population.size() / numberOfTeachers;
     
     int start = 0;
     int stop = -1;
@@ -144,10 +171,15 @@ void MMKP_TLBO::teachingPhase_MultiTeacher(std::vector<MMKPSolution>& population
     
     while((start < stop) && (stop < this->parameters.populationSize)){
         
+        MMKPSolution* teacher = &population[start];
+        if(this->parameters.rls_on == 1){
+            ReactiveLocalSearch RLS(dataSet);
+            *teacher = RLS(*teacher);
+        }
+        
+        MMKPSolution* mean = &population[((start+stop)/2)];
+        
         for(int i=start;i<stop;i++){
-            
-            MMKPSolution* teacher = &population[start];
-            MMKPSolution* mean = &population[((start+stop)/2)];
             
             MMKPSolution* currentSol = &population[i];
             MMKPSolution tempSol = *currentSol;
@@ -157,8 +189,16 @@ void MMKP_TLBO::teachingPhase_MultiTeacher(std::vector<MMKPSolution>& population
             for(int j=0;j<(*currentSol).size();j++){
                 for(int k=0;k<(*currentSol)[j].size();k++){
                     int T_f = rand()%2+1;
-                    int diff = ceil((*currentSol)[j].at(k)+((*teacher)[j].at(k)
-                                                            - (T_f * (*mean)[j].at(k))));
+                    int diff = ((*currentSol)[j].at(k)+((*teacher)[j].at(k)
+                                                - (T_f * (*mean)[j].at(k))));
+                    //i-tlbo addition to difference mean
+                    int r_i = rand() % (stop-start)+start;
+                    if((*currentSol).getProfit() > population[r_i].getProfit()){
+                        diff += (*currentSol)[j].at(k) - population[r_i][j].at(k);
+                    }else{
+                        diff += population[r_i][j].at(k) - (*currentSol)[j].at(k);
+                    }
+                    
                     if(diff<=0){
                         (tempSol)[j].at(k) = false;
                     }else{
@@ -183,9 +223,134 @@ void MMKP_TLBO::teachingPhase_MultiTeacher(std::vector<MMKPSolution>& population
     }//end while(stop....
 }
 
+void MMKP_TLBO::teachingPhase_Modified(std::vector<MMKPSolution>& population,
+                            int numberOfTeachers){
+    
+    std::priority_queue<int,std::vector<int>,std::greater<int> > pq;
+    pq.push(0);
+    for(int i=0;i<numberOfTeachers-1;i++){
+        pq.push((rand() % population.size()));
+    }
+    
+    while(!pq.empty()){
+        
+        int start = pq.top();
+        pq.pop();
+        int stop;
+        if(!pq.empty()){
+            stop = pq.top();
+        }else{
+            stop = population.size();
+        }
+        
+        MMKPSolution* teacher = &population[start];
+        if(this->parameters.rls_on == 1){
+            ReactiveLocalSearch RLS(dataSet);
+            *teacher = RLS(*teacher);
+        }
+        
+        MMKPSolution* mean = &population[((start+stop)/2)];
+        
+        for(int i=start;i<stop;i++){
+            
+            MMKPSolution* currentSol = &population[i];
+            MMKPSolution tempSol = *currentSol;
+            if(currentSol == teacher){continue;}
+            
+            //step 1: convert bits with -2,-1 to 0, and 1 otherwise
+            for(int j=0;j<(*currentSol).size();j++){
+                for(int k=0;k<(*currentSol)[j].size();k++){
+                    int T_f = rand()%2+1;
+                    int diff = ((*currentSol)[j].at(k)+((*teacher)[j].at(k)
+                                                        - (T_f * (*mean)[j].at(k))));
+                    
+                    if(diff<=0){
+                        (tempSol)[j].at(k) = false;
+                    }else{
+                        (tempSol)[j].at(k) = true;
+                    }
+                }
+            }
+            dataSet.updateSolution(tempSol);
+            MMKP_MetaHeuristic::makeFeasible(tempSol);
+            MMKP_MetaHeuristic::competitiveUpdateSol(*currentSol,tempSol);
+            
+        }
+        
+    }//end while(stop....
+}
+
+void MMKP_TLBO::teachingPhase_MultiTeacher(std::vector<MMKPSolution>& population,
+                                int numberOfTeachers){
+    
+    std::priority_queue<int,std::vector<int>,std::greater<int> > pq;
+    pq.push(0);
+    for(int i=0;i<numberOfTeachers-1;i++){
+        pq.push((rand() % population.size()));
+    }
+    
+    while(!pq.empty()){
+        
+        int start = pq.top();
+        pq.pop();
+        int stop;
+        if(!pq.empty()){
+            stop = pq.top();
+        }else{
+            stop = population.size();
+        }
+        
+        MMKPSolution* teacher = &population[start];
+        if(this->parameters.rls_on == 1){
+            ReactiveLocalSearch RLS(dataSet);
+            *teacher = RLS(*teacher);
+        }
+        
+        MMKPSolution* mean = &population[((start+stop)/2)];
+        
+        for(int i=start;i<stop;i++){
+            
+            MMKPSolution* currentSol = &population[i];
+            MMKPSolution tempSol = *currentSol;
+            if(currentSol == teacher){continue;}
+            
+            //step 1: convert bits with -2,-1 to 0, and 1 otherwise
+            for(int j=0;j<(*currentSol).size();j++){
+                for(int k=0;k<(*currentSol)[j].size();k++){
+                    int T_f = rand()%2+1;
+                    int diff = ((*currentSol)[j].at(k)+((*teacher)[j].at(k)
+                                                        - (T_f * (*mean)[j].at(k))));
+                    //i-tlbo addition to difference mean
+                    int r_i = rand() % (stop-start)+start;
+                    if((*currentSol).getProfit() > population[r_i].getProfit()){
+                        diff += (*currentSol)[j].at(k) - population[r_i][j].at(k);
+                    }else{
+                        diff += population[r_i][j].at(k) - (*currentSol)[j].at(k);
+                    }
+                    
+                    if(diff<=0){
+                        (tempSol)[j].at(k) = false;
+                    }else{
+                        (tempSol)[j].at(k) = true;
+                    }
+                }
+            }            dataSet.updateSolution(tempSol);
+            MMKP_MetaHeuristic::makeFeasible(tempSol);
+            MMKP_MetaHeuristic::competitiveUpdateSol(*currentSol,tempSol);
+            
+        }
+        
+    }//end while(stop....
+}
+
 void MMKP_TLBO::teachingPhase_Orthognal(std::vector<MMKPSolution>& population,
                              int iteration){
     MMKPSolution* teacher = &population[0];
+    if(this->parameters.rls_on == 1){
+        ReactiveLocalSearch RLS(dataSet);
+        *teacher = RLS(*teacher);
+    }
+    
     MMKPSolution* mean = &population[(population.size()/2)];
     
     float wMax = 1.0;
@@ -214,65 +379,6 @@ void MMKP_TLBO::teachingPhase_Orthognal(std::vector<MMKPSolution>& population,
         dataSet.updateSolution(tempSol);
         MMKP_MetaHeuristic::makeFeasible(tempSol);
         MMKP_MetaHeuristic::competitiveUpdateSol(*currentSol,tempSol);
-    }
-}
-
-void MMKP_TLBO::RandomSelectPathRelink
-(std::vector<MMKPSolution>& population,float mutateRate){
-    
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<> dis(0, 1);
-    std::uniform_int_distribution<> dit(0, population.size()-1);
-    
-    for(int i=0;i<population.size();i++){
-      
-        MMKPSolution tempSol = population[i];
-        int r = dit(gen);
-        MMKPSolution randomSol = population[r];
-        
-        if(tempSol.getProfit()<randomSol.getProfit()){
-            for(int j=0;j<population[i].size();j++){
-                for(int k=0;k<population[i][j].size();k++){
-                    float p = dis(gen);
-                    if (p<mutateRate){
-                        tempSol[j][k] = randomSol[j][k];
-                    }
-                }
-            }
-            dataSet.updateSolution(tempSol);
-            MMKP_MetaHeuristic::makeFeasible(tempSol);
-            MMKP_MetaHeuristic::competitiveUpdateSol(population[i],tempSol);
-        }
-    }
-}
-
-void MMKP_TLBO::RandomizedMutation
-(std::vector<MMKPSolution>& population,float mutateRate){
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<> dis(0, 1);
-    std::uniform_int_distribution<> dit(0, population.size()-1);
-    
-    for(int i=0;i<population.size();i++){
-        
-        MMKPSolution tempSol = population[i];
-    
-        for(int j=0;j<population[i].size();j++){
-            for(int k=0;k<population[i][j].size();k++){
-                float p = dis(gen);
-                if (p<mutateRate){
-                    if(tempSol[j][k] == 0){
-                        tempSol[j][k] = 1;
-                    }else{
-                        tempSol[j][k] = 0;
-                    }
-                }
-            }
-        }
-        dataSet.updateSolution(tempSol);
-        MMKP_MetaHeuristic::makeFeasible(tempSol);
-        MMKP_MetaHeuristic::competitiveUpdateSol(population[i],tempSol);
     }
 }
 
@@ -317,6 +423,148 @@ void MMKP_TLBO::learningPhase(std::vector<MMKPSolution>& population){
                     }else{
                         (tempSol)[j].at(k) = true;
                     }
+                }
+            }
+        }
+        dataSet.updateSolution(tempSol);
+        MMKP_MetaHeuristic::makeFeasible(tempSol);
+        MMKP_MetaHeuristic::competitiveUpdateSol(*currentSol,tempSol);
+    }
+}
+
+void MMKP_TLBO::improvedLearningPhase(std::vector<MMKPSolution>& population){
+    quickSort(population,0,(population.size()-1));
+    
+    for(int i=0;i<population.size();i++){
+        MMKPSolution* currentSol = &population[i];
+        MMKPSolution tempSol = *currentSol;
+        int randSol = rand() % population.size();
+        MMKPSolution* otherSol = &population[randSol];
+        
+        //if they are the same, skip
+        if(currentSol == otherSol){continue;}
+        
+        //if P_k costs less than P_i
+        if((*otherSol).getProfit() > (*currentSol).getProfit()){
+            //then P_new = P_i+r(P_k-P_i)
+            for(int j=0;j<(*currentSol).size();j++){
+                for(int k=0;k<(*currentSol)[j].size();k++){
+                    int r = rand()%2;
+                    int diff = ceil((*currentSol)[j].at(k)+
+                                    (r*((*otherSol)[j].at(k)-(*currentSol)[j].at(k))));
+                    //i-tlbo addition
+                    int selfLearning = population[0][j].at(k)
+                        -(1+(rand()%2)*(*currentSol)[j].at(k));
+                    
+                    if (selfLearning < 0){
+                        diff -= (rand() % abs(selfLearning));
+                    }else if( selfLearning > 0){
+                        diff += (rand() % abs(selfLearning));
+                    }
+                    
+                    if(diff<=0){
+                        (tempSol)[j].at(k) = false;
+                    }else{
+                        (tempSol)[j].at(k) = true;
+                    }
+                }
+            }
+            //else
+        }else{
+            //then P_new = P_i+r(P_i-P_k)
+            for(int j=0;j<(*currentSol).size();j++){
+                for(int k=0;k<(*currentSol)[j].size();k++){
+                    int r = rand()%2;
+                    int diff = ceil((*currentSol)[j].at(k)+
+                                    (r*((*currentSol)[j].at(k)-(*otherSol)[j].at(k))));
+                    //i-tlbo addition
+                    int selfLearning = population[0][j].at(k)
+                    -(1+(rand()%2)*(*currentSol)[j].at(k));
+                    
+                    if (selfLearning < 0){
+                        diff -= (rand() % abs(selfLearning));
+                    }else if( selfLearning > 0){
+                        diff += (rand() % abs(selfLearning));
+                    }
+                    
+                    if(diff<=0){
+                        (tempSol)[j].at(k) = false;
+                    }else{
+                        (tempSol)[j].at(k) = true;
+                    }
+                }
+            }
+        }
+        dataSet.updateSolution(tempSol);
+        MMKP_MetaHeuristic::makeFeasible(tempSol);
+        MMKP_MetaHeuristic::competitiveUpdateSol(*currentSol,tempSol);
+    }
+}
+
+void MMKP_TLBO::modifiedLearningPhase(std::vector<MMKPSolution>& population){
+    
+    quickSort(population,0,(population.size()-1));
+    
+    for(int i=0;i<population.size();i++){
+        MMKPSolution* currentSol = &population[i];
+        MMKPSolution tempSol = *currentSol;
+        int randSol = rand() % population.size();
+        MMKPSolution* otherSol = &population[randSol];
+        
+        //if they are the same, skip
+        if(currentSol == otherSol){continue;}
+        
+        //if P_k costs less than P_i
+        if((*otherSol).getProfit() > (*currentSol).getProfit()){
+            //then P_new = P_i+r(P_k-P_i)
+            for(int j=0;j<(*currentSol).size();j++){
+                for(int k=0;k<(*currentSol)[j].size();k++){
+                    int r = rand()%2;
+                    int diff = ceil((*currentSol)[j].at(k)+
+                                    (r*((*otherSol)[j].at(k)-(*currentSol)[j].at(k))));
+                    if(diff<=0){
+                        (tempSol)[j].at(k) = false;
+                    }else{
+                        (tempSol)[j].at(k) = true;
+                    }
+                }
+            }
+            //else
+        }else{
+            //then P_new = P_i+r(P_i-P_k)
+            for(int j=0;j<(*currentSol).size();j++){
+                for(int k=0;k<(*currentSol)[j].size();k++){
+                    int r = rand()%2;
+                    int diff = ceil((*currentSol)[j].at(k)+
+                                    (r*((*currentSol)[j].at(k)-(*otherSol)[j].at(k))));
+                    if(diff<=0){
+                        (tempSol)[j].at(k) = false;
+                    }else{
+                        (tempSol)[j].at(k) = true;
+                    }
+                }
+            }
+        }
+        dataSet.updateSolution(tempSol);
+        MMKP_MetaHeuristic::makeFeasible(tempSol);
+        MMKP_MetaHeuristic::competitiveUpdateSol(*currentSol,tempSol);
+    }
+    
+    //self motivated learning
+    for(int i=0;i<population.size();i++){
+        MMKPSolution* currentSol = &population[i];
+        MMKPSolution tempSol = *currentSol;
+        
+        this->currentFuncEvals++;
+
+        for(int j=0;j<(*currentSol).size();j++){
+            for(int k=0;k<(*currentSol)[j].size();k++){
+                int r = rand()%2;
+                int diff = ((*currentSol)[j].at(k)+r);
+                if(diff<=0){
+                    (tempSol)[j].at(k) = false;
+                }else{
+                    (tempSol)[j].at(k) = true;
                 }
             }
         }

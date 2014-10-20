@@ -38,6 +38,7 @@
 #include <cfloat>
 #include <algorithm> //for "random shuffle"
 #include <random>
+#include <queue>
 
 #include "MMKP_MetaHeuristic.h"
 #include "MMKPSolution.h"
@@ -49,8 +50,9 @@
  */
 class TLBO_parameters:public MetaHeuristic_parameters{
 public:
-    TLBO_parameters(){
-    }
+    int alg_Type;
+    int rls_on;
+    TLBO_parameters():alg_Type(0),rls_on(0){}
 };
 
 /**
@@ -94,11 +96,25 @@ public:
     void teachingPhase(std::vector<MMKPSolution>& population);
     
     /**
+     * i'-TLBO teaching phase. The teaching phase has been modified to
+     * include multiple teachers. Distribution of teachers is even.
+     */
+    void teachingPhase_MultiTeacherEvenDist(std::vector<MMKPSolution>& population,
+                                    int numberOfTeachers);
+    
+    /**
      * i-TLBO teaching phase. The teaching phase has been modified to
-     * include multiple teachers.
+     * include multiple teachers. Distribution of teachers is even.
      */
     void teachingPhase_MultiTeacher(std::vector<MMKPSolution>& population,
-                                    int classSize);
+                                    int numberOfTeachers);
+    
+    /**
+     * mod-TLBO teaching phase. The teaching phase has been modified to
+     * include multiple teachers. Distribution of teachers is even.
+     */
+    void teachingPhase_Modified(std::vector<MMKPSolution>& population,
+                                    int numberOfTeachers);
     
     /**
      * O-TLBO teaching phase. The teaching phase has been modified to
@@ -108,19 +124,19 @@ public:
                                  int iteration);
     
     /**
-     *
-     */
-    void RandomSelectPathRelink(std::vector<MMKPSolution>& population,float mutateRate);
-    
-    /**
-     *
-     */
-    void RandomizedMutation(std::vector<MMKPSolution>& population,float mutateRate);
-    
-    /**
      * TLBO learning phase. See Vasko et al. paper for more.
      */
     void learningPhase(std::vector<MMKPSolution>& population);
+    
+    /**
+     *
+     */
+    void improvedLearningPhase(std::vector<MMKPSolution>& population);
+    
+    /**
+     *
+     */
+    void modifiedLearningPhase(std::vector<MMKPSolution>& population);
     
     /**
      * O-TLBO learning phase. The learning phase has been modified...

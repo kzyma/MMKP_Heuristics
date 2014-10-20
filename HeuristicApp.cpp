@@ -117,12 +117,14 @@ int main(int argc, char* argv[]){
             parameters.multipleDimFeasibilityMod = mods[2] - '0';
             algorithm = new MMKP_ABC(dataSet,parameters);
     }else if(alg.compare("tlbo")==0){
-            if(argc != 8){std::cout<<"Invalid args for tlbo.\n";return 0;}
+            if(argc != 10){std::cout<<"Invalid args for tlbo.\n";return 0;}
             TLBO_parameters parameters;
             parameters.numberOfGenerations = genSize;
             parameters.populationSize = popSize;
             parameters.multipleChoiceFeasibilityMod = mods[1] - '0';
             parameters.multipleDimFeasibilityMod = mods[2] - '0';
+            parameters.alg_Type = atof(argv[8]);
+            parameters.rls_on = atof(argv[9]);
             algorithm = new MMKP_TLBO(dataSet,parameters);
     }else{
             std::cout<<"Cannot recognize algorithm, try again."<<std::endl;
@@ -164,6 +166,10 @@ int main(int argc, char* argv[]){
     if((mods[3] - '0') == 1){
         CompLocalSearch CLS(dataSet);
         optimalSolution = CLS(optimalSolution);
+    }
+    if((mods[3] - '0') == 2){
+        ReactiveLocalSearch RLS(dataSet);
+        optimalSolution = RLS(optimalSolution);
     }
     
     t2 = clock();

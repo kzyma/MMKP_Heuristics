@@ -180,7 +180,7 @@ int main(int argc, char* argv[]){
                 if(population[j].getProfit()
                    > optimalSolution.getProfit()){
                     optimalSolution = population[j];
-                    convergenceGen = i;
+                    convergenceGen = i+1;
                 }
                 if(!(doesContain(eliteSolutions,population[j]))){
                     eliteSolutions[count] = population[j];
@@ -191,9 +191,9 @@ int main(int argc, char* argv[]){
                 }
             }
         }
-        CompLocalSearch CLS(dataSet);
+        ReactiveLocalSearch RLS(dataSet);
         //run local search on elite solutions
-        eliteSolutions = CLS(eliteSolutions);
+        eliteSolutions = RLS(eliteSolutions);
         
         //update conv. vector
         std::tuple<int, float> temp(functionEvalCounter,optimalSolution.getProfit());
