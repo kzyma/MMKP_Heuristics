@@ -6,7 +6,9 @@
  * @All rights reserved
  * Kutztown University, PA, U.S.A
  *
- * MMKP Problem
+ * Base class for MMKP metaheuristic package. MMKP_Metaheuristic
+ * provides helper functions common to all metaheuristic's such as
+ * making a solution feasible and sorting a population.
  *
  *********************************************************/
 
@@ -29,6 +31,17 @@
 #include "MMKPSolution.h"
 #include "MMKPDataSet.h"
 
+/**
+ * <p>Modification's to regain Multiple Choice Feasibility:
+ * <lu>
+ * <li>CH_FIXEDMAX = select based on surrogate resource/profit. If no items in a
+ * class are selected, then choose the one with the highest surrogate value.</li>
+ * <li>CH_FIXEDMAX_RANDOM = select based on surrogate resource/profit. If no items
+ * in a class are selected, then choose the one with the highest profit. </li>
+ * <li>CH_MAXPROFIT = select item with highest profit in class. </li>
+ * <li>CH_MIX = randomly decide between using CH_FIXEDMAX and CH_FIXEDMAX_RANDOM. </li>
+ * <li>CH_NONE = do nothing </lu></p>
+ */
 enum multipleChoiceMod{
     CH_FIXEDMAX = 0,
     CH_FIXEDMAX_RANDOM = 1,
@@ -37,6 +50,25 @@ enum multipleChoiceMod{
     CH_NONE = 4
 };
 
+/**
+ * <p>Modifications to regain Multidimensional Feasbilitiy:
+ * <lu>
+ * <li>DIM_FIXEDMAX = Make multi-dim feasible based a surrogate constraint
+ * created using all costs in an item.</li>
+ * <li>DIM_VARIABLEMAX = Make multi-dim feasible based a surrogate constraint
+ * created using violated constraints.</li>
+ * <li>DIM_VARIABLEMIN = Make multi-dim feasible based a surrogate constraint
+ * created using violated constraints. This is slower to regain feasbility 
+ * because it attempts to keep a high profit solution, instead of focusing on
+ * regraining feasibility as fast as possible.</li>
+ * <li>DIM_MAXPROFIT = Similar to DIM_VARIABLEMIN, however instead of using
+ * a surrogate profit, this uses actual item profit to keep a high 
+ * profit solution. Again, this method is slower at regaining feasibility
+ * becuase it attempts to keep a high profit solution.</li>
+ * <li>DIM_MIX = Randomly choose between DIM_MAXPROFIT and DIM_VARIABLEMAX</li>
+ * <li>DIM_NONE = do nothing</li>
+ * </lu></p>
+ */
 enum multipleDimMod{
     DIM_FIXEDMAX = 0,
     DIM_VARIABLEMAX = 1,
@@ -47,7 +79,8 @@ enum multipleDimMod{
 };
 
 /**
- * Parameters for customizing the MetaHeuristic algorithm.
+ * Parameters for customizing the MetaHeuristic algorithm. Pass as an 
+ * argument to constructor of type MMKP_MetaHeuristic.
  */
 class MetaHeuristic_parameters{
 public:
@@ -64,8 +97,9 @@ public:
 };
 
 /**
- * Teaching-learning-based optimization algrithm for the
- * multiple-choice, multiple-dimensional knapsack problem.
+ * Base class for MMKP metaheuristic package. MMKP_Metaheuristic
+ * provides helper functions common to all metaheuristic's such as
+ * making a solution feasible and sorting a population.
  */
 class MMKP_MetaHeuristic{
 protected:
@@ -99,18 +133,15 @@ protected:
 public:
     /**
      * Construct MMKP_MetaHeuristic object. Param: parameters can customize
-     * the algorithm according to struct MetaHeuristic_parameters.
+     * the algorithm according to an instance of MetaHeuristic_parameters.
      */
     MMKP_MetaHeuristic(MMKPDataSet dataSet, MetaHeuristic_parameters parameters);
     
     /**
-     * Uses default params
+     * Construct MMKP_MetaHeuristic object. Uses default parameters.
      */
     MMKP_MetaHeuristic(MMKPDataSet dataSet);
     
-    /**
-     * Destroy MMKP_MetaHeuristic object.
-     */
     virtual ~MMKP_MetaHeuristic();
     
     //overloaded operators
@@ -146,7 +177,7 @@ public:
     virtual MMKPSolution run(std::vector<MMKPSolution> initialPopulation)=0;
     
     /**
-     * run single iteration of heuristic
+     * Run a single iteration of heuristic.
      */
     virtual std::vector<MMKPSolution> runOneGeneration
     (std::vector<MMKPSolution> population)=0;
@@ -164,8 +195,8 @@ public:
     bool makeFeasible(MMKPSolution& sol,int mcFeas,int mdFeas);
     
     /**
-     * Make multi-choice feasible based a surrogate constraint
-     * created using all costs in an item. If one item of a class
+     * Make multi-choice feasible based on a surrogate constraint
+     * created using all costs of an item. If one item of a class
      * is selected, continue, else if more than one is selected
      * the item with the highest profit-resource ratio
      * is used. If none are selected choose the item in that class with
@@ -175,7 +206,7 @@ public:
     bool makeMultiChoiceFeasFixedSurrogate(MMKPSolution& sol);
     
     /**
-     * Make multi-choice feasible based a surrogate constraint
+     * Make multi-choice feasible based on a surrogate constraint
      * created using all costs in an item. If one item of a class
      * is selected, continue, else if more than one is selected
      * the item with the highest profit-resource ratio
@@ -207,7 +238,7 @@ public:
     
     /**
      * Make multi-dim feasible based a surrogate constraint
-     * created using variable number of item's costs's (depending
+     * created using a variable number of item's costs's (depending
      * on which violate the problem's resources. Feasibility is
      * constructed using highest difference of Er%/n. Return's
      * true if successful, false otherwise.
@@ -244,7 +275,7 @@ public:
 };
 
 /**
- * Operation not supported/implemented.
+ * Operation not supported/implemented exception.
  */
 class OpNotSupported: public std::exception{
     

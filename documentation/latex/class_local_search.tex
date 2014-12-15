@@ -1,0 +1,79 @@
+\hypertarget{class_local_search}{\section{Local\+Search Class Reference}
+\label{class_local_search}\index{Local\+Search@{Local\+Search}}
+}
+
+
+Base/\+Helper class for all local search procedures.  
+
+
+
+
+{\ttfamily \#include $<$M\+M\+K\+P\+\_\+\+Local\+Search.\+h$>$}
+
+Inheritance diagram for Local\+Search\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_local_search}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_local_search_adccdaf59933abb8a424793f956e54c43}{{\bfseries Local\+Search} (\hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} data\+Set)}\label{class_local_search_adccdaf59933abb8a424793f956e54c43}
+
+\item 
+\hypertarget{class_local_search_a6b488ab257f0ffe0ac10cbe1f692e4aa}{virtual \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} {\bfseries run} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} solution)=0}\label{class_local_search_a6b488ab257f0ffe0ac10cbe1f692e4aa}
+
+\item 
+\hypertarget{class_local_search_aeebd371e5b37af331073986dc96e5c24}{virtual \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} {\bfseries operator()} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} solution)=0}\label{class_local_search_aeebd371e5b37af331073986dc96e5c24}
+
+\item 
+\hypertarget{class_local_search_a433e85206da65205ccef5a8af46835b5}{virtual std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ {\bfseries run} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ solutions)=0}\label{class_local_search_a433e85206da65205ccef5a8af46835b5}
+
+\item 
+\hypertarget{class_local_search_ad1b39f9c68fdec511b5b90053fff1e4e}{virtual std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ {\bfseries operator()} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ solutions)=0}\label{class_local_search_ad1b39f9c68fdec511b5b90053fff1e4e}
+
+\item 
+\hypertarget{class_local_search_a2e7afbdfe110f69eb9188c21747705d8}{int {\bfseries get\+Func\+Evals} ()}\label{class_local_search_a2e7afbdfe110f69eb9188c21747705d8}
+
+\item 
+int \hyperlink{class_local_search_aecf4a872e2cb71ccaa489dad2c32dc6f}{local\+Swap\+Procedure} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} solution, int class\+I)
+\begin{DoxyCompactList}\small\item\em Return suggested item to swap with in class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_local_search_a87e83d8ebb86ccd9dcab5d9b648b23a0}{\hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} {\bfseries data\+Set}}\label{class_local_search_a87e83d8ebb86ccd9dcab5d9b648b23a0}
+
+\item 
+\hypertarget{class_local_search_a8c036bc47a035cacf6d37eb5a5783d14}{int {\bfseries func\+Evals}}\label{class_local_search_a8c036bc47a035cacf6d37eb5a5783d14}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Base/\+Helper class for all local search procedures. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_local_search_aecf4a872e2cb71ccaa489dad2c32dc6f}{\index{Local\+Search@{Local\+Search}!local\+Swap\+Procedure@{local\+Swap\+Procedure}}
+\index{local\+Swap\+Procedure@{local\+Swap\+Procedure}!Local\+Search@{Local\+Search}}
+\subsubsection[{local\+Swap\+Procedure}]{\setlength{\rightskip}{0pt plus 5cm}int Local\+Search\+::local\+Swap\+Procedure (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution}}]{solution, }
+\item[{int}]{class\+I}
+\end{DoxyParamCaption}
+)}}\label{class_local_search_aecf4a872e2cb71ccaa489dad2c32dc6f}
+
+
+Return suggested item to swap with in class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em class.} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+M\+M\+K\+P\+\_\+\+Local\+Search.\+h\item 
+M\+M\+K\+P\+\_\+\+Local\+Search.\+cpp\end{DoxyCompactItemize}

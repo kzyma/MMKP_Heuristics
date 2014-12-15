@@ -6,7 +6,8 @@
  * @All rights reserved
  * Kutztown University, PA, U.S.A
  *
- * TLBO MMKP Problem
+ * Classes for generating an initial population for a given
+ * problem (dataSet).
  *
  *********************************************************/
 

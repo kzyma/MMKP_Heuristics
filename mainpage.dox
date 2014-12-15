@@ -1,0 +1,20 @@
+/**
+\mainpage MMKP Heuristics
+<p>
+This directory contains source for testing heuristics on the Multiple-Choice
+Multidimensional Knapsack problem (MMKP).</p>
+
+<p>Supported problem instances are the legacy,
+13 problem, Or-Lib library and the MMKP library of 370 problems by Hiremath and Hill.
+</p>
+<p>Heuristic’s currently supported are:
+<ul>
+<li>Teaching-Learning Based optimization (TLBO)</li> 
+<li>Artificial Bee Colony (ABC)</li>
+<li>Ant Colony Optimization (ACO)</li>
+<li>Criss-cross optimization(COA)</li> 
+<li>Binary Bat Algorithm (BBA)</li>
+<li>Genetic Algorithm (GA)</li>
+</ul>
+</p>
+*/

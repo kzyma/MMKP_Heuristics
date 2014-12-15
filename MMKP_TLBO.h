@@ -6,22 +6,7 @@
  * @All rights reserved
  * Kutztown University, PA, U.S.A
  *
- * TLBO MMKP Problem
- *
- *  ::Tlbo parameters::
- *
- *  Add Randomized Teacher mod:
- *
- *       0: do not include mod
- *       1: include mod
- *
- *       Teacher is chosen at random (uniform distribution) from the top
- *       10% of a population.
- *
- *  Size of Classroom:
- *          Introduced as i-tlbo, the number of teachers is determined by
- *          popluation size / size of classroom. For one teacher this value
- *          should equal zero.
+ * Teaching-Learning Based Optimization for the MMKP.
  *
  *******************************************************************/
 
@@ -116,31 +101,15 @@ public:
     void teachingPhase_Modified(std::vector<MMKPSolution>& population,
                                     int numberOfTeachers);
     
-    /**
-     * O-TLBO teaching phase. The teaching phase has been modified to
-     * include...
-     */
     void teachingPhase_Orthognal(std::vector<MMKPSolution>& population,
                                  int iteration);
     
-    /**
-     * TLBO learning phase. See Vasko et al. paper for more.
-     */
     void learningPhase(std::vector<MMKPSolution>& population);
     
-    /**
-     *
-     */
     void improvedLearningPhase(std::vector<MMKPSolution>& population);
-    
-    /**
-     *
-     */
+
     void modifiedLearningPhase(std::vector<MMKPSolution>& population);
     
-    /**
-     * O-TLBO learning phase. The learning phase has been modified...
-     */
     void learningPhase_Orthognal(std::vector<MMKPSolution>& population,
                                  int iteration);
     

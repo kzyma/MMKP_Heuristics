@@ -1,0 +1,133 @@
+\hypertarget{class_m_m_k_p___t_l_b_o}{\section{M\+M\+K\+P\+\_\+\+T\+L\+B\+O Class Reference}
+\label{class_m_m_k_p___t_l_b_o}\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+}
+
+
+Teaching-\/learning-\/based optimization algrithm for the multiple-\/choice, multiple-\/dimensional knapsack problem.  
+
+
+
+
+{\ttfamily \#include $<$M\+M\+K\+P\+\_\+\+T\+L\+B\+O.\+h$>$}
+
+Inheritance diagram for M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_m_m_k_p___t_l_b_o}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_m_m_k_p___t_l_b_o_a889c073268b283872a9601616bfcf6b0}{M\+M\+K\+P\+\_\+\+T\+L\+B\+O} (\hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} data\+Set, \hyperlink{class_t_l_b_o__parameters}{T\+L\+B\+O\+\_\+parameters} parameters)
+\begin{DoxyCompactList}\small\item\em Construct \hyperlink{class_m_m_k_p___t_l_b_o}{M\+M\+K\+P\+\_\+\+T\+L\+B\+O} object. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___t_l_b_o_a28d6fa93504baf8e59ce23ef3168bfe3}{{\bfseries M\+M\+K\+P\+\_\+\+T\+L\+B\+O} (\hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} data\+Set)}\label{class_m_m_k_p___t_l_b_o_a28d6fa93504baf8e59ce23ef3168bfe3}
+
+\item 
+\hypertarget{class_m_m_k_p___t_l_b_o_a095c049b8f168b34f2287a9cdbe5cd71}{\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \hyperlink{class_m_m_k_p___t_l_b_o_a095c049b8f168b34f2287a9cdbe5cd71}{operator()} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ initial\+Population)}\label{class_m_m_k_p___t_l_b_o_a095c049b8f168b34f2287a9cdbe5cd71}
+
+\begin{DoxyCompactList}\small\item\em Run tlbo algorithm and return the result, which is the 'teaching' solution after a stopping criterion is met. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___t_l_b_o_accea97f95a12f373c6a0907804de0db8}{\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \hyperlink{class_m_m_k_p___t_l_b_o_accea97f95a12f373c6a0907804de0db8}{run} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ initial\+Population)}\label{class_m_m_k_p___t_l_b_o_accea97f95a12f373c6a0907804de0db8}
+
+\begin{DoxyCompactList}\small\item\em Run tlbo algorithm and return the result, which is the 'teaching' solution after a stopping criterion is met. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___t_l_b_o_a4e8746954c811c2f184864dd51c4fd88}{std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \hyperlink{class_m_m_k_p___t_l_b_o_a4e8746954c811c2f184864dd51c4fd88}{run\+One\+Generation} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ population)}\label{class_m_m_k_p___t_l_b_o_a4e8746954c811c2f184864dd51c4fd88}
+
+\begin{DoxyCompactList}\small\item\em Run a single iteration of heuristic. \end{DoxyCompactList}\item 
+void \hyperlink{class_m_m_k_p___t_l_b_o_ab18aa71ce62a00663cedb6d7d8db6f38}{teaching\+Phase} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&population)
+\begin{DoxyCompactList}\small\item\em T\+L\+B\+O teaching phase. \end{DoxyCompactList}\item 
+void \hyperlink{class_m_m_k_p___t_l_b_o_a5421bce054c4197a536dfa374fda1653}{teaching\+Phase\+\_\+\+Multi\+Teacher\+Even\+Dist} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&population, int number\+Of\+Teachers)
+\begin{DoxyCompactList}\small\item\em i'-\/\+T\+L\+B\+O teaching phase. \end{DoxyCompactList}\item 
+void \hyperlink{class_m_m_k_p___t_l_b_o_a2e2ea3990fb62d5117672b278ec21e7e}{teaching\+Phase\+\_\+\+Multi\+Teacher} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&population, int number\+Of\+Teachers)
+\begin{DoxyCompactList}\small\item\em i-\/\+T\+L\+B\+O teaching phase. \end{DoxyCompactList}\item 
+void \hyperlink{class_m_m_k_p___t_l_b_o_af54ae5e4da4275df8d25eaaa916e3b01}{teaching\+Phase\+\_\+\+Modified} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&population, int number\+Of\+Teachers)
+\begin{DoxyCompactList}\small\item\em mod-\/\+T\+L\+B\+O teaching phase. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___t_l_b_o_a6377147784c758b4f8e782b37f86be73}{void {\bfseries teaching\+Phase\+\_\+\+Orthognal} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&population, int iteration)}\label{class_m_m_k_p___t_l_b_o_a6377147784c758b4f8e782b37f86be73}
+
+\item 
+\hypertarget{class_m_m_k_p___t_l_b_o_ae230bdd3c27355b3b89c23ba3de2cb29}{void {\bfseries learning\+Phase} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&population)}\label{class_m_m_k_p___t_l_b_o_ae230bdd3c27355b3b89c23ba3de2cb29}
+
+\item 
+\hypertarget{class_m_m_k_p___t_l_b_o_ae51a4d4fbd6b9cb6f20825ab706b4915}{void {\bfseries improved\+Learning\+Phase} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&population)}\label{class_m_m_k_p___t_l_b_o_ae51a4d4fbd6b9cb6f20825ab706b4915}
+
+\item 
+\hypertarget{class_m_m_k_p___t_l_b_o_abf2735af7c25800ba16a507623a14bcf}{void {\bfseries modified\+Learning\+Phase} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&population)}\label{class_m_m_k_p___t_l_b_o_abf2735af7c25800ba16a507623a14bcf}
+
+\item 
+\hypertarget{class_m_m_k_p___t_l_b_o_ad79c49be3f52a25879df07ad70af65d8}{void {\bfseries learning\+Phase\+\_\+\+Orthognal} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&population, int iteration)}\label{class_m_m_k_p___t_l_b_o_ad79c49be3f52a25879df07ad70af65d8}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Teaching-\/learning-\/based optimization algrithm for the multiple-\/choice, multiple-\/dimensional knapsack problem. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_m_m_k_p___t_l_b_o_a889c073268b283872a9601616bfcf6b0}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}]{\setlength{\rightskip}{0pt plus 5cm}M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::\+M\+M\+K\+P\+\_\+\+T\+L\+B\+O (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Data\+Set}}]{data\+Set, }
+\item[{{\bf T\+L\+B\+O\+\_\+parameters}}]{parameters}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_a889c073268b283872a9601616bfcf6b0}
+
+
+Construct \hyperlink{class_m_m_k_p___t_l_b_o}{M\+M\+K\+P\+\_\+\+T\+L\+B\+O} object. 
+
+Param\+: parameters can customize the tlbo algorithm according to struct \hyperlink{class_t_l_b_o__parameters}{T\+L\+B\+O\+\_\+parameters}. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_m_m_k_p___t_l_b_o_ab18aa71ce62a00663cedb6d7d8db6f38}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!teaching\+Phase@{teaching\+Phase}}
+\index{teaching\+Phase@{teaching\+Phase}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{teaching\+Phase}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::teaching\+Phase (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf M\+M\+K\+P\+Solution} $>$ \&}]{population}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_ab18aa71ce62a00663cedb6d7d8db6f38}
+
+
+T\+L\+B\+O teaching phase. 
+
+See Vasko et al. paper for more. \hypertarget{class_m_m_k_p___t_l_b_o_af54ae5e4da4275df8d25eaaa916e3b01}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!teaching\+Phase\+\_\+\+Modified@{teaching\+Phase\+\_\+\+Modified}}
+\index{teaching\+Phase\+\_\+\+Modified@{teaching\+Phase\+\_\+\+Modified}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{teaching\+Phase\+\_\+\+Modified}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::teaching\+Phase\+\_\+\+Modified (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf M\+M\+K\+P\+Solution} $>$ \&}]{population, }
+\item[{int}]{number\+Of\+Teachers}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_af54ae5e4da4275df8d25eaaa916e3b01}
+
+
+mod-\/\+T\+L\+B\+O teaching phase. 
+
+The teaching phase has been modified to include multiple teachers. Distribution of teachers is even. \hypertarget{class_m_m_k_p___t_l_b_o_a2e2ea3990fb62d5117672b278ec21e7e}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!teaching\+Phase\+\_\+\+Multi\+Teacher@{teaching\+Phase\+\_\+\+Multi\+Teacher}}
+\index{teaching\+Phase\+\_\+\+Multi\+Teacher@{teaching\+Phase\+\_\+\+Multi\+Teacher}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{teaching\+Phase\+\_\+\+Multi\+Teacher}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::teaching\+Phase\+\_\+\+Multi\+Teacher (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf M\+M\+K\+P\+Solution} $>$ \&}]{population, }
+\item[{int}]{number\+Of\+Teachers}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_a2e2ea3990fb62d5117672b278ec21e7e}
+
+
+i-\/\+T\+L\+B\+O teaching phase. 
+
+The teaching phase has been modified to include multiple teachers. Distribution of teachers is even. \hypertarget{class_m_m_k_p___t_l_b_o_a5421bce054c4197a536dfa374fda1653}{\index{M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}!teaching\+Phase\+\_\+\+Multi\+Teacher\+Even\+Dist@{teaching\+Phase\+\_\+\+Multi\+Teacher\+Even\+Dist}}
+\index{teaching\+Phase\+\_\+\+Multi\+Teacher\+Even\+Dist@{teaching\+Phase\+\_\+\+Multi\+Teacher\+Even\+Dist}!M\+M\+K\+P\+\_\+\+T\+L\+B\+O@{M\+M\+K\+P\+\_\+\+T\+L\+B\+O}}
+\subsubsection[{teaching\+Phase\+\_\+\+Multi\+Teacher\+Even\+Dist}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+T\+L\+B\+O\+::teaching\+Phase\+\_\+\+Multi\+Teacher\+Even\+Dist (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf M\+M\+K\+P\+Solution} $>$ \&}]{population, }
+\item[{int}]{number\+Of\+Teachers}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___t_l_b_o_a5421bce054c4197a536dfa374fda1653}
+
+
+i'-\/\+T\+L\+B\+O teaching phase. 
+
+The teaching phase has been modified to include multiple teachers. Distribution of teachers is even. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+M\+M\+K\+P\+\_\+\+T\+L\+B\+O.\+h\item 
+M\+M\+K\+P\+\_\+\+T\+L\+B\+O.\+cpp\end{DoxyCompactItemize}

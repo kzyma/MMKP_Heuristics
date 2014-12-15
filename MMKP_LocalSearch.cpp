@@ -6,13 +6,17 @@
  * @All rights reserved
  * Kutztown University, PA, U.S.A
  *
- * BBA MMKP Problem
+ * Implementation of MMKP_LocalSearch
  *
  *********************************************************/
 
 #include "MMKP_LocalSearch.h"
 
-LocalSearch::LocalSearch(MMKPDataSet dataSet):dataSet(dataSet){}
+LocalSearch::LocalSearch(MMKPDataSet dataSet):dataSet(dataSet),funcEvals(0){}
+
+int LocalSearch::getFuncEvals(){
+    return this->funcEvals;
+}
 
 int LocalSearch::localSwapProcedure(MMKPSolution solution,int classI){
     
@@ -49,6 +53,7 @@ int LocalSearch::localSwapProcedure(MMKPSolution solution,int classI){
         for(int j=0;j<dataSet.getNumberOfResources();j++){
             float newDiff = dataSet[classI][i].getCost(j) -
                 dataSet[classI][selIndex].getCost(j);
+            funcEvals++;
             if((constraintDiff[j]) < newDiff){
                 isViolation = true;
             }
@@ -94,6 +99,8 @@ MMKPSolution CompLocalSearch::run(MMKPSolution solution){
                     - dataSet[i][selIndex].getProfit();
                 bestClassIndex = i;
             }
+            //not a function evaluation, but the meat of this example is here
+            funcEvals++;
         }
         
         //swap for largest profit increase
@@ -103,6 +110,7 @@ MMKPSolution CompLocalSearch::run(MMKPSolution solution){
                 swapIndex = i;
             }
         }
+        funcEvals++;
         newSol[bestClassIndex][swapIndex] = 0;
         newSol[bestClassIndex][bestIndex] = 1;
         
@@ -163,13 +171,19 @@ MMKPSolution ReactiveLocalSearch::run(MMKPSolution solution){
     
     MMKPSolution newSol = solution;
     MMKPDataSet newDataSet = dataSet;
-    float pie = 0.7;
-    int delta = 5;
+    
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> ud(0, 1);
     
     for(int i=0;i<10;i++){
         
+        float pie = ud(gen);
+        int delta = rand() % solution.size();
+        
         CompLocalSearch CLS(newDataSet);
         newSol = CLS(newSol);
+        this->funcEvals += CLS.getFuncEvals();
         if(solution.getProfit()<newSol.getProfit()){
             solution = newSol;
             dataSet.updateSolution(solution);

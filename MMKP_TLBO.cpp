@@ -6,7 +6,7 @@
  * @All rights reserved
  * Kutztown University, PA, U.S.A
  *
- * TLBO MMKP Problem
+ * Teaching-Learning Based Optimization implementation.
  *
  *********************************************************/
 
@@ -81,8 +81,6 @@ MMKPSolution MMKP_TLBO::run(std::vector<MMKPSolution> initialPopulation){
                 }
             }
         }
-        
-        this->currentFuncEvals += population.size()*2;
         std::tuple<int,float> temp(currentFuncEvals,bestSolution.getProfit());
         this->convergenceData.push_back(temp);
         
@@ -128,6 +126,7 @@ void MMKP_TLBO::teachingPhase(std::vector<MMKPSolution>& population){
     if(this->parameters.rls_on == 1){
         ReactiveLocalSearch RLS(dataSet);
         *teacher = RLS(*teacher);
+        this->currentFuncEvals += RLS.getFuncEvals();
     }
     
     for(int i=0;i<population.size();i++){
@@ -139,13 +138,15 @@ void MMKP_TLBO::teachingPhase(std::vector<MMKPSolution>& population){
         for(int j=0;j<(*currentSol).size();j++){
             for(int k=0;k<(*currentSol)[j].size();k++){
                 int T_f = rand()%2+1;
-                int diff = ceil((*currentSol)[j].at(k)+((*teacher)[j].at(k)
-                                    - (T_f * (*mean)[j].at(k))));
+                int r = rand()%2;
+                int diff = ceil((*currentSol)[j].at(k)+(r*((*teacher)[j].at(k)
+                                    - (T_f * (*mean)[j].at(k)))));
                 if(diff<=0){
                     (tempSol)[j].at(k) = false;
                 }else{
                     (tempSol)[j].at(k) = true;
                 }
+                this->currentFuncEvals++;
             }
         }
         
@@ -175,6 +176,7 @@ void MMKP_TLBO::teachingPhase_MultiTeacherEvenDist(std::vector<MMKPSolution>& po
         if(this->parameters.rls_on == 1){
             ReactiveLocalSearch RLS(dataSet);
             *teacher = RLS(*teacher);
+            this->currentFuncEvals += RLS.getFuncEvals();
         }
         
         MMKPSolution* mean = &population[((start+stop)/2)];
@@ -184,15 +186,17 @@ void MMKP_TLBO::teachingPhase_MultiTeacherEvenDist(std::vector<MMKPSolution>& po
             MMKPSolution* currentSol = &population[i];
             MMKPSolution tempSol = *currentSol;
             if(currentSol == teacher){continue;}
+            //r_i is the random learnin to effect i-tlbo
+            int r_i = rand() % (stop-start)+start;
             
             //step 1: convert bits with -2,-1 to 0, and 1 otherwise
             for(int j=0;j<(*currentSol).size();j++){
                 for(int k=0;k<(*currentSol)[j].size();k++){
                     int T_f = rand()%2+1;
-                    int diff = ((*currentSol)[j].at(k)+((*teacher)[j].at(k)
-                                                - (T_f * (*mean)[j].at(k))));
+                    int r = rand()%2;   //r, not used in Vasko et al.
+                    int diff = ((*currentSol)[j].at(k)+(r*((*teacher)[j].at(k)
+                                                - (T_f * (*mean)[j].at(k)))));
                     //i-tlbo addition to difference mean
-                    int r_i = rand() % (stop-start)+start;
                     if((*currentSol).getProfit() > population[r_i].getProfit()){
                         diff += (*currentSol)[j].at(k) - population[r_i][j].at(k);
                     }else{
@@ -204,6 +208,7 @@ void MMKP_TLBO::teachingPhase_MultiTeacherEvenDist(std::vector<MMKPSolution>& po
                     }else{
                         (tempSol)[j].at(k) = true;
                     }
+                    this->currentFuncEvals++;
                 }
             }
             dataSet.updateSolution(tempSol);
@@ -247,6 +252,7 @@ void MMKP_TLBO::teachingPhase_Modified(std::vector<MMKPSolution>& population,
         if(this->parameters.rls_on == 1){
             ReactiveLocalSearch RLS(dataSet);
             *teacher = RLS(*teacher);
+            this->currentFuncEvals += RLS.getFuncEvals();
         }
         
         MMKPSolution* mean = &population[((start+stop)/2)];
@@ -261,14 +267,16 @@ void MMKP_TLBO::teachingPhase_Modified(std::vector<MMKPSolution>& population,
             for(int j=0;j<(*currentSol).size();j++){
                 for(int k=0;k<(*currentSol)[j].size();k++){
                     int T_f = rand()%2+1;
-                    int diff = ((*currentSol)[j].at(k)+((*teacher)[j].at(k)
-                                                        - (T_f * (*mean)[j].at(k))));
+                    int r = rand()%2;   //r, not used in Vasko et al.
+                    int diff = ((*currentSol)[j].at(k)+(r*((*teacher)[j].at(k)
+                                                        - (T_f * (*mean)[j].at(k)))));
                     
                     if(diff<=0){
                         (tempSol)[j].at(k) = false;
                     }else{
                         (tempSol)[j].at(k) = true;
                     }
+                    this->currentFuncEvals++;
                 }
             }
             dataSet.updateSolution(tempSol);
@@ -304,6 +312,7 @@ void MMKP_TLBO::teachingPhase_MultiTeacher(std::vector<MMKPSolution>& population
         if(this->parameters.rls_on == 1){
             ReactiveLocalSearch RLS(dataSet);
             *teacher = RLS(*teacher);
+            this->currentFuncEvals += RLS.getFuncEvals();
         }
         
         MMKPSolution* mean = &population[((start+stop)/2)];
@@ -313,15 +322,17 @@ void MMKP_TLBO::teachingPhase_MultiTeacher(std::vector<MMKPSolution>& population
             MMKPSolution* currentSol = &population[i];
             MMKPSolution tempSol = *currentSol;
             if(currentSol == teacher){continue;}
+            //r_i is the random learnin to effect i-tlbo
+            int r_i = rand() % (stop-start)+start;
             
             //step 1: convert bits with -2,-1 to 0, and 1 otherwise
             for(int j=0;j<(*currentSol).size();j++){
                 for(int k=0;k<(*currentSol)[j].size();k++){
                     int T_f = rand()%2+1;
-                    int diff = ((*currentSol)[j].at(k)+((*teacher)[j].at(k)
-                                                        - (T_f * (*mean)[j].at(k))));
+                    int r = rand()%2;   //r, not used in Vasko et al.
+                    int diff = ((*currentSol)[j].at(k)+(r*((*teacher)[j].at(k)
+                                                        - (T_f * (*mean)[j].at(k)))));
                     //i-tlbo addition to difference mean
-                    int r_i = rand() % (stop-start)+start;
                     if((*currentSol).getProfit() > population[r_i].getProfit()){
                         diff += (*currentSol)[j].at(k) - population[r_i][j].at(k);
                     }else{
@@ -333,8 +344,10 @@ void MMKP_TLBO::teachingPhase_MultiTeacher(std::vector<MMKPSolution>& population
                     }else{
                         (tempSol)[j].at(k) = true;
                     }
+                    this->currentFuncEvals++;
                 }
-            }            dataSet.updateSolution(tempSol);
+            }
+            dataSet.updateSolution(tempSol);
             MMKP_MetaHeuristic::makeFeasible(tempSol);
             MMKP_MetaHeuristic::competitiveUpdateSol(*currentSol,tempSol);
             
@@ -349,6 +362,7 @@ void MMKP_TLBO::teachingPhase_Orthognal(std::vector<MMKPSolution>& population,
     if(this->parameters.rls_on == 1){
         ReactiveLocalSearch RLS(dataSet);
         *teacher = RLS(*teacher);
+        this->currentFuncEvals += RLS.getFuncEvals();
     }
     
     MMKPSolution* mean = &population[(population.size()/2)];
@@ -408,6 +422,7 @@ void MMKP_TLBO::learningPhase(std::vector<MMKPSolution>& population){
                         }else{
                             (tempSol)[j].at(k) = true;
                         }
+                        this->currentFuncEvals++;
                     }
                 }
         //else
@@ -423,6 +438,7 @@ void MMKP_TLBO::learningPhase(std::vector<MMKPSolution>& population){
                     }else{
                         (tempSol)[j].at(k) = true;
                     }
+                    this->currentFuncEvals++;
                 }
             }
         }
@@ -467,6 +483,7 @@ void MMKP_TLBO::improvedLearningPhase(std::vector<MMKPSolution>& population){
                     }else{
                         (tempSol)[j].at(k) = true;
                     }
+                    this->currentFuncEvals++;
                 }
             }
             //else
@@ -492,6 +509,7 @@ void MMKP_TLBO::improvedLearningPhase(std::vector<MMKPSolution>& population){
                     }else{
                         (tempSol)[j].at(k) = true;
                     }
+                    this->currentFuncEvals++;
                 }
             }
         }
@@ -527,6 +545,7 @@ void MMKP_TLBO::modifiedLearningPhase(std::vector<MMKPSolution>& population){
                     }else{
                         (tempSol)[j].at(k) = true;
                     }
+                    this->currentFuncEvals++;
                 }
             }
             //else
@@ -542,6 +561,7 @@ void MMKP_TLBO::modifiedLearningPhase(std::vector<MMKPSolution>& population){
                     }else{
                         (tempSol)[j].at(k) = true;
                     }
+                    this->currentFuncEvals++;
                 }
             }
         }
@@ -554,8 +574,6 @@ void MMKP_TLBO::modifiedLearningPhase(std::vector<MMKPSolution>& population){
     for(int i=0;i<population.size();i++){
         MMKPSolution* currentSol = &population[i];
         MMKPSolution tempSol = *currentSol;
-        
-        this->currentFuncEvals++;
 
         for(int j=0;j<(*currentSol).size();j++){
             for(int k=0;k<(*currentSol)[j].size();k++){
@@ -566,6 +584,7 @@ void MMKP_TLBO::modifiedLearningPhase(std::vector<MMKPSolution>& population){
                 }else{
                     (tempSol)[j].at(k) = true;
                 }
+                this->currentFuncEvals++;
             }
         }
         dataSet.updateSolution(tempSol);

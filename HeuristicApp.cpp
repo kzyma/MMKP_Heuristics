@@ -6,12 +6,9 @@
  * @All rights reserved
  * Kutztown University, PA, U.S.A
  *
- * MMKP Application.
- *
- * Usage: 
- *      mods: <pop gen><multi-choice feas><multi-dim feas>
- *            <local search heuristic>
- *
+ * Main driver for running/testing MMKP problem instances. Takes command
+ * line arguments folder, file, problem number, algorithm (ex. tlbo), 
+ * algorithm mods (ex. 0010), population size, and number of generations.
  *
  *******************************************************************/
 

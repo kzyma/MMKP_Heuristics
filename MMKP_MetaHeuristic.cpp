@@ -6,7 +6,7 @@
  * @All rights reserved
  * Kutztown University, PA, U.S.A
  *
- * MMKP Problem
+ * Implementation of MMKP_MetaHeuristic.
  *
  *********************************************************/
 

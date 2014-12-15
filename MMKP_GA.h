@@ -6,11 +6,7 @@
  * @All rights reserved
  * Kutztown University, PA, U.S.A
  *
- * GA MMKP Problem
- *
- *  ::Ga parameters::
- *
- *  Parent Pool Size, Mutation Probability
+ * Genetic Algorithm for the MMKP.
  *
  *******************************************************************/
 
@@ -47,8 +43,8 @@ public:
 };
 
 /**
- * Crisscross optimization algrithm for the
- * multiple-choice, multiple-dimensional knapsack problem.
+ * Generic algrithm for the multiple-choice, multiple-dimensional 
+ * knapsack problem.
  */
 class MMKP_GA:public MMKP_MetaHeuristic{
 private:
@@ -56,44 +52,23 @@ private:
     MMKPSolution bestSolution;
     
 public:
-    /**
-     * Construct MMKP_GA object. Param: parameters can customize
-     * the tlbo algorithm according to struct GA_parameters.
-     */
+
     MMKP_GA(MMKPDataSet dataSet, GA_parameters parameters);
     
     MMKP_GA(MMKPDataSet dataSet);
-    
-    //overloaded operators
-    /**
-     * Run coa algorithm and return the result, which is the best objective
-     * function.
-     */
+
     MMKPSolution operator()(std::vector<MMKPSolution> initialPopulation);
     
-    /**
-     * Run tlbo algorithm and return the result, which is the 'teaching'
-     * solution after a stopping criterion is met.
-     */
     MMKPSolution run(std::vector<MMKPSolution> initialPopulation);
     
     std::vector<MMKPSolution> runOneGeneration
     (std::vector<MMKPSolution> population);
-    
-    /**
-     *
-     */
+
     void parentSelection
     (MMKPSolution& p1, MMKPSolution& p2,std::vector<MMKPSolution>& population);
-    
-    /**
-     *
-     */
+
     MMKPSolution Crossover(MMKPSolution p1,MMKPSolution p2);
-    
-    /**
-     *
-     */
+
     void Mutate(MMKPSolution& solution);
     
 };

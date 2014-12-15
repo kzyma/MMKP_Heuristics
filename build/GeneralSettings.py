@@ -8,8 +8,6 @@
 # @All rights reserved
 # Kutztown University, PA, U.S.A
 #
-# Settings for GaRunner.py
-#
 ##################################################################
 
 #files housed in multi-dim list, where each row is a different
@@ -38,14 +36,12 @@ FILES = [[[('I01',1),('I02',1),('I03',1),('I04',1)
           [('TestSet.300GP10IT10KP.txt',10)],[('TestSet.350GP10IT10KP.txt',10)],
           [('TestSet.400GP10IT10KP.txt',10)]]]
 
-
 '''
 FOLDERS = ['orlib_data','HiremathHill_data']
 
 FILES = [[[('I01',1),('I02',1)]],
-         [[('TestSet1.5GP10IT5KP.txt',2)],[('TestSet.50GP10IT10KP.txt',3)]]]
+         [[('TestSet1.5GP10IT5KP.txt',2)],[('TestSet.50GP10IT10KP.txt',1)]]]
 '''
-
 
 #random number seed, True: use default settings (for same initial pop) or
 #false for random number seed based on time.

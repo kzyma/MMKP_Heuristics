@@ -6,7 +6,7 @@
  * @All rights reserved
  * Kutztown University, PA, U.S.A
  *
- * COA MMKP Problem
+ * Criss-cross optimization for the MMKP.
  *
  *******************************************************************/
 
@@ -50,41 +50,20 @@ class MMKP_COA:public MMKP_MetaHeuristic{
 private:
     COA_parameters parameters;
 public:
-    /**
-     * Construct MMKP_COA object. Param: parameters can customize
-     * the tlbo algorithm according to struct COA_parameters.
-     */
+
     MMKP_COA(MMKPDataSet dataSet, COA_parameters parameters);
     
-    /**
-     * Construct MMKP_COA object with default COA_parameters.
-     */
     MMKP_COA(MMKPDataSet dataSet);
     
-    //overloaded operators
-    /**
-     * Run coa algorithm and return the result, which is the best objective
-     * function.
-     */
     MMKPSolution operator()(std::vector<MMKPSolution> initialPopulation);
-    
-    /**
-     * Run tlbo algorithm and return the result, which is the 'teaching'
-     * solution after a stopping criterion is met.
-     */
+
     MMKPSolution run(std::vector<MMKPSolution> initialPopulation);
     
     std::vector<MMKPSolution> runOneGeneration
     (std::vector<MMKPSolution> population);
     
-    /**
-     *
-     */
     void horizontalCrossover(std::vector<MMKPSolution>& population);
     
-    /**
-     *
-     */
     void verticalCrossover(std::vector<MMKPSolution>& population);
 };
 

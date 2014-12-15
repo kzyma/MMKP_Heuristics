@@ -8,7 +8,8 @@
 # @All rights reserved
 # Kutztown University, PA, U.S.A
 #
-# Heuristic runner.
+# Heuristic runner. Run heuristic on all MMKP problems selected
+# in GeneralSettings file.
 #
 # Note: Due to a serious security risk this module is only to be
 # used by trusted client at all times. For more information
@@ -144,13 +145,16 @@ def run(alg):
 
     data_file = Workbook()
     graph_file = Workbook()
+    func_file = Workbook()
     graph_sheets = []
     data_sheets = []
     problemNames = []
+    func_sheets = []
     problemDeviations = []
     problemRuntimes = []
     convAll = []
     genAll = []
+    totalAllFuncs = []
 
     print 'Starting test runner'
 
@@ -182,10 +186,13 @@ def run(alg):
             sheetName = str(groupName)
             data_sheets.append(data_file.add_sheet(sheetName,cell_overwrite_ok=True))
             graph_sheets.append(graph_file.add_sheet(sheetName,cell_overwrite_ok=True))
+            func_sheets.append(func_file.add_sheet(sheetName,cell_overwrite_ok=True))
             currentSheet = data_sheets[-1]
             currentGraph = graph_sheets[-1]
+            currentFunc = func_sheets[-1]
             currentSheet.write(0,0,groupName)
             currentGraph.write(0,0,groupName)
+            currentFunc.write(0,0,groupName)
             problemNames.append(groupName)
             
             s_header = ['Problem']
@@ -197,17 +204,24 @@ def run(alg):
             TlboStartCol = hCol + len(s_header)
             for i in range(len(s_header)):
                 hRef.write((i+hCol),s_header[i])
+            
+            currentFunc.write(hRow,hCol,'Problem')
+            currentFunc.write(hRow,hCol+1,'Func Evals')
+            
             #write current algorithm header
             currentSheet.write(hRow,TlboStartCol,str(alg.upper()))
             #write runtime
             currentSheet.write(hRow,TlboStartCol+1,"Runtime(sec)")
             currentSheet.write(hRow,TlboStartCol+2,"Generations")
+            
             averageDeviations = []
             TlboDeviations = []
             algRuntimes = []
             totalRuntimes = []
             convAverage = []
             generationAve = []
+            
+            totalFuncs = 0
         
             for fileTuple in fileGroup:
                 for problemNumber in range(1,(fileTuple[1]+1)):
@@ -245,9 +259,11 @@ def run(alg):
                     if(groupName == 'orlib'):
                         currentSheet.write((hRow+1)+problemCounter, hCol,str(fileTuple[0]))
                         currentGraph.write((1)+(problemCounter*5), 1,str(fileTuple[0]))
+                        currentFunc.write((hRow+1)+(problemCounter),hCol,str(fileTuple[0]))
                     else:
                         currentSheet.write((hRow+1)+problemCounter, hCol,str(problemNumber))
                         currentGraph.write((1)+(problemCounter*5), 1,str(fileTuple[0]))
+                        currentFunc.write((hRow+1)+(problemCounter), hCol,str(fileTuple[0]))
                     
                     #write results for other algs
                     otherAlgs = [algs_deviations[x][problemCounter+1] \
@@ -283,6 +299,10 @@ def run(alg):
                         temp = float(Decimal("{0:.3}".format(g_dev)))
                         convDevData.append(temp)
                         currentGraph.write((4)+(problemCounter*5), 2+i,temp)
+
+                    func = ConvData[int(ConvIter)][0]
+                    currentFunc.write(problemCounter+hRow+1,hCol+1,func)
+                    totalFuncs += func
                     
                     if not convAverage:
                         for i in range(len(convDevData)):
@@ -295,6 +315,7 @@ def run(alg):
                     problemCounter += 1
                     
                     print 'Problem complete.'
+                    func_file.save('results/'+alg+'_FuncEvals.xls')
                     data_file.save('results/'+alg+'_OverviewResults.xls')
                     graph_file.save('results/graphs/'+alg+'_ConvResults.xls')
     
@@ -335,6 +356,11 @@ def run(alg):
                 else:
                     currentSheet.write((TlboStartRow+fileTuple[1]*len(fileGroup)),
                                        ((hCol+1)+i),averageDeviations[i])
+
+            currentFunc.write((TlboStartRow+fileTuple[1]*len(fileGroup)),
+                                (hCol+1),totalFuncs)
+            totalAllFuncs.append(totalFuncs)
+                
             total = 0
             for i in algRuntimes:
                 total += i
@@ -354,10 +380,15 @@ def run(alg):
                                    2+i,float(Decimal("{0:.3}".format(convAverage[i]))))
             convAll.append(convAverage)
             graph_file.save('results/graphs/'+alg+'_ConvResults.xls')
+            func_file.save('results/'+alg+'_FuncEvals.xls')
+                
+            
 
     #summary of results page
     data_sheets.append(data_file.add_sheet("Results",cell_overwrite_ok=True))
     graph_sheets.append(graph_file.add_sheet("Results",cell_overwrite_ok=True))
+    func_sheets.append(func_file.add_sheet("Results",cell_overwrite_ok=True))
+    currentFunc = func_sheets[-1]
     currentSheet = data_sheets[-1]
     currentSheet.write(0,0,"Overview Of Results")
     currentGraph = graph_sheets[-1]
@@ -376,6 +407,9 @@ def run(alg):
     currentSheet.write(hRow,TlboStartCol,alg.upper())
     currentSheet.write(hRow,TlboStartCol+1,'Runtime(sec)')
     currentSheet.write(hRow,TlboStartCol+2,'Generations')
+
+    currentFunc.write(hRow,hCol,'Problem')
+    currentFunc.write(hRow,hCol+1,'Func Evals')
 
     averageAllDev = []
     #compute avarege Dev
@@ -396,6 +430,8 @@ def run(alg):
 
     for i in range(len(problemDeviations)):
         currentSheet.write(TlboStartRow+i,hCol,problemNames[i])
+        currentFunc.write(TlboStartRow+i,hCol,problemNames[i])
+        currentFunc.write(TlboStartRow+i,hCol+1,totalAllFuncs[i])
         for j in range(len(problemDeviations[i])):
             if(problemDeviations[i][j] == "NA"):
                 currentSheet.write(TlboStartRow+i,(hCol+1)+j,"")
@@ -404,6 +440,8 @@ def run(alg):
                                Decimal("{0:.3}".format(problemDeviations[i][j])))
         currentSheet.write(TlboStartRow+i,TlboStartCol+2,
                            Decimal("{0:.3}".format(genAll[i])))
+
+    currentFunc.write(TlboStartRow+(len(problemDeviations)+1),hCol+1,sum(totalAllFuncs))
 
     total = 0
     for i in range(len(problemRuntimes)):
@@ -439,7 +477,8 @@ def run(alg):
 
     for i in range(len(dAll)):
         currentGraph.write(TlboStartRow+1+len(convAll),hCol+1+i,Decimal("{0:.3}".format(dAll[i])))
-    
+
+    func_file.save('results/'+alg+'_FuncEvals.xls')
     data_file.save('results/'+alg+'_OverviewResults.xls')
     graph_file.save('results/graphs/'+alg+'_ConvResults.xls')
 

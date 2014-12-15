@@ -1,14 +1,12 @@
 ##################################################################
 #
-# File: GaSettings.cpp
+# File: AcoSettings.cpp
 # Author: Ken Zyma
 #
 # Py Version: 2.7
 #
 # @All rights reserved
 # Kutztown University, PA, U.S.A
-#
-# Settings for GaRunner.py
 #
 ##################################################################
 

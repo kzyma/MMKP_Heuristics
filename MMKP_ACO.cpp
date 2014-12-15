@@ -6,7 +6,7 @@
  * @All rights reserved
  * Kutztown University, PA, U.S.A
  *
- * BBA MMKP Problem
+ * Any Colony Optimization implementation.
  *
  *********************************************************/
 

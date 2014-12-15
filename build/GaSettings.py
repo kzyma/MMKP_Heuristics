@@ -8,7 +8,6 @@
 # @All rights reserved
 # Kutztown University, PA, U.S.A
 #
-# Settings for GaRunner.py
 #
 ##################################################################
 

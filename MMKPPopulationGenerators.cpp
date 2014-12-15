@@ -6,7 +6,7 @@
  * @All rights reserved
  * Kutztown University, PA, U.S.A
  *
- * TLBO MMKP Problem
+ * Population Generators Implementation.
  *
  *********************************************************/
 

@@ -8,8 +8,6 @@
 # @All rights reserved
 # Kutztown University, PA, U.S.A
 #
-# Settings for TlboRunner.py
-#
 ##################################################################
 
 #!/usr/bin/python

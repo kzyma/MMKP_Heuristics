@@ -6,7 +6,7 @@
  * @All rights reserved
  * Kutztown University, PA, U.S.A
  *
- * COA MMKP Problem
+ * Criss-cross optimization implementation.
  *
  *********************************************************/
 

@@ -6,7 +6,8 @@
  * @All rights reserved
  * Kutztown University, PA, U.S.A
  *
- * Binary Bat Alg MMKP Problem
+ * Any Colony Optimization metaheuristic from Ren et al "An ant colony 
+ * optimization approach to the multiple-choice multidimensional knapsack problem".
  *
  *******************************************************************/
 
@@ -70,10 +71,6 @@ public:
     
     float getProbability(int classNum, int itemNum);
     
-    /**
-     * Return item index of class param:classNum which is 
-     * choosen based on the probability from getProbability.
-     */
     int returnItemIndex(int classNum);
     
     int size();
@@ -90,21 +87,11 @@ private:
     ACO_parameters parameters;
     ACO_DataSetAdditions solDesirability;
 public:
-    /**
-     * Construct MMKP_ACO object. Use Param: parameters to customize
-     * the aco algorithm according to struct ACO_parameters.
-     */
+    
     MMKP_ACO(MMKPDataSet dataSet, ACO_parameters parameters);
     
-    //overloaded operators
-    /**
-     *
-     */
     MMKPSolution operator()(std::vector<MMKPSolution> initialPopulation);
     
-    /**
-     *
-     */
     MMKPSolution run(std::vector<MMKPSolution> initialPopulation);
     
     std::vector<MMKPSolution> runOneGeneration

@@ -1,0 +1,72 @@
+\hypertarget{class_m_m_k_p___g_a}{\section{M\+M\+K\+P\+\_\+\+G\+A Class Reference}
+\label{class_m_m_k_p___g_a}\index{M\+M\+K\+P\+\_\+\+G\+A@{M\+M\+K\+P\+\_\+\+G\+A}}
+}
+
+
+Generic algrithm for the multiple-\/choice, multiple-\/dimensional knapsack problem.  
+
+
+
+
+{\ttfamily \#include $<$M\+M\+K\+P\+\_\+\+G\+A.\+h$>$}
+
+Inheritance diagram for M\+M\+K\+P\+\_\+\+G\+A\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_m_m_k_p___g_a}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_m_m_k_p___g_a_a970a4006be6cc6945c29b9bb4ff3dc31}{{\bfseries M\+M\+K\+P\+\_\+\+G\+A} (\hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} data\+Set, \hyperlink{class_g_a__parameters}{G\+A\+\_\+parameters} parameters)}\label{class_m_m_k_p___g_a_a970a4006be6cc6945c29b9bb4ff3dc31}
+
+\item 
+\hypertarget{class_m_m_k_p___g_a_ad3df4704df221933c8e2377dd765ed5f}{{\bfseries M\+M\+K\+P\+\_\+\+G\+A} (\hyperlink{class_m_m_k_p_data_set}{M\+M\+K\+P\+Data\+Set} data\+Set)}\label{class_m_m_k_p___g_a_ad3df4704df221933c8e2377dd765ed5f}
+
+\item 
+\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \hyperlink{class_m_m_k_p___g_a_aeeda12afb45c59bd18f9761a75765331}{operator()} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ initial\+Population)
+\begin{DoxyCompactList}\small\item\em Run heuristic and return the best objective function. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___g_a_a64990a8141476468684581138ee966ec}{\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \hyperlink{class_m_m_k_p___g_a_a64990a8141476468684581138ee966ec}{run} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ initial\+Population)}\label{class_m_m_k_p___g_a_a64990a8141476468684581138ee966ec}
+
+\begin{DoxyCompactList}\small\item\em Run metaheuristic and return the result, the best objective function. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___g_a_a3b2479268204cedada4d245c9ae23170}{std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \hyperlink{class_m_m_k_p___g_a_a3b2479268204cedada4d245c9ae23170}{run\+One\+Generation} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ population)}\label{class_m_m_k_p___g_a_a3b2479268204cedada4d245c9ae23170}
+
+\begin{DoxyCompactList}\small\item\em Run a single iteration of heuristic. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___g_a_a70ed12ccae6bc93ddfc076086679f3a4}{void {\bfseries parent\+Selection} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&p1, \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&p2, std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&population)}\label{class_m_m_k_p___g_a_a70ed12ccae6bc93ddfc076086679f3a4}
+
+\item 
+\hypertarget{class_m_m_k_p___g_a_a6c58b7d6cf6dc8f3fde50096d8108036}{\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} {\bfseries Crossover} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} p1, \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} p2)}\label{class_m_m_k_p___g_a_a6c58b7d6cf6dc8f3fde50096d8108036}
+
+\item 
+\hypertarget{class_m_m_k_p___g_a_a196549b88e88b5b0aa705315a4f6ae91}{void {\bfseries Mutate} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&solution)}\label{class_m_m_k_p___g_a_a196549b88e88b5b0aa705315a4f6ae91}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Generic algrithm for the multiple-\/choice, multiple-\/dimensional knapsack problem. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_m_m_k_p___g_a_aeeda12afb45c59bd18f9761a75765331}{\index{M\+M\+K\+P\+\_\+\+G\+A@{M\+M\+K\+P\+\_\+\+G\+A}!operator()@{operator()}}
+\index{operator()@{operator()}!M\+M\+K\+P\+\_\+\+G\+A@{M\+M\+K\+P\+\_\+\+G\+A}}
+\subsubsection[{operator()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+M\+K\+P\+Solution} M\+M\+K\+P\+\_\+\+G\+A\+::operator() (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf M\+M\+K\+P\+Solution} $>$}]{initial\+Population}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_m_m_k_p___g_a_aeeda12afb45c59bd18f9761a75765331}
+
+
+Run heuristic and return the best objective function. 
+
+Must be overriden, I would suggest calling the \char`\"{}run\char`\"{} function and placing all code there. 
+
+Implements \hyperlink{class_m_m_k_p___meta_heuristic_acc3de42187c16d4a31776e18135035e5}{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+M\+M\+K\+P\+\_\+\+G\+A.\+h\item 
+M\+M\+K\+P\+\_\+\+G\+A.\+cpp\end{DoxyCompactItemize}

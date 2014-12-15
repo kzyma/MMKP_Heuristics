@@ -6,7 +6,7 @@
  * @All rights reserved
  * Kutztown University, PA, U.S.A
  *
- * Binary Bat Alg MMKP Problem
+ * Artificial Bee Colony metaheuristic.
  *
  *******************************************************************/
 
@@ -42,14 +42,17 @@ public:
     }
 };
 
+/**
+ * Solution representation for Bee Colony.
+ */
 typedef struct{
     MMKPSolution solution;
     int noImproveCount;
 }MMKPBeeSolution;
 
 /**
- * Any Colony Optimization adapted to the
- * multiple-choice, multiple-dimensional knapsack problem.
+ * Artificial Bee Colony adapted to the multiple-choice, multiple-dimensional 
+ * knapsack problem.
  */
 class MMKP_ABC:public MMKP_MetaHeuristic{
 private:
@@ -62,14 +65,8 @@ public:
     MMKP_ABC(MMKPDataSet dataSet, ABC_parameters parameters);
     
     //overloaded operators
-    /**
-     *
-     */
     MMKPSolution operator()(std::vector<MMKPSolution> initialPopulation);
     
-    /**
-     *
-     */
     MMKPSolution run(std::vector<MMKPSolution> initialPopulation);
     
     std::vector<MMKPSolution> runOneGeneration
