@@ -160,8 +160,6 @@ std::vector<MMKPSolution> GenerateRandomizedPopulationGreedyV1::operator()
         
         for(int i=0;i<numOfIndices;){
             int temp = (rand()%dataSet.getNumberOfResources());
-            //note* ken it would be better to make PopulationGenerator::notIncluded
-            //able to handle the following code.
             bool isIn = false;
             for(int j=0;j<constrIndices.size();j++){
                 if(temp == constrIndices[j]){

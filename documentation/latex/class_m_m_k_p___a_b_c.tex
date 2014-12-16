@@ -29,20 +29,25 @@ Inheritance diagram for M\+M\+K\+P\+\_\+\+A\+B\+C\+:\begin{figure}[H]
 \hypertarget{class_m_m_k_p___a_b_c_a3f405cbe0f90959d1f55bea4211476d4}{std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \hyperlink{class_m_m_k_p___a_b_c_a3f405cbe0f90959d1f55bea4211476d4}{run\+One\+Generation} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ population)}\label{class_m_m_k_p___a_b_c_a3f405cbe0f90959d1f55bea4211476d4}
 
 \begin{DoxyCompactList}\small\item\em Run a single iteration of heuristic. \end{DoxyCompactList}\item 
-\hypertarget{class_m_m_k_p___a_b_c_af4c67bc91937841cb32510de2e10ba84}{std\+::vector$<$ \hyperlink{struct_m_m_k_p_bee_solution}{M\+M\+K\+P\+Bee\+Solution} $>$ {\bfseries employeed\+Bee\+Phase} (std\+::vector$<$ \hyperlink{struct_m_m_k_p_bee_solution}{M\+M\+K\+P\+Bee\+Solution} $>$ employeed\+Bees)}\label{class_m_m_k_p___a_b_c_af4c67bc91937841cb32510de2e10ba84}
+\hypertarget{class_m_m_k_p___a_b_c_af4c67bc91937841cb32510de2e10ba84}{std\+::vector$<$ \hyperlink{struct_m_m_k_p_bee_solution}{M\+M\+K\+P\+Bee\+Solution} $>$ \hyperlink{class_m_m_k_p___a_b_c_af4c67bc91937841cb32510de2e10ba84}{employeed\+Bee\+Phase} (std\+::vector$<$ \hyperlink{struct_m_m_k_p_bee_solution}{M\+M\+K\+P\+Bee\+Solution} $>$ employeed\+Bees)}\label{class_m_m_k_p___a_b_c_af4c67bc91937841cb32510de2e10ba84}
 
-\item 
-\hypertarget{class_m_m_k_p___a_b_c_aa96e1b6432335c101c1ed05637b7c9ac}{std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ {\bfseries on\+Looker\+Bee\+Phase} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ on\+Looker\+Bees, std\+::vector$<$ \hyperlink{struct_m_m_k_p_bee_solution}{M\+M\+K\+P\+Bee\+Solution} $>$ employeed\+Bees)}\label{class_m_m_k_p___a_b_c_aa96e1b6432335c101c1ed05637b7c9ac}
+\begin{DoxyCompactList}\small\item\em Modify solution based on equation 3 in \char`\"{}\+Binary Artificial Bee Colony 
+\+Optimization Using Bitwise Operation\char`\"{} by Jia et al. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___a_b_c_aa96e1b6432335c101c1ed05637b7c9ac}{std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \hyperlink{class_m_m_k_p___a_b_c_aa96e1b6432335c101c1ed05637b7c9ac}{on\+Looker\+Bee\+Phase} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ on\+Looker\+Bees, std\+::vector$<$ \hyperlink{struct_m_m_k_p_bee_solution}{M\+M\+K\+P\+Bee\+Solution} $>$ employeed\+Bees)}\label{class_m_m_k_p___a_b_c_aa96e1b6432335c101c1ed05637b7c9ac}
 
-\item 
-\hypertarget{class_m_m_k_p___a_b_c_aa1f9ebd197fc64d3eac899fa2c9fc5c1}{void {\bfseries scout\+Bee\+Phase} (std\+::vector$<$ \hyperlink{struct_m_m_k_p_bee_solution}{M\+M\+K\+P\+Bee\+Solution} $>$ \&employeed\+Bees)}\label{class_m_m_k_p___a_b_c_aa1f9ebd197fc64d3eac899fa2c9fc5c1}
+\begin{DoxyCompactList}\small\item\em Using roulette style selection an employeed bee is matched with onlooker bee for solution mutation based on equation 3 in \char`\"{}\+Binary Artificial Bee Colony Optimization Using Bitwise 
+\+Operation\char`\"{} by Jia et al. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___a_b_c_aa1f9ebd197fc64d3eac899fa2c9fc5c1}{void \hyperlink{class_m_m_k_p___a_b_c_aa1f9ebd197fc64d3eac899fa2c9fc5c1}{scout\+Bee\+Phase} (std\+::vector$<$ \hyperlink{struct_m_m_k_p_bee_solution}{M\+M\+K\+P\+Bee\+Solution} $>$ \&employeed\+Bees)}\label{class_m_m_k_p___a_b_c_aa1f9ebd197fc64d3eac899fa2c9fc5c1}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em If an employeed bee's fitness is not improved by a number of iterations (no\+Improve\+Count parameter) the solution is reset randomly. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
 \subsection{Detailed Description}
 Artificial Bee Colony adapted to the multiple-\/choice, multiple-\/dimensional knapsack problem. 
+
+Based on method by Jia et al. in \char`\"{}\+Binary Artificial 
+\+Bee Colony Optimization Using Bitwise Operation\char`\"{}. 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{class_m_m_k_p___a_b_c_a4dabcc8155d17c5ddc984dfd1307b4d0}{\index{M\+M\+K\+P\+\_\+\+A\+B\+C@{M\+M\+K\+P\+\_\+\+A\+B\+C}!M\+M\+K\+P\+\_\+\+A\+B\+C@{M\+M\+K\+P\+\_\+\+A\+B\+C}}

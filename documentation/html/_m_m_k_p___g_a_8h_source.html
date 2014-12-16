@@ -124,47 +124,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;};</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="class_m_m_k_p___g_a.html">   49</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_m_m_k_p___g_a.html">MMKP_GA</a>:<span class="keyword">public</span> <a class="code" href="class_m_m_k_p___meta_heuristic.html">MMKP_MetaHeuristic</a>{</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="class_g_a__parameters.html">GA_parameters</a> parameters;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a> bestSolution;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="class_m_m_k_p___g_a.html">MMKP_GA</a>(<a class="code" href="class_m_m_k_p_data_set.html">MMKPDataSet</a> dataSet, <a class="code" href="class_g_a__parameters.html">GA_parameters</a> parameters);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="class_m_m_k_p___g_a.html">MMKP_GA</a>(<a class="code" href="class_m_m_k_p_data_set.html">MMKPDataSet</a> dataSet);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a> <a class="code" href="class_m_m_k_p___g_a.html#aeeda12afb45c59bd18f9761a75765331">operator()</a>(std::vector&lt;MMKPSolution&gt; initialPopulation);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a> <a class="code" href="class_m_m_k_p___g_a.html#a64990a8141476468684581138ee966ec">run</a>(std::vector&lt;MMKPSolution&gt; initialPopulation);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    std::vector&lt;MMKPSolution&gt; <a class="code" href="class_m_m_k_p___g_a.html#a3b2479268204cedada4d245c9ae23170">runOneGeneration</a></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    (std::vector&lt;MMKPSolution&gt; population);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> parentSelection</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    (<a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a>&amp; p1, <a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a>&amp; p2,std::vector&lt;MMKPSolution&gt;&amp; population);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a> Crossover(<a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a> p1,<a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a> p2);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> Mutate(<a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a>&amp; solution);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;};</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="class_m_m_k_p___g_a.html">   50</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_m_m_k_p___g_a.html">MMKP_GA</a>:<span class="keyword">public</span> <a class="code" href="class_m_m_k_p___meta_heuristic.html">MMKP_MetaHeuristic</a>{</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="class_g_a__parameters.html">GA_parameters</a> parameters;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a> bestSolution;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="class_m_m_k_p___g_a.html">MMKP_GA</a>(<a class="code" href="class_m_m_k_p_data_set.html">MMKPDataSet</a> dataSet, <a class="code" href="class_g_a__parameters.html">GA_parameters</a> parameters);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="class_m_m_k_p___g_a.html">MMKP_GA</a>(<a class="code" href="class_m_m_k_p_data_set.html">MMKPDataSet</a> dataSet);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a> <a class="code" href="class_m_m_k_p___g_a.html#aeeda12afb45c59bd18f9761a75765331">operator()</a>(std::vector&lt;MMKPSolution&gt; initialPopulation);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a> <a class="code" href="class_m_m_k_p___g_a.html#a64990a8141476468684581138ee966ec">run</a>(std::vector&lt;MMKPSolution&gt; initialPopulation);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    std::vector&lt;MMKPSolution&gt; <a class="code" href="class_m_m_k_p___g_a.html#a3b2479268204cedada4d245c9ae23170">runOneGeneration</a></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    (std::vector&lt;MMKPSolution&gt; population);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_m_m_k_p___g_a.html#a70ed12ccae6bc93ddfc076086679f3a4">parentSelection</a></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    (<a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a>&amp; p1, <a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a>&amp; p2,std::vector&lt;MMKPSolution&gt;&amp; population);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(____MMKP_GA__) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a> <a class="code" href="class_m_m_k_p___g_a.html#a6c58b7d6cf6dc8f3fde50096d8108036">Crossover</a>(<a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a> p1,<a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a> p2);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_m_m_k_p___g_a.html#a196549b88e88b5b0aa705315a4f6ae91">Mutate</a>(<a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a>&amp; solution);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;};</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(____MMKP_GA__) */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="class_m_m_k_p___g_a_html_a196549b88e88b5b0aa705315a4f6ae91"><div class="ttname"><a href="class_m_m_k_p___g_a.html#a196549b88e88b5b0aa705315a4f6ae91">MMKP_GA::Mutate</a></div><div class="ttdeci">void Mutate(MMKPSolution &amp;solution)</div><div class="ttdoc">Flip a solutions bit&#39;s based on a probability, namely mutation rate (default set to 5%)...</div><div class="ttdef"><b>Definition:</b> MMKP_GA.cpp:151</div></div>
 <div class="ttc" id="class_m_m_k_p___meta_heuristic_html"><div class="ttname"><a href="class_m_m_k_p___meta_heuristic.html">MMKP_MetaHeuristic</a></div><div class="ttdoc">Base class for MMKP metaheuristic package. </div><div class="ttdef"><b>Definition:</b> MMKP_MetaHeuristic.h:104</div></div>
 <div class="ttc" id="class_m_m_k_p_solution_html"><div class="ttname"><a href="class_m_m_k_p_solution.html">MMKPSolution</a></div><div class="ttdoc">Solution to MMKP problem consisting of class/item selection, the summation of all classes&#39; profit and...</div><div class="ttdef"><b>Definition:</b> MMKPSolution.h:31</div></div>
 <div class="ttc" id="class_m_m_k_p___g_a_html_a3b2479268204cedada4d245c9ae23170"><div class="ttname"><a href="class_m_m_k_p___g_a.html#a3b2479268204cedada4d245c9ae23170">MMKP_GA::runOneGeneration</a></div><div class="ttdeci">std::vector&lt; MMKPSolution &gt; runOneGeneration(std::vector&lt; MMKPSolution &gt; population)</div><div class="ttdoc">Run a single iteration of heuristic. </div><div class="ttdef"><b>Definition:</b> MMKP_GA.cpp:85</div></div>
 <div class="ttc" id="class_m_m_k_p___g_a_html_aeeda12afb45c59bd18f9761a75765331"><div class="ttname"><a href="class_m_m_k_p___g_a.html#aeeda12afb45c59bd18f9761a75765331">MMKP_GA::operator()</a></div><div class="ttdeci">MMKPSolution operator()(std::vector&lt; MMKPSolution &gt; initialPopulation)</div><div class="ttdoc">Run heuristic and return the best objective function. </div><div class="ttdef"><b>Definition:</b> MMKP_GA.cpp:25</div></div>
-<div class="ttc" id="class_m_m_k_p___g_a_html"><div class="ttname"><a href="class_m_m_k_p___g_a.html">MMKP_GA</a></div><div class="ttdoc">Generic algrithm for the multiple-choice, multiple-dimensional knapsack problem. </div><div class="ttdef"><b>Definition:</b> MMKP_GA.h:49</div></div>
+<div class="ttc" id="class_m_m_k_p___g_a_html_a6c58b7d6cf6dc8f3fde50096d8108036"><div class="ttname"><a href="class_m_m_k_p___g_a.html#a6c58b7d6cf6dc8f3fde50096d8108036">MMKP_GA::Crossover</a></div><div class="ttdeci">MMKPSolution Crossover(MMKPSolution p1, MMKPSolution p2)</div><div class="ttdoc">Basic ga crossover. </div><div class="ttdef"><b>Definition:</b> MMKP_GA.cpp:137</div></div>
+<div class="ttc" id="class_m_m_k_p___g_a_html"><div class="ttname"><a href="class_m_m_k_p___g_a.html">MMKP_GA</a></div><div class="ttdoc">Generic algrithm for the multiple-choice, multiple-dimensional knapsack problem. </div><div class="ttdef"><b>Definition:</b> MMKP_GA.h:50</div></div>
 <div class="ttc" id="class_meta_heuristic__parameters_html"><div class="ttname"><a href="class_meta_heuristic__parameters.html">MetaHeuristic_parameters</a></div><div class="ttdoc">Parameters for customizing the MetaHeuristic algorithm. </div><div class="ttdef"><b>Definition:</b> MMKP_MetaHeuristic.h:85</div></div>
 <div class="ttc" id="class_m_m_k_p___g_a_html_a64990a8141476468684581138ee966ec"><div class="ttname"><a href="class_m_m_k_p___g_a.html#a64990a8141476468684581138ee966ec">MMKP_GA::run</a></div><div class="ttdeci">MMKPSolution run(std::vector&lt; MMKPSolution &gt; initialPopulation)</div><div class="ttdoc">Run metaheuristic and return the result, the best objective function. </div><div class="ttdef"><b>Definition:</b> MMKP_GA.cpp:29</div></div>
+<div class="ttc" id="class_m_m_k_p___g_a_html_a70ed12ccae6bc93ddfc076086679f3a4"><div class="ttname"><a href="class_m_m_k_p___g_a.html#a70ed12ccae6bc93ddfc076086679f3a4">MMKP_GA::parentSelection</a></div><div class="ttdeci">void parentSelection(MMKPSolution &amp;p1, MMKPSolution &amp;p2, std::vector&lt; MMKPSolution &gt; &amp;population)</div><div class="ttdoc">Parent selection is done in competetive approach. </div><div class="ttdef"><b>Definition:</b> MMKP_GA.cpp:109</div></div>
 <div class="ttc" id="class_g_a__parameters_html"><div class="ttname"><a href="class_g_a__parameters.html">GA_parameters</a></div><div class="ttdoc">Parameters for customizing the GA algorithm. </div><div class="ttdef"><b>Definition:</b> MMKP_GA.h:34</div></div>
 <div class="ttc" id="class_m_m_k_p_data_set_html"><div class="ttname"><a href="class_m_m_k_p_data_set.html">MMKPDataSet</a></div><div class="ttdoc">MMKP data consisting of classes with items (class: ItemData) and available resources. </div><div class="ttdef"><b>Definition:</b> MMKPDataSet.h:134</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 15 2014 15:43:11 for MMKP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 16 2014 18:31:56 for MMKP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

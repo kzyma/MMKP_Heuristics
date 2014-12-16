@@ -62,8 +62,17 @@ public:
     std::vector<MMKPSolution> runOneGeneration
     (std::vector<MMKPSolution> population);
     
+    /**
+     * Horizontal crossover matches each solution with another randomly
+     * choosen solution and creates a new solution as a function of these
+     * and randomly generated probabilities.
+     */
     void horizontalCrossover(std::vector<MMKPSolution>& population);
     
+    /**
+     * Mutate solution by swapping items in a class between two randomly
+     * choosen solutions.
+     */
     void verticalCrossover(std::vector<MMKPSolution>& population);
 };
 

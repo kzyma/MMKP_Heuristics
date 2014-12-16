@@ -49,7 +49,8 @@ typedef struct{
 
 /**
  * Binary Bat Algorithm for the multiple-choice, multiple-dimensional 
- * knapsack problem.
+ * knapsack problem. Adoption to MMMKP based on Sabba et al. paper 
+ * "A discrete binary version of the bat algorithm for MMKP".
  */
 class MMKP_BBA:public MMKP_MetaHeuristic{
 private:
@@ -69,12 +70,31 @@ public:
     std::vector<MMKPSolution> runOneGeneration
     (std::vector<MMKPSolution> population);
     
+    
+    /**
+     * Initialize frequency, velocity, rate of pulse and loudnes. Frequency 
+     * and rate of pulse take a random value from 0-1, velocity may take a 
+     * value between -1 and 1 and loudness may take a value between 1-2. Uniform
+     * distribution is used to randomly select in the domain's given.
+     */
     void initBatParemeters(std::vector<MMKPBatSolution>& population);
 
+    /**
+     * Global Search phase of BBA. All solutions are modified based on the 
+     * best solutions quality.
+     */
     void globalSearch(std::vector<MMKPBatSolution>& population);
 
+    /**
+     * Update solution based on a local search strategy. This allows the
+     * algorithm to generate a new best solution around one of the current best
+     * solutions.
+     */
     void localSearch(MMKPBatSolution& bestBat, MMKPBatSolution& population);
     
+    /**
+     * Randomly 'flip bits' of a solution.
+     */
     void randomSearch(MMKPBatSolution& sol);
     
     void competitiveUpdateSol

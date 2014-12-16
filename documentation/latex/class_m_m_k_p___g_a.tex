@@ -33,23 +33,46 @@ Inheritance diagram for M\+M\+K\+P\+\_\+\+G\+A\+:\begin{figure}[H]
 \hypertarget{class_m_m_k_p___g_a_a3b2479268204cedada4d245c9ae23170}{std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \hyperlink{class_m_m_k_p___g_a_a3b2479268204cedada4d245c9ae23170}{run\+One\+Generation} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ population)}\label{class_m_m_k_p___g_a_a3b2479268204cedada4d245c9ae23170}
 
 \begin{DoxyCompactList}\small\item\em Run a single iteration of heuristic. \end{DoxyCompactList}\item 
-\hypertarget{class_m_m_k_p___g_a_a70ed12ccae6bc93ddfc076086679f3a4}{void {\bfseries parent\+Selection} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&p1, \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&p2, std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&population)}\label{class_m_m_k_p___g_a_a70ed12ccae6bc93ddfc076086679f3a4}
-
-\item 
-\hypertarget{class_m_m_k_p___g_a_a6c58b7d6cf6dc8f3fde50096d8108036}{\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} {\bfseries Crossover} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} p1, \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} p2)}\label{class_m_m_k_p___g_a_a6c58b7d6cf6dc8f3fde50096d8108036}
-
-\item 
-\hypertarget{class_m_m_k_p___g_a_a196549b88e88b5b0aa705315a4f6ae91}{void {\bfseries Mutate} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&solution)}\label{class_m_m_k_p___g_a_a196549b88e88b5b0aa705315a4f6ae91}
-
-\end{DoxyCompactItemize}
+void \hyperlink{class_m_m_k_p___g_a_a70ed12ccae6bc93ddfc076086679f3a4}{parent\+Selection} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&p1, \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&p2, std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \&population)
+\begin{DoxyCompactList}\small\item\em Parent selection is done in competetive approach. \end{DoxyCompactList}\item 
+\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \hyperlink{class_m_m_k_p___g_a_a6c58b7d6cf6dc8f3fde50096d8108036}{Crossover} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} p1, \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} p2)
+\begin{DoxyCompactList}\small\item\em Basic ga crossover. \end{DoxyCompactList}\item 
+void \hyperlink{class_m_m_k_p___g_a_a196549b88e88b5b0aa705315a4f6ae91}{Mutate} (\hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} \&solution)
+\begin{DoxyCompactList}\small\item\em Flip a solutions bit's based on a probability, namely mutation rate (default set to 5\%). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
 \subsection{Detailed Description}
 Generic algrithm for the multiple-\/choice, multiple-\/dimensional knapsack problem. 
 
+Adoption based on paper by Chu and Beasley \char`\"{}\+A genetic
+algorithm for the multidimensioanl knapsack problem\char`\"{}. 
+
 \subsection{Member Function Documentation}
-\hypertarget{class_m_m_k_p___g_a_aeeda12afb45c59bd18f9761a75765331}{\index{M\+M\+K\+P\+\_\+\+G\+A@{M\+M\+K\+P\+\_\+\+G\+A}!operator()@{operator()}}
+\hypertarget{class_m_m_k_p___g_a_a6c58b7d6cf6dc8f3fde50096d8108036}{\index{M\+M\+K\+P\+\_\+\+G\+A@{M\+M\+K\+P\+\_\+\+G\+A}!Crossover@{Crossover}}
+\index{Crossover@{Crossover}!M\+M\+K\+P\+\_\+\+G\+A@{M\+M\+K\+P\+\_\+\+G\+A}}
+\subsubsection[{Crossover}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+M\+K\+P\+Solution} M\+M\+K\+P\+\_\+\+G\+A\+::\+Crossover (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution}}]{p1, }
+\item[{{\bf M\+M\+K\+P\+Solution}}]{p2}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___g_a_a6c58b7d6cf6dc8f3fde50096d8108036}
+
+
+Basic ga crossover. 
+
+Half of the bits of p1 and half of p2 are selected to make a new solution. The bits selected are randomly choosen. \hypertarget{class_m_m_k_p___g_a_a196549b88e88b5b0aa705315a4f6ae91}{\index{M\+M\+K\+P\+\_\+\+G\+A@{M\+M\+K\+P\+\_\+\+G\+A}!Mutate@{Mutate}}
+\index{Mutate@{Mutate}!M\+M\+K\+P\+\_\+\+G\+A@{M\+M\+K\+P\+\_\+\+G\+A}}
+\subsubsection[{Mutate}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+G\+A\+::\+Mutate (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{solution}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___g_a_a196549b88e88b5b0aa705315a4f6ae91}
+
+
+Flip a solutions bit's based on a probability, namely mutation rate (default set to 5\%). 
+
+A higher mutation rate will promote state space exploration. \hypertarget{class_m_m_k_p___g_a_aeeda12afb45c59bd18f9761a75765331}{\index{M\+M\+K\+P\+\_\+\+G\+A@{M\+M\+K\+P\+\_\+\+G\+A}!operator()@{operator()}}
 \index{operator()@{operator()}!M\+M\+K\+P\+\_\+\+G\+A@{M\+M\+K\+P\+\_\+\+G\+A}}
 \subsubsection[{operator()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+M\+K\+P\+Solution} M\+M\+K\+P\+\_\+\+G\+A\+::operator() (
 \begin{DoxyParamCaption}
@@ -64,7 +87,20 @@ Must be overriden, I would suggest calling the \char`\"{}run\char`\"{} function 
 
 Implements \hyperlink{class_m_m_k_p___meta_heuristic_acc3de42187c16d4a31776e18135035e5}{M\+M\+K\+P\+\_\+\+Meta\+Heuristic}.
 
+\hypertarget{class_m_m_k_p___g_a_a70ed12ccae6bc93ddfc076086679f3a4}{\index{M\+M\+K\+P\+\_\+\+G\+A@{M\+M\+K\+P\+\_\+\+G\+A}!parent\+Selection@{parent\+Selection}}
+\index{parent\+Selection@{parent\+Selection}!M\+M\+K\+P\+\_\+\+G\+A@{M\+M\+K\+P\+\_\+\+G\+A}}
+\subsubsection[{parent\+Selection}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+G\+A\+::parent\+Selection (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{p1, }
+\item[{{\bf M\+M\+K\+P\+Solution} \&}]{p2, }
+\item[{std\+::vector$<$ {\bf M\+M\+K\+P\+Solution} $>$ \&}]{population}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___g_a_a70ed12ccae6bc93ddfc076086679f3a4}
 
+
+Parent selection is done in competetive approach. 
+
+Two pools are created of 2 (or more depending on the parameters set) solutiosn from the population. Then the best of each are selected to be returned as p1 and p2. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

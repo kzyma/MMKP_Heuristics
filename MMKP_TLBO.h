@@ -76,7 +76,7 @@ public:
     (std::vector<MMKPSolution> population);
     
     /**
-     * TLBO teaching phase. See Vasko et al. paper for more.
+     * TLBO teaching phase for discrete optimization.
      */
     void teachingPhase(std::vector<MMKPSolution>& population);
     
@@ -89,7 +89,8 @@ public:
     
     /**
      * i-TLBO teaching phase. The teaching phase has been modified to
-     * include multiple teachers. Distribution of teachers is even.
+     * include multiple teachers. Distribution of teachers is not even. Based on
+     * method from Rao et al. in "An improved TLBO".
      */
     void teachingPhase_MultiTeacher(std::vector<MMKPSolution>& population,
                                     int numberOfTeachers);
@@ -101,15 +102,38 @@ public:
     void teachingPhase_Modified(std::vector<MMKPSolution>& population,
                                     int numberOfTeachers);
     
+    /**
+     * Orthognal TLBO teaching phase. Uses a single teacher and weights the
+     * selection of an 'item' in a 'class' based on the number of generations
+     * that haved passed. As more generations pass the search is less
+     * exploratory.
+     */
     void teachingPhase_Orthognal(std::vector<MMKPSolution>& population,
                                  int iteration);
     
+    /**
+     * Based TLBO learning phase for discrete problems.
+     */
     void learningPhase(std::vector<MMKPSolution>& population);
     
+    /**
+     * i-tlbo Learning Phase. Uses self motivated learning from Rao et al.
+     * "an improved tlbo..."
+     */
     void improvedLearningPhase(std::vector<MMKPSolution>& population);
 
+    /**
+     * mod-tlbo learning phase. Here self motivated learning is an extra
+     * step, as opposed to i-tlbo, so this method is more expensive
+     * computationally but may yield better results.
+     */
     void modifiedLearningPhase(std::vector<MMKPSolution>& population);
     
+    /**
+     * Orthagnal learning phase takes into account the number of generations
+     * to reduce exploration of the states space search as the number of
+     * generations increases.
+     */
     void learningPhase_Orthognal(std::vector<MMKPSolution>& population,
                                  int iteration);
     

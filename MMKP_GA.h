@@ -44,7 +44,8 @@ public:
 
 /**
  * Generic algrithm for the multiple-choice, multiple-dimensional 
- * knapsack problem.
+ * knapsack problem. Adoption based on paper by Chu and Beasley "A genetic
+ * algorithm for the multidimensioanl knapsack problem".
  */
 class MMKP_GA:public MMKP_MetaHeuristic{
 private:
@@ -64,11 +65,25 @@ public:
     std::vector<MMKPSolution> runOneGeneration
     (std::vector<MMKPSolution> population);
 
+    /**
+     * Parent selection is done in competetive approach. Two pools are created
+     * of 2 (or more depending on the parameters set) solutiosn from the population.
+     * Then the best of each are selected to be returned as p1 and p2.
+     */
     void parentSelection
     (MMKPSolution& p1, MMKPSolution& p2,std::vector<MMKPSolution>& population);
 
+    /**
+     * Basic ga crossover. Half of the bits of p1 and half of p2 are selected
+     * to make a new solution. The bits selected are randomly choosen.
+     */
     MMKPSolution Crossover(MMKPSolution p1,MMKPSolution p2);
 
+    /**
+     * Flip a solutions bit's based on a probability, namely mutation rate 
+     * (default set to 5%). A higher mutation rate will promote state space 
+     * exploration.
+     */
     void Mutate(MMKPSolution& solution);
     
 };

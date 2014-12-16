@@ -129,47 +129,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">int</span> noImproveCount;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}<a class="code" href="struct_m_m_k_p_bee_solution.html">MMKPBeeSolution</a>;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="class_m_m_k_p___a_b_c.html">   57</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_m_m_k_p___a_b_c.html">MMKP_ABC</a>:<span class="keyword">public</span> <a class="code" href="class_m_m_k_p___meta_heuristic.html">MMKP_MetaHeuristic</a>{</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="class_a_b_c__parameters.html">ABC_parameters</a> parameters;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="class_m_m_k_p___a_b_c.html#a4dabcc8155d17c5ddc984dfd1307b4d0">MMKP_ABC</a>(<a class="code" href="class_m_m_k_p_data_set.html">MMKPDataSet</a> dataSet, <a class="code" href="class_a_b_c__parameters.html">ABC_parameters</a> parameters);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">//overloaded operators</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a> <a class="code" href="class_m_m_k_p___a_b_c.html#ad7777f81bbb05359ea884d7cd57df0f7">operator()</a>(std::vector&lt;MMKPSolution&gt; initialPopulation);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a> <a class="code" href="class_m_m_k_p___a_b_c.html#afb60fe316bf761a5cc2a068fab9a15d1">run</a>(std::vector&lt;MMKPSolution&gt; initialPopulation);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    std::vector&lt;MMKPSolution&gt; <a class="code" href="class_m_m_k_p___a_b_c.html#a3f405cbe0f90959d1f55bea4211476d4">runOneGeneration</a></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    (std::vector&lt;MMKPSolution&gt; population);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    std::vector&lt;MMKPBeeSolution&gt; employeedBeePhase</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    (std::vector&lt;MMKPBeeSolution&gt; employeedBees);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    std::vector&lt;MMKPSolution&gt;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    onLookerBeePhase(std::vector&lt;MMKPSolution&gt; onLookerBees,</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                     std::vector&lt;MMKPBeeSolution&gt; employeedBees);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> scoutBeePhase(std::vector&lt;MMKPBeeSolution&gt;&amp; employeedBees);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;};</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(____MMKP_ABC__) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="class_m_m_k_p___a_b_c.html">   58</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_m_m_k_p___a_b_c.html">MMKP_ABC</a>:<span class="keyword">public</span> <a class="code" href="class_m_m_k_p___meta_heuristic.html">MMKP_MetaHeuristic</a>{</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="class_a_b_c__parameters.html">ABC_parameters</a> parameters;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="class_m_m_k_p___a_b_c.html#a4dabcc8155d17c5ddc984dfd1307b4d0">MMKP_ABC</a>(<a class="code" href="class_m_m_k_p_data_set.html">MMKPDataSet</a> dataSet, <a class="code" href="class_a_b_c__parameters.html">ABC_parameters</a> parameters);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">//overloaded operators</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a> <a class="code" href="class_m_m_k_p___a_b_c.html#ad7777f81bbb05359ea884d7cd57df0f7">operator()</a>(std::vector&lt;MMKPSolution&gt; initialPopulation);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="class_m_m_k_p_solution.html">MMKPSolution</a> <a class="code" href="class_m_m_k_p___a_b_c.html#afb60fe316bf761a5cc2a068fab9a15d1">run</a>(std::vector&lt;MMKPSolution&gt; initialPopulation);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    std::vector&lt;MMKPSolution&gt; <a class="code" href="class_m_m_k_p___a_b_c.html#a3f405cbe0f90959d1f55bea4211476d4">runOneGeneration</a></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    (std::vector&lt;MMKPSolution&gt; population);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    std::vector&lt;MMKPBeeSolution&gt; <a class="code" href="class_m_m_k_p___a_b_c.html#af4c67bc91937841cb32510de2e10ba84">employeedBeePhase</a></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    (std::vector&lt;MMKPBeeSolution&gt; employeedBees);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    std::vector&lt;MMKPSolution&gt;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="class_m_m_k_p___a_b_c.html#aa96e1b6432335c101c1ed05637b7c9ac">onLookerBeePhase</a>(std::vector&lt;MMKPSolution&gt; onLookerBees,</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                     std::vector&lt;MMKPBeeSolution&gt; employeedBees);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_m_m_k_p___a_b_c.html#aa1f9ebd197fc64d3eac899fa2c9fc5c1">scoutBeePhase</a>(std::vector&lt;MMKPBeeSolution&gt;&amp; employeedBees);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;};</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(____MMKP_ABC__) */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="class_m_m_k_p___a_b_c_html_a3f405cbe0f90959d1f55bea4211476d4"><div class="ttname"><a href="class_m_m_k_p___a_b_c.html#a3f405cbe0f90959d1f55bea4211476d4">MMKP_ABC::runOneGeneration</a></div><div class="ttdeci">std::vector&lt; MMKPSolution &gt; runOneGeneration(std::vector&lt; MMKPSolution &gt; population)</div><div class="ttdoc">Run a single iteration of heuristic. </div><div class="ttdef"><b>Definition:</b> MMKP_ABC.cpp:101</div></div>
 <div class="ttc" id="class_m_m_k_p___a_b_c_html_ad7777f81bbb05359ea884d7cd57df0f7"><div class="ttname"><a href="class_m_m_k_p___a_b_c.html#ad7777f81bbb05359ea884d7cd57df0f7">MMKP_ABC::operator()</a></div><div class="ttdeci">MMKPSolution operator()(std::vector&lt; MMKPSolution &gt; initialPopulation)</div><div class="ttdoc">Run heuristic and return the best objective function. </div><div class="ttdef"><b>Definition:</b> MMKP_ABC.cpp:22</div></div>
-<div class="ttc" id="class_m_m_k_p___a_b_c_html"><div class="ttname"><a href="class_m_m_k_p___a_b_c.html">MMKP_ABC</a></div><div class="ttdoc">Artificial Bee Colony adapted to the multiple-choice, multiple-dimensional knapsack problem...</div><div class="ttdef"><b>Definition:</b> MMKP_ABC.h:57</div></div>
+<div class="ttc" id="class_m_m_k_p___a_b_c_html"><div class="ttname"><a href="class_m_m_k_p___a_b_c.html">MMKP_ABC</a></div><div class="ttdoc">Artificial Bee Colony adapted to the multiple-choice, multiple-dimensional knapsack problem...</div><div class="ttdef"><b>Definition:</b> MMKP_ABC.h:58</div></div>
 <div class="ttc" id="class_m_m_k_p___meta_heuristic_html"><div class="ttname"><a href="class_m_m_k_p___meta_heuristic.html">MMKP_MetaHeuristic</a></div><div class="ttdoc">Base class for MMKP metaheuristic package. </div><div class="ttdef"><b>Definition:</b> MMKP_MetaHeuristic.h:104</div></div>
 <div class="ttc" id="class_m_m_k_p_solution_html"><div class="ttname"><a href="class_m_m_k_p_solution.html">MMKPSolution</a></div><div class="ttdoc">Solution to MMKP problem consisting of class/item selection, the summation of all classes&#39; profit and...</div><div class="ttdef"><b>Definition:</b> MMKPSolution.h:31</div></div>
+<div class="ttc" id="class_m_m_k_p___a_b_c_html_aa1f9ebd197fc64d3eac899fa2c9fc5c1"><div class="ttname"><a href="class_m_m_k_p___a_b_c.html#aa1f9ebd197fc64d3eac899fa2c9fc5c1">MMKP_ABC::scoutBeePhase</a></div><div class="ttdeci">void scoutBeePhase(std::vector&lt; MMKPBeeSolution &gt; &amp;employeedBees)</div><div class="ttdoc">If an employeed bee&#39;s fitness is not improved by a number of iterations (noImproveCount parameter) th...</div><div class="ttdef"><b>Definition:</b> MMKP_ABC.cpp:223</div></div>
+<div class="ttc" id="class_m_m_k_p___a_b_c_html_aa96e1b6432335c101c1ed05637b7c9ac"><div class="ttname"><a href="class_m_m_k_p___a_b_c.html#aa96e1b6432335c101c1ed05637b7c9ac">MMKP_ABC::onLookerBeePhase</a></div><div class="ttdeci">std::vector&lt; MMKPSolution &gt; onLookerBeePhase(std::vector&lt; MMKPSolution &gt; onLookerBees, std::vector&lt; MMKPBeeSolution &gt; employeedBees)</div><div class="ttdoc">Using roulette style selection an employeed bee is matched with onlooker bee for solution mutation ba...</div><div class="ttdef"><b>Definition:</b> MMKP_ABC.cpp:172</div></div>
 <div class="ttc" id="struct_m_m_k_p_bee_solution_html"><div class="ttname"><a href="struct_m_m_k_p_bee_solution.html">MMKPBeeSolution</a></div><div class="ttdoc">Solution representation for Bee Colony. </div><div class="ttdef"><b>Definition:</b> MMKP_ABC.h:48</div></div>
 <div class="ttc" id="class_meta_heuristic__parameters_html"><div class="ttname"><a href="class_meta_heuristic__parameters.html">MetaHeuristic_parameters</a></div><div class="ttdoc">Parameters for customizing the MetaHeuristic algorithm. </div><div class="ttdef"><b>Definition:</b> MMKP_MetaHeuristic.h:85</div></div>
 <div class="ttc" id="class_m_m_k_p___a_b_c_html_afb60fe316bf761a5cc2a068fab9a15d1"><div class="ttname"><a href="class_m_m_k_p___a_b_c.html#afb60fe316bf761a5cc2a068fab9a15d1">MMKP_ABC::run</a></div><div class="ttdeci">MMKPSolution run(std::vector&lt; MMKPSolution &gt; initialPopulation)</div><div class="ttdoc">Run metaheuristic and return the result, the best objective function. </div><div class="ttdef"><b>Definition:</b> MMKP_ABC.cpp:26</div></div>
 <div class="ttc" id="class_m_m_k_p___a_b_c_html_a4dabcc8155d17c5ddc984dfd1307b4d0"><div class="ttname"><a href="class_m_m_k_p___a_b_c.html#a4dabcc8155d17c5ddc984dfd1307b4d0">MMKP_ABC::MMKP_ABC</a></div><div class="ttdeci">MMKP_ABC(MMKPDataSet dataSet, ABC_parameters parameters)</div><div class="ttdoc">Construct MMKP_ABC object. </div><div class="ttdef"><b>Definition:</b> MMKP_ABC.cpp:18</div></div>
 <div class="ttc" id="class_a_b_c__parameters_html"><div class="ttname"><a href="class_a_b_c__parameters.html">ABC_parameters</a></div><div class="ttdoc">Parameters for customizing the BBA algorithm. </div><div class="ttdef"><b>Definition:</b> MMKP_ABC.h:35</div></div>
+<div class="ttc" id="class_m_m_k_p___a_b_c_html_af4c67bc91937841cb32510de2e10ba84"><div class="ttname"><a href="class_m_m_k_p___a_b_c.html#af4c67bc91937841cb32510de2e10ba84">MMKP_ABC::employeedBeePhase</a></div><div class="ttdeci">std::vector&lt; MMKPBeeSolution &gt; employeedBeePhase(std::vector&lt; MMKPBeeSolution &gt; employeedBees)</div><div class="ttdoc">Modify solution based on equation 3 in "Binary Artificial Bee Colony  Optimization Using Bitwise Oper...</div><div class="ttdef"><b>Definition:</b> MMKP_ABC.cpp:135</div></div>
 <div class="ttc" id="class_m_m_k_p_data_set_html"><div class="ttname"><a href="class_m_m_k_p_data_set.html">MMKPDataSet</a></div><div class="ttdoc">MMKP data consisting of classes with items (class: ItemData) and available resources. </div><div class="ttdef"><b>Definition:</b> MMKPDataSet.h:134</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 15 2014 15:43:11 for MMKP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 16 2014 18:31:56 for MMKP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

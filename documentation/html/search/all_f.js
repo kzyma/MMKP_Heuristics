@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7emmkp_5fmetaheuristic',['~MMKP_MetaHeuristic',['../class_m_m_k_p___meta_heuristic.html#a571af8ce6fb011162d4af50526123fce',1,'MMKP_MetaHeuristic']]]
+  ['updatesolution',['updateSolution',['../class_m_m_k_p_data_set.html#a389bd00ef2f3c1feb014a0e8ca128222',1,'MMKPDataSet']]]
 ];

@@ -52,7 +52,8 @@ typedef struct{
 
 /**
  * Artificial Bee Colony adapted to the multiple-choice, multiple-dimensional 
- * knapsack problem.
+ * knapsack problem. Based on method by Jia et al. in "Binary Artificial 
+ * Bee Colony Optimization Using Bitwise Operation".
  */
 class MMKP_ABC:public MMKP_MetaHeuristic{
 private:
@@ -72,13 +73,28 @@ public:
     std::vector<MMKPSolution> runOneGeneration
     (std::vector<MMKPSolution> population);
     
+    /**
+     * Modify solution based on equation 3 in "Binary Artificial Bee Colony 
+     * Optimization Using Bitwise Operation" by Jia et al.
+     */
     std::vector<MMKPBeeSolution> employeedBeePhase
     (std::vector<MMKPBeeSolution> employeedBees);
     
+    /**
+     * Using roulette style selection an employeed bee is matched with
+     * onlooker bee for solution mutation based on equation 3 in 
+     * "Binary Artificial Bee Colony Optimization Using Bitwise 
+     * Operation" by Jia et al.
+     */
     std::vector<MMKPSolution>
     onLookerBeePhase(std::vector<MMKPSolution> onLookerBees,
                      std::vector<MMKPBeeSolution> employeedBees);
     
+    /**
+     * If an employeed bee's fitness is not improved by a number of 
+     * iterations (noImproveCount parameter) the solution is 
+     * reset randomly.
+     */
     void scoutBeePhase(std::vector<MMKPBeeSolution>& employeedBees);
 };
 

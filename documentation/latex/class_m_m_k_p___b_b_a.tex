@@ -36,18 +36,15 @@ Inheritance diagram for M\+M\+K\+P\+\_\+\+B\+B\+A\+:\begin{figure}[H]
 \hypertarget{class_m_m_k_p___b_b_a_ac5ecabe29a6727328eee8b4899ae5b77}{std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ \hyperlink{class_m_m_k_p___b_b_a_ac5ecabe29a6727328eee8b4899ae5b77}{run\+One\+Generation} (std\+::vector$<$ \hyperlink{class_m_m_k_p_solution}{M\+M\+K\+P\+Solution} $>$ population)}\label{class_m_m_k_p___b_b_a_ac5ecabe29a6727328eee8b4899ae5b77}
 
 \begin{DoxyCompactList}\small\item\em Run a single iteration of heuristic. \end{DoxyCompactList}\item 
-\hypertarget{class_m_m_k_p___b_b_a_a35ef47fbf5ddc306c56269c86492b513}{void {\bfseries init\+Bat\+Paremeters} (std\+::vector$<$ \hyperlink{struct_m_m_k_p_bat_solution}{M\+M\+K\+P\+Bat\+Solution} $>$ \&population)}\label{class_m_m_k_p___b_b_a_a35ef47fbf5ddc306c56269c86492b513}
+void \hyperlink{class_m_m_k_p___b_b_a_a35ef47fbf5ddc306c56269c86492b513}{init\+Bat\+Paremeters} (std\+::vector$<$ \hyperlink{struct_m_m_k_p_bat_solution}{M\+M\+K\+P\+Bat\+Solution} $>$ \&population)
+\begin{DoxyCompactList}\small\item\em Initialize frequency, velocity, rate of pulse and loudnes. \end{DoxyCompactList}\item 
+void \hyperlink{class_m_m_k_p___b_b_a_a69ed03ff0cfc287e99fdadf22b895837}{global\+Search} (std\+::vector$<$ \hyperlink{struct_m_m_k_p_bat_solution}{M\+M\+K\+P\+Bat\+Solution} $>$ \&population)
+\begin{DoxyCompactList}\small\item\em Global Search phase of B\+B\+A. \end{DoxyCompactList}\item 
+void \hyperlink{class_m_m_k_p___b_b_a_a034ec79e13826eab9f4a5467bd0dc631}{local\+Search} (\hyperlink{struct_m_m_k_p_bat_solution}{M\+M\+K\+P\+Bat\+Solution} \&best\+Bat, \hyperlink{struct_m_m_k_p_bat_solution}{M\+M\+K\+P\+Bat\+Solution} \&population)
+\begin{DoxyCompactList}\small\item\em Update solution based on a local search strategy. \end{DoxyCompactList}\item 
+\hypertarget{class_m_m_k_p___b_b_a_a9f9d1b11c77b6ed4f762288ce7d6738f}{void \hyperlink{class_m_m_k_p___b_b_a_a9f9d1b11c77b6ed4f762288ce7d6738f}{random\+Search} (\hyperlink{struct_m_m_k_p_bat_solution}{M\+M\+K\+P\+Bat\+Solution} \&sol)}\label{class_m_m_k_p___b_b_a_a9f9d1b11c77b6ed4f762288ce7d6738f}
 
-\item 
-\hypertarget{class_m_m_k_p___b_b_a_a69ed03ff0cfc287e99fdadf22b895837}{void {\bfseries global\+Search} (std\+::vector$<$ \hyperlink{struct_m_m_k_p_bat_solution}{M\+M\+K\+P\+Bat\+Solution} $>$ \&population)}\label{class_m_m_k_p___b_b_a_a69ed03ff0cfc287e99fdadf22b895837}
-
-\item 
-\hypertarget{class_m_m_k_p___b_b_a_a034ec79e13826eab9f4a5467bd0dc631}{void {\bfseries local\+Search} (\hyperlink{struct_m_m_k_p_bat_solution}{M\+M\+K\+P\+Bat\+Solution} \&best\+Bat, \hyperlink{struct_m_m_k_p_bat_solution}{M\+M\+K\+P\+Bat\+Solution} \&population)}\label{class_m_m_k_p___b_b_a_a034ec79e13826eab9f4a5467bd0dc631}
-
-\item 
-\hypertarget{class_m_m_k_p___b_b_a_a9f9d1b11c77b6ed4f762288ce7d6738f}{void {\bfseries random\+Search} (\hyperlink{struct_m_m_k_p_bat_solution}{M\+M\+K\+P\+Bat\+Solution} \&sol)}\label{class_m_m_k_p___b_b_a_a9f9d1b11c77b6ed4f762288ce7d6738f}
-
-\item 
+\begin{DoxyCompactList}\small\item\em Randomly 'flip bits' of a solution. \end{DoxyCompactList}\item 
 \hypertarget{class_m_m_k_p___b_b_a_ae9a16bfab53289ed234348b3553c6a53}{void {\bfseries competitive\+Update\+Sol} (\hyperlink{struct_m_m_k_p_bat_solution}{M\+M\+K\+P\+Bat\+Solution} \&sol, \hyperlink{struct_m_m_k_p_bat_solution}{M\+M\+K\+P\+Bat\+Solution} \&new\+Sol)}\label{class_m_m_k_p___b_b_a_ae9a16bfab53289ed234348b3553c6a53}
 
 \end{DoxyCompactItemize}
@@ -57,8 +54,44 @@ Inheritance diagram for M\+M\+K\+P\+\_\+\+B\+B\+A\+:\begin{figure}[H]
 \subsection{Detailed Description}
 Binary Bat Algorithm for the multiple-\/choice, multiple-\/dimensional knapsack problem. 
 
+Adoption to M\+M\+M\+K\+P based on Sabba et al. paper \char`\"{}\+A discrete binary version of the bat algorithm for M\+M\+K\+P\char`\"{}. 
+
 \subsection{Member Function Documentation}
-\hypertarget{class_m_m_k_p___b_b_a_ab38c1d657ea8308b3636be53f46644d8}{\index{M\+M\+K\+P\+\_\+\+B\+B\+A@{M\+M\+K\+P\+\_\+\+B\+B\+A}!operator()@{operator()}}
+\hypertarget{class_m_m_k_p___b_b_a_a69ed03ff0cfc287e99fdadf22b895837}{\index{M\+M\+K\+P\+\_\+\+B\+B\+A@{M\+M\+K\+P\+\_\+\+B\+B\+A}!global\+Search@{global\+Search}}
+\index{global\+Search@{global\+Search}!M\+M\+K\+P\+\_\+\+B\+B\+A@{M\+M\+K\+P\+\_\+\+B\+B\+A}}
+\subsubsection[{global\+Search}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+B\+B\+A\+::global\+Search (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf M\+M\+K\+P\+Bat\+Solution} $>$ \&}]{population}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___b_b_a_a69ed03ff0cfc287e99fdadf22b895837}
+
+
+Global Search phase of B\+B\+A. 
+
+All solutions are modified based on the best solutions quality. \hypertarget{class_m_m_k_p___b_b_a_a35ef47fbf5ddc306c56269c86492b513}{\index{M\+M\+K\+P\+\_\+\+B\+B\+A@{M\+M\+K\+P\+\_\+\+B\+B\+A}!init\+Bat\+Paremeters@{init\+Bat\+Paremeters}}
+\index{init\+Bat\+Paremeters@{init\+Bat\+Paremeters}!M\+M\+K\+P\+\_\+\+B\+B\+A@{M\+M\+K\+P\+\_\+\+B\+B\+A}}
+\subsubsection[{init\+Bat\+Paremeters}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+B\+B\+A\+::init\+Bat\+Paremeters (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf M\+M\+K\+P\+Bat\+Solution} $>$ \&}]{population}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___b_b_a_a35ef47fbf5ddc306c56269c86492b513}
+
+
+Initialize frequency, velocity, rate of pulse and loudnes. 
+
+Frequency and rate of pulse take a random value from 0-\/1, velocity may take a value between -\/1 and 1 and loudness may take a value between 1-\/2. Uniform distribution is used to randomly select in the domain's given. \hypertarget{class_m_m_k_p___b_b_a_a034ec79e13826eab9f4a5467bd0dc631}{\index{M\+M\+K\+P\+\_\+\+B\+B\+A@{M\+M\+K\+P\+\_\+\+B\+B\+A}!local\+Search@{local\+Search}}
+\index{local\+Search@{local\+Search}!M\+M\+K\+P\+\_\+\+B\+B\+A@{M\+M\+K\+P\+\_\+\+B\+B\+A}}
+\subsubsection[{local\+Search}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+K\+P\+\_\+\+B\+B\+A\+::local\+Search (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+M\+K\+P\+Bat\+Solution} \&}]{best\+Bat, }
+\item[{{\bf M\+M\+K\+P\+Bat\+Solution} \&}]{population}
+\end{DoxyParamCaption}
+)}}\label{class_m_m_k_p___b_b_a_a034ec79e13826eab9f4a5467bd0dc631}
+
+
+Update solution based on a local search strategy. 
+
+This allows the algorithm to generate a new best solution around one of the current best solutions. \hypertarget{class_m_m_k_p___b_b_a_ab38c1d657ea8308b3636be53f46644d8}{\index{M\+M\+K\+P\+\_\+\+B\+B\+A@{M\+M\+K\+P\+\_\+\+B\+B\+A}!operator()@{operator()}}
 \index{operator()@{operator()}!M\+M\+K\+P\+\_\+\+B\+B\+A@{M\+M\+K\+P\+\_\+\+B\+B\+A}}
 \subsubsection[{operator()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+M\+K\+P\+Solution} M\+M\+K\+P\+\_\+\+B\+B\+A\+::operator() (
 \begin{DoxyParamCaption}

@@ -117,7 +117,8 @@ public:
 };
 
 /**
- *
+ * A semi random greedy approach. This chooses an item to add to a class
+ * based on 1 of 5 possible functions for calculating a surrogate profit.
  */
 class GenerateRandomizedPopulationGreedyV1:public PopulationGenerator{
 private:
