@@ -25,4 +25,4 @@ Heuristic’s currently supported are:
 5)Binary Bat Algorithm (BBA)
 6)Genetic Algorithm (GA)
 
-For documentation please visit.
+For documentation please visit http://bill.kutztown.edu/~kzyma650/MMKP_DOCS 
