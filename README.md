@@ -26,31 +26,36 @@ For source documentation please visit http://bill.kutztown.edu/~kzyma650/MMKP_DO
 To compile and run:
 
 1)Download a copy of source code and navigate into the main MMKP_Heuristics folder.
+
 2)In order to use the test driver you will also need python and dependent libraries
 shown bellow under “Dependencies”.
+
 3)Run ‘make’ to compile source. Check below for compiler versions and build
 environments that have been tested to be working.
+
 4)You may now want to configure which problems you would like to run or specific
 algorithm settings. For this navigate to the “build” folder and edit 
 _Settings.py files. For example the file GeneralSettings.py allows you to
 choose while problems to run, the population size of heuristics, ect.
+
 5)Run the algorithm by invoking “python AlgRunner.py [algorithm]” in the build
 folder. Possible [algorithm] arguments include bba, tlbo, abc, coa and ga.
+
 6)Results will be output in the subfolder “results” as excel files:
-results/[alg]_OverviewResults.xls
-results/[alg]_FuncEvals.xls
-results/graphs/[alg]_ConvResults.xls
+    results/[alg]_OverviewResults.xls
+    results/[alg]_FuncEvals.xls
+    results/graphs/[alg]_ConvResults.xls
 
 *note* you make also directly run the executable file ./HeuristicApp, in which
 case results will be directly output to the console.
 
-./HeuristicApp [data folder] [problem] [problem #] [algorithm] 
-[algorithm modifications] [population size] [# of generations] 
-[algorithm specific parameters]
+    ./HeuristicApp [data folder] [problem] [problem #] [algorithm] 
+        [algorithm modifications] [population size] [# of generations] 
+        [algorithm specific parameters]
 
 ex:
 
-./HeuristicApp orlib_data I01 1 ga 1210 90 60 2 0.05
+    ./HeuristicApp orlib_data I01 1 ga 1210 90 60 2 0.05
 
 Dependencies:
 
