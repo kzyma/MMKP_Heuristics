@@ -19,11 +19,11 @@ build: Heuristic Mmhph
 
 Heuristic: MMKPSolution.o MMKPDataSet.o MMKPPopulationGenerators.o \
 	MMKP_MetaHeuristic.o MMKP_TLBO.o MMKP_COA.o MMKP_GA.o MMKP_BBA.o \
-	MMKP_ACO.o MMKP_ABC.o MMKP_LocalSearch.o
+	MMKP_ACO.o MMKP_ABC.o MMKP_LocalSearch.o MMKP_PSO.o
 	g++ $(FLAGS) -o build/HeuristicApp HeuristicApp.cpp MMKPSolution.o \
 	MMKPDataSet.o MMKPPopulationGenerators.o MMKP_MetaHeuristic.o \
 	MMKP_TLBO.o MMKP_COA.o MMKP_GA.o MMKP_BBA.o MMKP_ACO.o MMKP_ABC.o \
-	MMKP_LocalSearch.o
+	MMKP_LocalSearch.o MMKP_PSO.o
 
 Mmhph: 	MMKP_GA.o MMKPSolution.o MMKPDataSet.o MMKPPopulationGenerators.o \
 	MMKP_TLBO.o MMKP_COA.o MMKP_MetaHeuristic.o MMKP_LocalSearch.o
@@ -52,6 +52,9 @@ MMKP_GA.o:
 MMKP_BBA.o:
 	g++ $(FLAGS) -c MMKP_BBA.cpp
 
+MMKP_PSO.o:
+	g++ $(FLAGS) -c MMKP_PSO.cpp
+
 MMKP_ACO.o:
 	g++ $(FLAGS) -c MMKP_ACO.cpp
 
@@ -76,5 +79,6 @@ clean:
 	rm -rf build/CoaSettings.pyc
 	rm -rf build/TlboSettings.pyc
 	rm -rf build/GaSettings.pyc
+	rm -rf build/PsoSettings.pyc
 	rm -rf build/GeneralSettings.pyc
 	rm -rf build/BbaSettings.pyc

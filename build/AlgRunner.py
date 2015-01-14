@@ -56,6 +56,7 @@ import GaSettings
 import BbaSettings
 import AcoSettings
 import GeneralSettings as settings
+import PsoSettings
 
 
 #format and keys of data stored in problemSetData
@@ -261,6 +262,8 @@ def run(alg):
                         paramStr = str(AcoSettings.B)+' '+str(AcoSettings.p)+' '+str(AcoSettings.e)
                     elif alg == 'mmhph':
                         execStr = './MmhphApp'
+                    elif alg == 'pso':
+                        paramStr = str(PsoSettings.LEARNING_FACTOR)
                     elif alg == 'abc':
                         pass
                     else:

@@ -49,6 +49,7 @@
 #include "MMKP_GA.h"
 #include "MMKP_TLBO.h"
 #include "MMKP_LocalSearch.h"
+#include "MMKP_PSO.h"
 
 int main(int argc, char* argv[]){
     
@@ -135,6 +136,15 @@ int main(int argc, char* argv[]){
             parameters.multipleChoiceFeasibilityMod = mods[1] - '0';
             parameters.multipleDimFeasibilityMod = mods[2] - '0';
             algorithm = new MMKP_ABC(dataSet,parameters);
+    }else if(alg.compare("pso")==0){
+            if(argc != 9){std::cout<<"Invalid args for pso.\n";return 0;}
+            PSO_parameters parameters;
+            parameters.numberOfGenerations = genSize;
+            parameters.populationSize = popSize;
+            parameters.multipleChoiceFeasibilityMod = mods[1] - '0';
+            parameters.multipleDimFeasibilityMod = mods[2] - '0';
+            parameters.learningFactor = atof(argv[8]);
+            algorithm = new MMKP_PSO(dataSet,parameters);
     }else if(alg.compare("tlbo")==0){
             if(argc != 10){std::cout<<"Invalid args for tlbo.\n";return 0;}
             TLBO_parameters parameters;
