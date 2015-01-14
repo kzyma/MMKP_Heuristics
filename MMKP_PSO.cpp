@@ -64,6 +64,13 @@ MMKPSolution MMKP_PSO::run(std::vector<MMKPSolution> initialPopulation){
          *          DO some equation on the solution to create a new solution.
          */
         
+        /*
+         *another note. For the values of c_1 and c_2 in the equations in the
+         *papers use this->parameters.learningFactor. I made this an parameter
+         *that is passed to the program, for ease of trying other values.
+         *You can change this by going to the file "PsoSettings" under the
+         *build directory and changing it to whatever value you choose.
+         */
         
         /*
          * Also at some point you will need to implement a local search
