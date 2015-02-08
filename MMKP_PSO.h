@@ -60,6 +60,13 @@ public:
     }
 };
 
+class Particle{
+public:
+    MMKPSolution solution;
+    MMKPSolution localBest;
+    std::vector< std::vector<float> > v;
+};
+
 /**
  * Particle Swarm Optimization for the multiple-choice, multiple-dimensional
  * knapsack problem.

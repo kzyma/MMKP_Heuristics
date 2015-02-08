@@ -30,6 +30,10 @@ MMKPSolution MMKP_PSO::run(std::vector<MMKPSolution> initialPopulation){
     
     std::vector<MMKPSolution> population = initialPopulation;
     
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dib(0, 1);
+    
     bool terminationCriterion = false;
     int currentGeneration = 0;
     this->convergenceData.empty();
@@ -46,47 +50,63 @@ MMKPSolution MMKP_PSO::run(std::vector<MMKPSolution> initialPopulation){
             }
         }
     }
+
+    std::vector<Particle> particles;
+    for(int i=0;i<population.size();i++){
+        Particle temp;
+        temp.solution = population[i];
+        temp.localBest = population[i];
+        for(int j=0;j<temp.solution.size();j++){
+            std::vector<float> tempV;
+            for(int k=0;k<temp.solution[j].size();k++){
+                float v = (rand() % 4) - 2;
+                tempV.push_back(v);
+            }
+            temp.v.push_back(tempV);
+        }
+        particles.push_back(temp);
+    }
     
     //main loop
     while(!terminationCriterion){
         
-        //this is where specific code for PSO goes.
+        for(int i=0;i<particles.size();i++){
+            for (int j=0;j<particles[i].solution.size();j++){
+                for(int k=0;k<particles[i].solution[j].size();k++){
+                    //update velocity
+                    particles[i].v[j][k] = particles[i].v[j][k] +
+                        (this->parameters.learningFactor *
+                         (particles[i].localBest[j][k] - particles[i].solution[j][k])) +
+                        (this->parameters.learningFactor *
+                        ((bestSolution[j][k] - particles[i].solution[j][k])));
+                    //normalize velocity
+                    float normalizedV = 1/(1+(exp(-(particles[i].v[j][k]))));
+                    float r = dib(gen);
+                    
+                    //update position
+                    if(r <= normalizedV){
+                        particles[i].solution[j][k] = 1;
+                    }else{
+                        particles[i].solution[j][k] = 0;
+                    }
+                }
+            }
+            
+            MMKP_MetaHeuristic::makeFeasible(particles[i].solution);
+            
+            //check if new particles is better than local best
+            if ((particles[i].solution.getProfit() > particles[i].localBest.getProfit())&&
+                (this->dataSet.isFeasible(particles[i].solution))){
+                particles[i].localBest = particles[i].solution;
+            }
+            
+        }
         
-        /*make sure in your function which executes the equations for PSO,
-         *that you do this->currentFuncEvals += 1 for every iteration of
-         *the loop. This way the function evaluations will be output correctly
-         *in the excel spreadsheet.
-         *...
-         *So, for example
-         *FOR every class in a solution:
-         *    FOR every item in that class:
-         *         this->currentFuncEvals +=1;
-         *          DO some equation on the solution to create a new solution.
-         */
-        
-        /*
-         *another note. For the values of c_1 and c_2 in the equations in the
-         *papers use this->parameters.learningFactor. I made this an parameter
-         *that is passed to the program, for ease of trying other values.
-         *You can change this by going to the file "PsoSettings" under the
-         *build directory and changing it to whatever value you choose.
-         */
-        
-        /*
-         * Also at some point you will need to implement a local search
-         * into PSO. The following is how you will set this up...but do not
-         * worry about this right now.
-         *
-         * ReactiveLocalSearch RLS(dataSet);
-         * solution = RLS(solution);
-         * this->currentFuncEvals += RLS.getFuncEvals();
-         */
-        
-        
-        for(int i=0;i<population.size();i++){
+        //check if any new particles are better than global best
+        for(int i=0;i<particles.size();i++){
             if(this->dataSet.isFeasible(population[i])){
-                if(population[i].getProfit() > bestSolution.getProfit()){
-                    bestSolution = population[i];
+                if(particles[i].localBest.getProfit() > bestSolution.getProfit()){
+                    bestSolution = particles[i].localBest;
                     this->convergenceIteration = currentGeneration;
                 }
             }

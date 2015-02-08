@@ -109,7 +109,7 @@ MMKPSolution MMKP_BBA::run(std::vector<MMKPSolution> initialPopulation){
         }
         this->currentGeneration++;
     }
-
+    
     return bestSolution;
 }
 
@@ -168,7 +168,7 @@ void MMKP_BBA::initBatParemeters(std::vector<MMKPBatSolution>& population){
         population[i].r_0 =dif(gen);
         
         //init loudness
-        population[i].a = dil(gen);
+        population[i].a = dif(gen);
     }
 }
 
@@ -180,6 +180,10 @@ void MMKP_BBA::globalSearch(std::vector<MMKPBatSolution>& population){
     std::uniform_real_distribution<> dib(0, 1);
     
     MMKPBatSolution bestBat = population[0];
+    
+    ReactiveLocalSearch RLS(dataSet);
+    bestBat.solution = RLS(bestBat.solution);
+    this->currentFuncEvals += RLS.getFuncEvals();
     
     for(int i=0;i<population.size();i++){
         
@@ -195,7 +199,7 @@ void MMKP_BBA::globalSearch(std::vector<MMKPBatSolution>& population){
         int averageVSize = 0;
         for(int j=0;j<currentBat.solution.size();j++){
             for(int k=0;k<currentBat.solution[j].size();k++){
-                
+                this->currentFuncEvals++;
                 float vTemp = currentBat.v + ((currentBat.solution[j][k]
                                                -bestBat.solution[j][k])*fTemp);
                 averageV += vTemp;
@@ -210,21 +214,21 @@ void MMKP_BBA::globalSearch(std::vector<MMKPBatSolution>& population){
                 }else{
                     currentBat.solution[j][k] = 0;
                 }
-                
             }
         }
         currentBat.v = (averageV/averageVSize);
         MMKP_MetaHeuristic::makeFeasible(currentBat.solution);
-        MMKP_BBA::competitiveUpdateSol(population[i],currentBat);
         
-        int localSolutionIndex = rand() % 10;
-        MMKPBatSolution bestBat = population[localSolutionIndex];
-        MMKP_BBA::localSearch(bestBat,currentBat);
+        if(dib(gen) > currentBat.r){
+            int localSolutionIndex = rand() % 10;
+            MMKPBatSolution bestBat = population[localSolutionIndex];
+            MMKP_BBA::localSearch(bestBat,currentBat);
+        }else{
+            MMKP_BBA::Mutate(currentBat);
+        }
+        //MMKP_BBA::randomSearch(currentBat);
         MMKP_BBA::competitiveUpdateSol(population[i],currentBat);
-        
-        MMKP_BBA::randomSearch(currentBat);
     }
-    this->currentFuncEvals += population.size();
 }
 
 void MMKP_BBA::competitiveUpdateSol
@@ -236,18 +240,28 @@ void MMKP_BBA::competitiveUpdateSol
     bool solFeas = this->dataSet.isFeasible(sol.solution);
     bool newFeas = this->dataSet.isFeasible(newSol.solution);
     
-    //if both feasible, choose best profit
-    if(newFeas && solFeas){
-        if((newSol.solution).getProfit() > (sol.solution).getProfit()){
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dib(0, 1);
+    
+    if(dib(gen) < sol.a){
+        //if both feasible, choose best profit
+        if(newFeas && solFeas){
+            if((newSol.solution).getProfit() > (sol.solution).getProfit()){
+                sol = newSol;
+                sol.a = sol.a - (sol.a * .05);
+                sol.r = sol.r + (sol.r * .05);
+            }
+            //if one is feasible, that automatically is choosen
+        }else if((!solFeas) && newFeas){
+            sol.a = sol.a - (sol.a * .05);
+            sol.r = sol.r + (sol.r * .05);
+            sol = newSol;
+            //if neither is feasible, choose greatest profit.
+        }else if ((!solFeas && !newFeas)&&(newSol.solution.getProfit()
+                                           > sol.solution.getProfit())){
             sol = newSol;
         }
-        //if one is feasible, that automatically is choosen
-    }else if((!solFeas) && newFeas){
-        sol = newSol;
-        //if neither is feasible, choose greatest profit.
-    }else if ((!solFeas && !newFeas)&&(newSol.solution.getProfit()
-                                       > sol.solution.getProfit())){
-        sol = newSol;
     }
 }
 
@@ -260,42 +274,39 @@ void MMKP_BBA::localSearch(MMKPBatSolution& bestBat,MMKPBatSolution& solution){
     std::uniform_real_distribution<> dib(0, 1);
     float r_1 = dib(gen);
     
-    if(r_1 < solution.r){
-        this->currentFuncEvals ++;
-        //find P1 and P2
-        int P1 = rand() % solution.solution.size();
-        int P2 = (rand() % (solution.solution.size()-P1)) + (P1);
+    //find P1 and P2
+    int P1 = rand() % solution.solution.size();
+    int P2 = (rand() % (solution.solution.size()-P1)) + (P1);
 
-        //equation 1
-        float B = dib(gen);
-        float fTemp = solution.fmax + ((solution.fmax
-                                          -solution.fmin)*B);
-        
-        //equation 2
-        float averageV = 0.0;
-        int averageVSize = 0;
-        for(int j=P1;j<P2;j++){
-            for(int k=0;k<solution.solution[j].size();k++){
-                
-                float vTemp = solution.v + ((solution.solution[j][k]
-                                               -bestBat.solution[j][k])*fTemp);
-                averageV += vTemp;
-                averageVSize++;
-                
-                //equation "3"--binary uses 7 and 8
-                float normalizedV = 1/(1+(exp(-(vTemp))));
-                float r = dib(gen);
-                
-                if(r <= normalizedV){
-                    solution.solution[j][k] = 1;
-                }else{
-                    solution.solution[j][k] = 0;
-                }
-                
+    //equation 1
+    float B = dib(gen);
+    float fTemp = solution.fmax + ((solution.fmax
+                                      -solution.fmin)*B);
+    
+    //equation 2
+    float averageV = 0.0;
+    int averageVSize = 0;
+    for(int j=P1;j<P2;j++){
+        for(int k=0;k<solution.solution[j].size();k++){
+            this->currentFuncEvals++;
+            float vTemp = solution.v + ((solution.solution[j][k]
+                                           -bestBat.solution[j][k])*fTemp);
+            averageV += vTemp;
+            averageVSize++;
+            
+            //equation "3"--binary uses 7 and 8
+            float normalizedV = 1/(1+(exp(-(vTemp))));
+            float r = dib(gen);
+            
+            if(r <= normalizedV){
+                solution.solution[j][k] = 1;
+            }else{
+                solution.solution[j][k] = 0;
             }
-            solution.v = (averageV/averageVSize);
-            MMKP_MetaHeuristic::makeFeasible(solution.solution);
+            
         }
+        solution.v = (averageV/averageVSize);
+        MMKP_MetaHeuristic::makeFeasible(solution.solution);
     }
 }
 
@@ -317,7 +328,7 @@ void MMKP_BBA::randomSearch(MMKPBatSolution& sol){
     float r_1 = dib(gen);
     if(r_1 < sol.a){
         bool updateAandR = false;
-        float rateOfChange = .8;
+        float rateOfChange = .85;
         
         dataSet.updateSolution(sol.solution);
         dataSet.updateSolution(newSol);
@@ -344,6 +355,26 @@ void MMKP_BBA::randomSearch(MMKPBatSolution& sol){
         if(updateAandR){
             sol.r = sol.r_0 * (1.0-(exp(-(this->currentGeneration*rateOfChange))));
             sol.a = sol.a * rateOfChange;
+        }
+    }
+}
+
+void MMKP_BBA::Mutate(MMKPBatSolution& sol){
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dif(0, 1);
+    
+    for(int i=0;i<sol.solution.size();i++){
+        for(int j=0;j<sol.solution[i].size();j++){
+            this->currentFuncEvals++;
+            float r = dif(gen);
+            if(r < .05){
+                if(sol.solution[i][j] == 0){
+                    sol.solution[i][j] = 1;
+                }else{
+                    sol.solution[i][j] = 0;
+                }
+            }
         }
     }
 }
