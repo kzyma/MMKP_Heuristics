@@ -89,6 +89,7 @@ public:
     std::vector<MMKPSolution> runOneGeneration
     (std::vector<MMKPSolution> population);
 
+    void particleUpdate(std::vector<Particle>& particles, MMKPSolution& bestSolution);
     
 
     

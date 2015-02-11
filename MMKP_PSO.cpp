@@ -30,10 +30,6 @@ MMKPSolution MMKP_PSO::run(std::vector<MMKPSolution> initialPopulation){
     
     std::vector<MMKPSolution> population = initialPopulation;
     
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<> dib(0, 1);
-    
     bool terminationCriterion = false;
     int currentGeneration = 0;
     this->convergenceData.empty();
@@ -67,57 +63,19 @@ MMKPSolution MMKP_PSO::run(std::vector<MMKPSolution> initialPopulation){
         particles.push_back(temp);
     }
     
+    std::tuple<int,float> temp(currentFuncEvals,bestSolution.getProfit());
+    this->convergenceData.push_back(temp);
+    
     //main loop
     while(!terminationCriterion){
         
-        for(int i=0;i<particles.size();i++){
-            for (int j=0;j<particles[i].solution.size();j++){
-                for(int k=0;k<particles[i].solution[j].size();k++){
-                    //update velocity
-                    particles[i].v[j][k] = particles[i].v[j][k] +
-                        (this->parameters.learningFactor *
-                         (particles[i].localBest[j][k] - particles[i].solution[j][k])) +
-                        (this->parameters.learningFactor *
-                        ((bestSolution[j][k] - particles[i].solution[j][k])));
-                    //normalize velocity
-                    float normalizedV = 1/(1+(exp(-(particles[i].v[j][k]))));
-                    float r = dib(gen);
-                    
-                    //update position
-                    if(r <= normalizedV){
-                        particles[i].solution[j][k] = 1;
-                    }else{
-                        particles[i].solution[j][k] = 0;
-                    }
-                }
-            }
-            
-            MMKP_MetaHeuristic::makeFeasible(particles[i].solution);
-            
-            //check if new particles is better than local best
-            if ((particles[i].solution.getProfit() > particles[i].localBest.getProfit())&&
-                (this->dataSet.isFeasible(particles[i].solution))){
-                particles[i].localBest = particles[i].solution;
-            }
-            
-        }
+        particleUpdate(particles,bestSolution);
+        particleUpdate(particles,bestSolution);
         
-        //check if any new particles are better than global best
-        for(int i=0;i<particles.size();i++){
-            if(this->dataSet.isFeasible(population[i])){
-                if(particles[i].localBest.getProfit() > bestSolution.getProfit()){
-                    bestSolution = particles[i].localBest;
-                    this->convergenceIteration = currentGeneration;
-                }
-            }
-        }
+        std::tuple<int,float> temp(currentFuncEvals,bestSolution.getProfit());
+        this->convergenceData.push_back(temp);
         
-        if((currentGeneration % 2 == 0)){
-            std::tuple<int,float> temp(currentFuncEvals,bestSolution.getProfit());
-            this->convergenceData.push_back(temp);
-        }
-        
-        if(currentGeneration >= (this->parameters.numberOfGenerations*2)){
+        if(currentGeneration >= (this->parameters.numberOfGenerations)){
             terminationCriterion = true;
         }
         
@@ -133,6 +91,65 @@ std::vector<MMKPSolution> MMKP_PSO::runOneGeneration
     
 
     return population;
+}
+
+void MMKP_PSO::particleUpdate(std::vector<Particle>& particles,MMKPSolution& bestSolution){
+    
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dib(0, 1);
+    
+    for(int i=0;i<particles.size();i++){
+
+        MMKPSolution oldSolution = particles[i].solution;
+        
+        for (int j=0;j<particles[i].solution.size();j++){
+            for(int k=0;k<particles[i].solution[j].size();k++){
+
+                this->currentFuncEvals++;
+                //update velocity
+                particles[i].v[j][k] = particles[i].v[j][k] +
+                (this->parameters.learningFactor *
+                 (particles[i].localBest[j][k] - particles[i].solution[j][k])) +
+                (this->parameters.learningFactor *
+                 (bestSolution[j][k] - particles[i].solution[j][k]));
+                
+                //normalize velocity- between -2 and 2
+                if(particles[i].v[j][k] > 2.0){
+                    particles[i].v[j][k] = 2.0;
+                }
+                if(particles[i].v[j][k] < -2.0){
+                    particles[i].v[j][k] = -2.0;
+                }
+
+                float normalizedV = 1/(1+(exp(-(particles[i].v[j][k]))));
+                float r = dib(gen);
+                
+                //update position
+                if(r <= normalizedV){
+                    particles[i].solution[j][k] = 1;
+                }else{
+                    particles[i].solution[j][k] = 0;
+                }
+            }
+        }
+        
+        bool temp = MMKP_MetaHeuristic::makeFeasible(particles[i].solution);
+        
+        //check if new particles is better than local best
+        if ((particles[i].solution.getProfit() > particles[i].localBest.getProfit())&&
+            (temp)){
+            particles[i].localBest = particles[i].solution;
+        }
+    }
+    
+    //check if any new particles are better than global best
+    for(int i=0;i<particles.size();i++){
+            if(particles[i].localBest.getProfit() > bestSolution.getProfit()){
+                bestSolution = particles[i].localBest;
+                this->convergenceIteration = currentGeneration;
+            }
+    }
 }
 
 
